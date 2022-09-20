@@ -1,0 +1,30 @@
+version: "3"
+services:
+    mysql:
+        image: mariadb
+        environment:
+            - MYSQL_ROOT_PASSWORD=123
+        ports:
+            - "3306:3306"
+        volumes:
+            - db-graphql-mysql:/var/lib/mysql
+            - ./.docker/config/my.cnf:/etc/mysql/conf.d/custom.cnf
+            - ./db/now_usec/now_usec.so:/usr/lib/mysql/plugin/now_usec.so
+
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        depends_on:
+            - mysql
+        volumes:
+            - .:/var/www/
+            - ./.docker/config/php.ini:/usr/local/etc/php/php.ini
+            - ./.docker/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+        container_name: etreedb-graphql-www
+        ports:
+            - "80:80"
+
+volumes:
+    db-graphql-mysql:
+        driver: local

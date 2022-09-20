@@ -1,0 +1,150 @@
+<?php
+
+namespace App\ORM\Entity;
+
+/**
+ * Performance
+ */
+class Performance
+{
+    /**
+     * @var string
+     */
+    private $performanceDate;
+
+    /**
+     * @var string
+     */
+    private $venue;
+
+    /**
+     * @var string
+     */
+    private $city;
+
+    /**
+     * @var string
+     */
+    private $state;
+
+    /**
+     * @var string|null
+     */
+    private $set1;
+
+    /**
+     * @var string|null
+     */
+    private $set2;
+
+    /**
+     * @var string|null
+     */
+    private $set3;
+
+    /**
+     * @var string|null
+     */
+    private $comment;
+
+    /**
+     * @var \DateTime|null
+     */
+    private $updatedAt;
+
+    /**
+     * @var \DateTime|null
+     */
+    private $createdAt;
+
+    /**
+     * @var int|null
+     */
+    private $year;
+
+    /**
+     * @var string
+     */
+    private $showsuserid;
+
+    /**
+     * @var int
+     */
+    private $ref_festival;
+
+    /**
+     * @var bool
+     */
+    private $festival_lock;
+
+    /**
+     * @var \DateTime|null
+     */
+    private $spotlight_date;
+
+    /**
+     * @var \DateTime|null
+     */
+    private $staffpick_date;
+
+    /**
+     * @var int
+     */
+    private $merge_lock;
+
+    /**
+     * @var int
+     */
+    private $ref_venue;
+
+    /**
+     * @var string|null
+     */
+    private $changeComment;
+
+    /**
+     * @var bool
+     */
+    private $isCompilation;
+
+    /**
+     * @var string
+     */
+    private $title;
+
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $sources;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $userPerformances;
+
+    /**
+     * @var \App\ORM\Entity\Artist
+     */
+    private $artist;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $wantedUsers = array();
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sources = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userPerformances = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->wantedUsers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

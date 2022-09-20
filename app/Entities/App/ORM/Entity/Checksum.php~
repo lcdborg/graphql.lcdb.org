@@ -1,0 +1,36 @@
+<?php
+
+namespace App\ORM\Entity;
+
+/**
+ * Checksum
+ */
+class Checksum
+{
+    /**
+     * @var string|null
+     */
+    private $md5desc;
+
+    /**
+     * @var string|null
+     */
+    private $md5text;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var \App\ORM\Entity\Source
+     */
+    private $source;
+
+
+}

@@ -1,0 +1,83 @@
+<?php
+
+namespace App\ORM\Entity;
+
+/**
+ * UserList
+ */
+class UserList
+{
+    /**
+     * @var string
+     */
+    private $ref_username;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $shortname;
+
+    /**
+     * @var string|null
+     */
+    private $notes;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var int
+     */
+    private $views;
+
+    /**
+     * @var dateTime
+     */
+    private $lastviewed;
+
+    /**
+     * @var bool
+     */
+    private $defaultlist;
+
+    /**
+     * @var bool|null
+     */
+    private $private;
+
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var \App\ORM\Entity\User
+     */
+    private $user;
+
+    /**
+     * @var \App\ORM\Entity\Template
+     */
+    private $template;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $userPerformances = array();
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->userPerformances = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

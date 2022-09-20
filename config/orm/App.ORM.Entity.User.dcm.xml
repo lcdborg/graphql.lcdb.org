@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\ORM\Entity\User" table="auth_user">
+    <id name="id" type="integer" column="user_key">
+      <generator strategy="AUTO"/>
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </id>
+    <field name="username" type="string" length="32" nullable="false"/>
+    <field name="password" type="string" length="60" nullable="false"/>
+    <field name="email" type="string" length="100" nullable="true"/>
+    <field name="realemail" type="string" length="100" nullable="true"/>
+    <field name="perms" type="string" length="255" nullable="true"/>
+    <field name="validemail" type="boolean" nullable="false"/>
+    <field name="name" type="string" length="100" nullable="false"/>
+    <field name="css" type="text" nullable="true"/>
+    <field name="activetrading" type="boolean" nullable="true"/>
+    <field name="rules" type="text" nullable="true"/>
+    <field name="config_showrules" type="boolean" nullable="true"/>
+    <field name="config_colors" type="text" nullable="true"/>
+    <field name="config_columns" type="text" nullable="true"/>
+    <field name="columnorder" type="text" nullable="true"/>
+    <field name="city" type="string" length="40" nullable="true"/>
+    <field name="state" type="string" length="2" nullable="false"/>
+    <field name="zipcode" type="string" length="10" nullable="true"/>
+    <field name="tradenotes" type="text" nullable="true"/>
+    <field name="confirm_hash" type="string" length="16" nullable="true"/>
+    <field name="cookie_hash" type="string" length="32" nullable="true"/>
+    <field name="updatedAt" type="datetime" nullable="true" column="lastupdate"/>
+    <field name="msg_yahoo" type="string" length="100" nullable="true"/>
+    <field name="picture" type="string" length="255" nullable="true"/>
+    <field name="createdAt" type="datetime" nullable="true" column="userdateadded"/>
+    <many-to-one field="template" target-entity="App\ORM\Entity\Template" inversed-by="users">
+      <join-columns>
+        <join-column name="ref_template" referenced-column-name="template_key" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="artists" target-entity="App\ORM\Entity\Artist" mapped-by="user"/>
+    <one-to-many field="artistGroups" target-entity="App\ORM\Entity\ArtistGroup" mapped-by="user"/>
+    <one-to-many field="artistToArtistGroups" target-entity="App\ORM\Entity\ArtistToArtistGroup" mapped-by="user"/>
+    <one-to-many field="userToArtistGroups" target-entity="App\ORM\Entity\UserToArtistGroup" mapped-by="user"/>
+    <one-to-many field="userPerformances" target-entity="App\ORM\Entity\UserPerformance" mapped-by="user"/>
+    <one-to-many field="userLists" target-entity="App\ORM\Entity\UserList" mapped-by="user"/>
+    <many-to-many field="wantedPerformances" target-entity="App\ORM\Entity\Performance" mapped-by="wantedUsers"/>
+  </entity>
+</doctrine-mapping>
