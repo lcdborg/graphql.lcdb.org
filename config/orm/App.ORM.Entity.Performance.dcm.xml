@@ -7,7 +7,7 @@
         <option name="unsigned">true</option>
       </options>
     </id>
-    <field name="performanceDate" type="string" length="10" nullable="false" column="showdate"/>
+    <field name="date" type="string" length="10" nullable="false" column="showdate"/>
     <field name="venue" type="string" length="50" nullable="false"/>
     <field name="city" type="string" length="25" nullable="false"/>
     <field name="state" type="string" length="20" nullable="false"/>

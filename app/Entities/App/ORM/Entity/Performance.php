@@ -10,7 +10,7 @@ class Performance
     /**
      * @var string
      */
-    private $performanceDate;
+    private $date;
 
     /**
      * @var string
@@ -148,27 +148,27 @@ class Performance
     }
 
     /**
-     * Set performanceDate.
+     * Set date.
      *
-     * @param string $performanceDate
+     * @param string $date
      *
      * @return Performance
      */
-    public function setPerformanceDate($performanceDate)
+    public function setDate($date)
     {
-        $this->performanceDate = $performanceDate;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * Get performanceDate.
+     * Get date.
      *
      * @return string
      */
-    public function getPerformanceDate()
+    public function getDate()
     {
-        return $this->performanceDate;
+        return $this->date;
     }
 
     /**

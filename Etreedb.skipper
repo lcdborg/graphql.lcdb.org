@@ -12,7 +12,7 @@
           <attribute name="column">ref_artist</attribute>
         </orm-attributes>
       </field>
-      <field name="performanceDate" type="string" size="10" required="true" uuid="970d3d74-cd8d-4655-ace5-cf834a297f50">
+      <field name="date" type="string" size="10" required="true" uuid="970d3d74-cd8d-4655-ace5-cf834a297f50">
         <orm-attributes>
           <attribute name="column">showdate</attribute>
         </orm-attributes>

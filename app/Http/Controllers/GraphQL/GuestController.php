@@ -24,7 +24,7 @@ class GuestController extends Controller
         $driver = new Driver($entityManager, new Config([
             'globalEnable' => true,
             'limit' => 5,
-            'useHydratorCache' => true,
+            'useHydratorCache' => false,
             'globalIgnore' => ['password', 'realemail', 'email'],
         ]));
 
