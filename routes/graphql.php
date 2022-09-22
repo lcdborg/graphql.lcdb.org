@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/base', 'GuestController@graphql')
+Route::get('/guest', 'GuestController@graphql')
     ->name('graphql.guest.get');
 
-Route::post('/base', 'GuestController@graphql')
+Route::post('/guest', 'GuestController@graphql')
     ->name('graphql.guest.post');

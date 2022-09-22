@@ -10,12 +10,12 @@ class Checksum
     /**
      * @var string|null
      */
-    private $md5desc;
+    private $description;
 
     /**
      * @var string|null
      */
-    private $md5text;
+    private $body;
 
     /**
      * @var \DateTime
@@ -34,51 +34,51 @@ class Checksum
 
 
     /**
-     * Set md5desc.
+     * Set description.
      *
-     * @param string|null $md5desc
+     * @param string|null $description
      *
      * @return Checksum
      */
-    public function setMd5desc($md5desc = null)
+    public function setDescription($description = null)
     {
-        $this->md5desc = $md5desc;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get md5desc.
+     * Get description.
      *
      * @return string|null
      */
-    public function getMd5desc()
+    public function getDescription()
     {
-        return $this->md5desc;
+        return $this->description;
     }
 
     /**
-     * Set md5text.
+     * Set body.
      *
-     * @param string|null $md5text
+     * @param string|null $body
      *
      * @return Checksum
      */
-    public function setMd5text($md5text = null)
+    public function setBody($body = null)
     {
-        $this->md5text = $md5text;
+        $this->body = $body;
 
         return $this;
     }
 
     /**
-     * Get md5text.
+     * Get body.
      *
      * @return string|null
      */
-    public function getMd5text()
+    public function getBody()
     {
-        return $this->md5text;
+        return $this->body;
     }
 
     /**

@@ -4,8 +4,8 @@
     <id name="id" type="integer" column="md5_key">
       <generator strategy="AUTO"/>
     </id>
-    <field name="md5desc" type="string" nullable="true"/>
-    <field name="md5text" type="text" nullable="true"/>
+    <field name="description" type="string" nullable="true" column="md5desc"/>
+    <field name="body" type="text" nullable="true" column="md5text"/>
     <field name="createdAt" type="datetime" nullable="false" column="dateentered"/>
     <many-to-one field="source" target-entity="App\ORM\Entity\Source" inversed-by="checksums">
       <join-columns>

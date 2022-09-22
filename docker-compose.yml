@@ -21,7 +21,7 @@ services:
             - .:/var/www/
             - ./.docker/config/php.ini:/usr/local/etc/php/php.ini
             - ./.docker/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
-        container_name: etreedb-graphql-www
+        container_name: lcdb-graphql-www
         ports:
             - "80:80"
 

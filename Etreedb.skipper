@@ -357,8 +357,16 @@
             <attribute name="column">ref_shninfo</attribute>
           </orm-attributes>
         </field>
-        <field name="md5desc" type="string" uuid="c1d25b67-a43e-4c6d-971e-442f3442c1ed"/>
-        <field name="md5text" type="text" uuid="c8918848-609b-4e43-9fba-6112e1af9af6"/>
+        <field name="description" type="string" uuid="c1d25b67-a43e-4c6d-971e-442f3442c1ed">
+          <orm-attributes>
+            <attribute name="column">md5desc</attribute>
+          </orm-attributes>
+        </field>
+        <field name="body" type="text" uuid="c8918848-609b-4e43-9fba-6112e1af9af6">
+          <orm-attributes>
+            <attribute name="column">md5text</attribute>
+          </orm-attributes>
+        </field>
         <field name="createdAt" type="datetime" required="true" uuid="b9389844-1dda-48a6-90a1-384177c459f8">
           <orm-attributes>
             <attribute name="column">dateentered</attribute>

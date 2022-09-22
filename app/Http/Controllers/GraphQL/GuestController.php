@@ -23,8 +23,8 @@ class GuestController extends Controller
     {
         $driver = new Driver($entityManager, new Config([
             'globalEnable' => true,
-            'limit' => 5,
-            'useHydratorCache' => false,
+            'limit' => 300,
+            'useHydratorCache' => true,
             'globalIgnore' => ['password', 'realemail', 'email'],
         ]));
 
@@ -101,7 +101,9 @@ class GuestController extends Controller
         ]);
 
         $query = $request->get('query');
-        $result = GraphQL::executeQuery($schema, $query);
+        $variables = $request->get('variables');
+        $operationName = $request->get('operationName');
+        $result = GraphQL::executeQuery($schema, $query, null, null, $variables, $operationName);
 
         return $result->toArray();
     }
