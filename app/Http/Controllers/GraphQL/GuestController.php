@@ -4,29 +4,49 @@ namespace App\Http\Controllers\GraphQL;
 
 use ApiSkeletons\Doctrine\GraphQL\Config;
 use ApiSkeletons\Doctrine\GraphQL\Driver;
+use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
 use App\Http\Controllers\Controller;
 use App\ORM\Entity\Artist;
 use App\ORM\Entity\Performance;
 use App\ORM\Entity\Source;
 use App\ORM\Entity\User;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\QueryBuilder;
 use GraphQL\GraphQL;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Schema;
 use Illuminate\Http\Request;
+use League\Event\EventDispatcher;
 
 class GuestController extends Controller
 {
     public function graphql(EntityManager $entityManager, Request $request)
     {
+        $query = $request->get('query');
+        $variables = $request->get('variables');
+        $operationName = $request->get('operationName');
+
         $driver = new Driver($entityManager, new Config([
             'globalEnable' => true,
             'limit' => 300,
             'useHydratorCache' => true,
             'globalIgnore' => ['password', 'realemail', 'email'],
         ]));
+
+        $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+            function(FilterQueryBuilder $event) use ($variables) {
+                if (isset($variables['_artists_other']) && $variables['_artists_other']) {
+                    $queryBuilder = $event->getQueryBuilder();
+                    $queryBuilder
+                        ->orWhere($queryBuilder->expr()->lt('entity.nameFirstLetter', ':min'))
+                        ->orWhere($queryBuilder->expr()->gt('entity.nameFirstLetter', ':max'))
+                        ->setParameter('min', 65)
+                        ->setParameter('max', 122);
+                }
+            }
+        );
 
         $schema = new Schema([
             'query' => new ObjectType([
@@ -100,9 +120,6 @@ class GuestController extends Controller
             ]),
         ]);
 
-        $query = $request->get('query');
-        $variables = $request->get('variables');
-        $operationName = $request->get('operationName');
         $result = GraphQL::executeQuery($schema, $query, null, null, $variables, $operationName);
 
         return $result->toArray();
