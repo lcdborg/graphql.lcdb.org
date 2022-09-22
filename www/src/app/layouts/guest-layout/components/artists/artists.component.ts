@@ -68,11 +68,31 @@ export class ArtistsComponent implements OnInit {
     }
   `;
 
+  private filterQuery = `
+    query ArtistList($filter: String = "a", $after: String = "LTE=") {
+      artists (filter: { name_sort: "ASC", name_contains: $filter, _after: $after }) {
+        totalCount
+        pageInfo {
+          hasPreviousPage
+          hasNextPage
+        }
+        edges {
+          cursor
+          node {
+            id
+            name
+          }
+        }
+      }
+    }
+  `;
+
   public chr = 'top100';
   public page = 1;
   public pages = [];
   public maxPage = 1;
   public pageJump = 1;
+  public filterString = '';
   public graphQLArtists: any;
 
   constructor(
@@ -93,12 +113,24 @@ export class ArtistsComponent implements OnInit {
         this.page = 1;
       }
 
+      if (queryParamMap.get('filterString')) {
+        this.chr = 'filter';
+        this.filterString = queryParamMap.get('filterString');
+      } else {
+        this.filterString = '';
+      }
+
       this.pageJump = this.page;
 
       const parameters: any = {};
 
       let query = '';
       switch (this.chr) {
+        case 'filter':
+          parameters.filter = this.filterString;
+          parameters.after = btoa(String((this.page - 1) * 300 - 1))
+          query = this.filterQuery;
+          break;
         case 'top100':
           query = this.top100query;
           break;
@@ -113,8 +145,6 @@ export class ArtistsComponent implements OnInit {
           query = this.query;
           break;
       }
-
-      console.log(parameters);
 
       this.guestGraphQLService.query(query, parameters).subscribe(graphQLResult => {
         this.graphQLArtists = graphQLResult;
@@ -171,7 +201,15 @@ export class ArtistsComponent implements OnInit {
       this.pageJump = 1;
     }
 
-    this.router.navigate(['/guest/artists'], {queryParams: {chr: this.chr, page: this.pageJump}});
+    this.router.navigate(['/guest/artists'], {queryParams: {
+      chr: this.chr,
+      page: this.pageJump,
+      filterString: this.filterString
+    }});
+  }
+
+  public filter() {
+    this.router.navigate(['/guest/artists'], {queryParams: {chr: 'filter', filterString: this.filterString}});
   }
 
   public column(id: number): any {

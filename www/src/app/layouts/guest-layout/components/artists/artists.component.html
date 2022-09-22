@@ -20,6 +20,18 @@
                 }">
                 other
               </a>
+
+              <br>
+
+              <span class="alphabet-link">
+                Filter
+                <input
+                  type="text"
+                  style="width: 15em;"
+                  (change)="filter()"
+                  [(ngModel)]="filterString"
+                >
+              </span>
             </p>
 
 
@@ -67,11 +79,14 @@
                 (change)="jumpToPage()"
                 [(ngModel)]="pageJump"
               >
+              of {{ this.maxPage }}
 
+              <!--
               <span class="pagination-link">
                 {{ ((page - 1) * 300) + 1}} to {{ ((page - 1) * 300) + graphQLArtists.data.artists.edges.length }}
                 of {{ graphQLArtists.data.artists.totalCount }}
               </span>
+              -->
 
               <br>
 
@@ -88,7 +103,16 @@
               </span>
             </p>
           </div>
-          <div class="card-body" *ngIf="graphQLArtists">
+          <div class="card-body" *ngIf="graphQLArtists && ! graphQLArtists.data.artists.totalCount">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  No results found
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body" *ngIf="graphQLArtists && graphQLArtists.data.artists.totalCount">
             <div class="container">
               <div class="row">
                 <div class="col-md-4">
