@@ -5,70 +5,110 @@
         <div class="card">
           <div class="card-header card-header-danger">
             <p class="card-title">
-              <a
-                class="alphabet"
-                [routerLink]="['/guest/artists']"
-                [queryParams]="{chr: 'top100'}"
-                [ngClass]="{
+              <a class="alphabet" [routerLink]="['/guest/artists']" [queryParams]="{chr: 'top100'}" [ngClass]="{
                   'alphabet-active': this.chr === 'top100'
-                }"
-              >
+                }">
                 top 100
               </a>
-              <a
-                *ngFor="let x of [].constructor(26); let i = index"
-                class="alphabet"
-                [ngClass]="{
+              <a *ngFor="let x of [].constructor(26); let i = index" class="alphabet" [ngClass]="{
                   'alphabet-active': this.chr === getAlphabetLetter(i, false)
-                }"
-                [routerLink]="['/guest/artists']"
-                [queryParams]="{chr: getAlphabetLetter(i, false)}"
-              >
+                }" [routerLink]="['/guest/artists']" [queryParams]="{chr: getAlphabetLetter(i, false)}">
                 {{ getAlphabetLetter(i, true) }}
               </a>
-              <a
-                class="alphabet"
-                [routerLink]="['/guest/artists']"
-                [queryParams]="{chr: 'other'}"
-                [ngClass]="{
+              <a class="alphabet" [routerLink]="['/guest/artists']" [queryParams]="{chr: 'other'}" [ngClass]="{
                   'alphabet-active': this.chr === 'other'
-                }"
-              >
+                }">
                 other
               </a>
+            </p>
 
+
+            <p class="card-category" *ngIf="graphQLArtists && (
+              graphQLArtists.data.artists.pageInfo.hasNextPage ||
+              graphQLArtists.data.artists.pageInfo.hasPreviousPage
+              )">
+
+              <a routerLink="/guest/artists" [queryParams]="{chr: this.chr, page: 1}" class="pagination-link">
+                |&lt; FIRST
+              </a>
+
+              <a routerLink="/guest/artists" [queryParams]="{chr: this.chr, page: this.page - 1}"
+                *ngIf="graphQLArtists.data.artists.pageInfo.hasPreviousPage" class="pagination-link">
+                &lt; PREV
+              </a>
+
+              <ng-container *ngFor="let p of this.pages">
+                <a routerLink="/guest/artists" [queryParams]="{chr: this.chr, page: p}" class="pagination-link"
+                  [ngClass]="
+                    {
+                      'pagination-link-active': p === this.page
+                    }
+                  ">
+                  {{ p }}
+                </a>
+              </ng-container>
+
+              <a routerLink="/guest/artists" [queryParams]="{chr: this.chr, page: this.page + 1}"
+                *ngIf="graphQLArtists.data.artists.pageInfo.hasNextPage" class="pagination-link">
+                NEXT &gt;
+              </a>
+
+              <a routerLink="/guest/artists" [queryParams]="{chr: this.chr, page: this.maxPage}"
+                class="pagination-link">
+                LAST |&gt;
+              </a>
+
+              Jump to page
+              <input
+                type="number"
+                min="1"
+                max="{{ this.maxPage }}"
+                style="width: 3em;"
+                (change)="jumpToPage()"
+                [(ngModel)]="pageJump"
+              >
+
+              <span class="pagination-link">
+                {{ ((page - 1) * 300) + 1}} to {{ ((page - 1) * 300) + graphQLArtists.data.artists.edges.length }}
+                of {{ graphQLArtists.data.artists.totalCount }}
+              </span>
+
+              <br>
+
+              <span class="pagination-link">
+                <a routerLink="/guest/artist/{{ graphQLArtists.data.artists.edges[0].node.id }}">
+                  {{ graphQLArtists.data.artists.edges[0].node.name }}
+                </a>
+                to
+                <a
+                  routerLink="/guest/artist/{{ graphQLArtists.data.artists.edges[graphQLArtists.data.artists.edges.length - 1].node.id }}">
+                  {{ graphQLArtists.data.artists.edges[graphQLArtists.data.artists.edges.length - 1].node.name }}
+                </a>
+
+              </span>
             </p>
           </div>
-            <div class="card-body" *ngIf="graphQLArtists">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-4">
-                    <a
-                    style="display: block"
-                      *ngFor="let edge of column(1)"
-                      href="/guest/artist/{{ edge.node.id }}"
-                      >{{ edge.node.name }}
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a
-                    style="display: block"
-                      *ngFor="let edge of column(2)"
-                      href="/guest/artist/{{ edge.node.id }}"
-                      >{{ edge.node.name }}
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a
-                    style="display: block"
-                      *ngFor="let edge of column(3)"
-                      href="/guest/artist/{{ edge.node.id }}"
-                      >{{ edge.node.name }}
-                    </a>
-                  </div>
+          <div class="card-body" *ngIf="graphQLArtists">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <a style="display: block" *ngFor="let edge of column(1)" href="/guest/artist/{{ edge.node.id }}">{{
+                    edge.node.name }}
+                  </a>
+                </div>
+                <div class="col-md-4">
+                  <a style="display: block" *ngFor="let edge of column(2)" href="/guest/artist/{{ edge.node.id }}">{{
+                    edge.node.name }}
+                  </a>
+                </div>
+                <div class="col-md-4">
+                  <a style="display: block" *ngFor="let edge of column(3)" href="/guest/artist/{{ edge.node.id }}">{{
+                    edge.node.name }}
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-</div>
