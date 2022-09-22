@@ -4,14 +4,24 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { GuestLayoutComponent } from './layouts/guest-layout/guest-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'guest/home',
     pathMatch: 'full',
-  }, {
-    path: '',
+  },
+  {
+    path: 'guest',
+    component: GuestLayoutComponent,
+    children: [{
+      path: '',
+      loadChildren: () => import('./layouts/guest-layout/guest-layout.module').then(m => m.GuestLayoutModule)
+    }]
+  },
+  {
+    path: 'admin',
     component: AdminLayoutComponent,
     children: [{
       path: '',

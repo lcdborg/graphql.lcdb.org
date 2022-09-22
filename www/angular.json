@@ -3,8 +3,8 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "material-dashboard-angular": {
-      "root": "",
+    "lcdb": {
+      "root": "app",
       "sourceRoot": "src",
       "projectType": "application",
       "architect": {
@@ -85,14 +85,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "material-dashboard-angular:build"
+            "browserTarget": "lcdb:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "material-dashboard-angular:build:production"
+              "browserTarget": "lcdb:build:production"
             },
             "development": {
-              "browserTarget": "material-dashboard-angular:build:development"
+              "browserTarget": "lcdb:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -100,7 +100,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "material-dashboard-angular:build"
+            "browserTarget": "lcdb:build"
           }
         },
         "test": {
@@ -143,35 +143,11 @@
         }
       }
     },
-    "material-dashboard-angular-e2e": {
-      "root": "",
-      "sourceRoot": "",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "material-dashboard-angular:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": []
-          }
-        }
-      }
-    }
   },
-  "defaultProject": "material-dashboard-angular",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "style": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "app"

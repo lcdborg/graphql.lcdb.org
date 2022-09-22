@@ -1,0 +1,60 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <p class="card-title">
+                        <a
+                          class="alphabet"
+                          [routerLink]="['/guest/artists']"
+                          [queryParams]="{chr: 'top100'}"
+                          [ngClass]="{
+                            'alphabet-active': this.chr === 'top100'
+                          }"
+                        >
+                          top 100
+                        </a>
+                        <a
+                          *ngFor="let x of [].constructor(26); let i = index"
+                          class="alphabet"
+                          [ngClass]="{
+                            'alphabet-active': this.chr === getAlphabetLetter(i, false)
+                          }"
+                          [routerLink]="['/guest/artists']"
+                          [queryParams]="{chr: getAlphabetLetter(i, false)}"
+                        >
+                          {{ getAlphabetLetter(i, true) }}
+                        </a>
+                        <a
+                          class="alphabet"
+                          [routerLink]="['/guest/artists']"
+                          [queryParams]="{chr: 'other'}"
+                          [ngClass]="{
+                            'alphabet-active': this.chr === 'other'
+                          }"
+                        >
+                          other
+                        </a>
+
+                      </p>
+                  </div>
+                  <div class="card-body">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-4">
+                          artist list 1
+                        </div>
+                        <div class="col-4">
+                          artist list 2
+                        </div>
+                        <div class="col-4">
+                          artist list 3
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
