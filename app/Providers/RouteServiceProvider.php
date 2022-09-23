@@ -29,13 +29,9 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::middleware('graphql')
-                ->prefix('graphql')
-                ->namespace('App\Http\Controllers\GraphQL')
-                ->group(base_path('routes/graphql.php'));
-
             Route::middleware('api')
-                ->prefix('api')
+                ->namespace('App\Http\Controllers')
+                ->prefix('')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
