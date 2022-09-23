@@ -19,6 +19,15 @@ export class ArtistComponent implements OnInit {
       artist (id: $id) {
         id
         name
+        artistToArtistGroups {
+          edges {
+            node {
+              artistGroup {
+                title
+              }
+            }
+          }
+        }
         performances (filter: {year: $year date_sort: "ASC"}) {
           edges {
             node {

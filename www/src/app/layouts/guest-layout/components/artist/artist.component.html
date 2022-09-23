@@ -8,6 +8,16 @@
               {{ graphQLArtist.data.artist.name }}
               <br>
               <a *ngIf="graphQLArtist.data.sourceCount" class="btn btn-success btn-sm" (click)="this.showSets = ! this.showSets">Sources</a>
+
+
+
+              <ng-container *ngIf="graphQLArtist.data.artist.artistToArtistGroups.edges">
+                <a
+                  *ngFor="let artistGroupEdge of graphQLArtist.data.artist.artistToArtistGroups.edges"
+                  class="btn btn-success btn-sm"
+                  (click)="this.showSets = ! this.showSets">{{ artistGroupEdge.node.artistGroup.title }} Artist Group</a>
+              </ng-container>
+
               <a class="btn btn-info btn-sm" (click)="this.showSets = ! this.showSets">Show Sets</a>
             </p>
             <p class="card-category">
