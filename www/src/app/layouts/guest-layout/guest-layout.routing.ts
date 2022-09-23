@@ -5,16 +5,21 @@ import { ArtistsComponent } from './components/artists/artists.component';
 import { HomeComponent } from './components/home/home.component';
 
 export const GuestLayoutRoutes: Routes = [
-    {
-      component: HomeComponent,
-      path: 'home',
-    },
-    {
-      component: ArtistsComponent,
-      path: 'artists',
-    },
-    {
-      component: ArtistComponent,
-      path: 'artist/:id',
-    },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    component: HomeComponent,
+    path: 'home',
+  },
+  {
+    component: ArtistsComponent,
+    path: 'artists',
+  },
+  {
+    component: ArtistComponent,
+    path: 'artist/:id',
+},
 ];

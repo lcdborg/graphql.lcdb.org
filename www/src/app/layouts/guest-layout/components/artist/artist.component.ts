@@ -14,6 +14,8 @@ export class ArtistComponent implements OnInit {
     query Artist($id: Int!, $year: Int = 2022) {
       artistYears(id: $id)
 
+      sourceCount(id: $id)
+
       artist (id: $id) {
         id
         name
@@ -72,7 +74,7 @@ export class ArtistComponent implements OnInit {
       if (! params.year) {
         this.guestGraphQLService.query(this.latestYearQuery, { id: Number(params.id) })
           .subscribe(latestYear => {
-            this.router.navigate(['/guest/artist/' + params.id], { queryParams: { year: latestYear.data.artistLatestYear }})
+            this.router.navigate(['/artist/' + params.id], { queryParams: { year: latestYear.data.artistLatestYear }})
         });
       } else {
         this.guestGraphQLService.query(this.query, { id: Number(params.id), year: Number(params.year) })

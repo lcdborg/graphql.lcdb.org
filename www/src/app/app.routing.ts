@@ -9,11 +9,6 @@ import { GuestLayoutComponent } from './layouts/guest-layout/guest-layout.compon
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'guest/home',
-    pathMatch: 'full',
-  },
-  {
-    path: 'guest',
     component: GuestLayoutComponent,
     children: [{
       path: '',

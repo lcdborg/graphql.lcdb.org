@@ -11,7 +11,7 @@ export class GuestGraphQLService {
   constructor(private http: HttpClient) { }
 
   public query(query: string, variables: object = {}, operationName = ''): Observable<any> {
-    return this.http.post<any>(environment.graphQLServer + '/graphql/guest', {
+    return this.http.post<any>(environment.graphQLServer + '/graphql', {
       'query': query,
       'variables': variables,
       'operationName': operationName,

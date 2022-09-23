@@ -8,8 +8,8 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-  { path: '/guest/home', title: 'Home',  icon: 'dashboard', class: '' },
-  { path: '/guest/artists', title: 'Artists',  icon: 'dashboard', class: '' },
+  { path: '/home', title: 'Home',  icon: 'dashboard', class: '' },
+  { path: '/artists', title: 'Artists',  icon: 'dashboard', class: '' },
 ];
 
 @Component({

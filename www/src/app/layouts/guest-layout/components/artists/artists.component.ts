@@ -201,7 +201,7 @@ export class ArtistsComponent implements OnInit {
       this.pageJump = 1;
     }
 
-    this.router.navigate(['/guest/artists'], {queryParams: {
+    this.router.navigate(['/artists'], {queryParams: {
       chr: this.chr,
       page: this.pageJump,
       filterString: this.filterString
@@ -209,7 +209,7 @@ export class ArtistsComponent implements OnInit {
   }
 
   public filter() {
-    this.router.navigate(['/guest/artists'], {queryParams: {chr: 'filter', filterString: this.filterString}});
+    this.router.navigate(['/artists'], {queryParams: {chr: 'filter', filterString: this.filterString}});
   }
 
   public column(id: number): any {
