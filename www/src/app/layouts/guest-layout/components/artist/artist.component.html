@@ -1,0 +1,106 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" *ngIf="graphQLArtist">
+          <div class="card-header card-header-warning">
+            <p class="card-title h3">
+              {{ graphQLArtist.data.artist.name }}
+              <a class=" float-right  btn btn-info btn-sm" (click)="this.showSets = ! this.showSets">Show Sets</a>
+            </p>
+            <p class="card-category">
+              <a
+                class="year-link"
+                [ngClass]="{
+                  'year-link-active': y === this.year
+                }"
+                *ngFor="let y of this.graphQLArtist.data.artistYears"
+                routerLink="/guest/artist/{{ graphQLArtist.data.artist.id }}"
+                [queryParams]="{
+                  year: y
+                }"
+              >
+                {{ y }}
+              </a>
+            </p>
+          </div>
+          <div class="card-body">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class=" text-primary">
+                    <th>
+                      Date
+                    </th>
+                    <th>
+                      Venue
+                    </th>
+                    <th>
+                      City
+                    </th>
+                    <th>
+                      State
+                    </th>
+                    <th>
+                      Sources
+                    </th>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let edge of graphQLArtist.data.artist.performances.edges">
+                      <tr>
+                        <td>
+                          <a routerLink="/guest/performance/{{ edge.node.id }}">
+                            {{ edge.node.year }}-{{ edge.node.date | slice:0:2 }}-{{ edge.node.date | slice:3:5 }}
+                          </a>
+                        </td>
+                        <td>{{ edge.node.venue }}</td>
+                        <td>{{ edge.node.city }}</td>
+                        <td>{{ edge.node.state }}</td>
+                        <td>
+                          <a *ngFor="let sourceEdge of edge.node.sources.edges"
+                            [title]="sourceEdge.node.comments"
+                            routerLink="/guest/source/{{ sourceEdge.node.id }}"
+                          >
+                            {{ sourceEdge.node.id }}
+                          </a>
+                        </td>
+                      </tr>
+                      <tr *ngIf="this.showSets">
+                        <td colspan="5">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <b>Set 1</b>
+                                <br>
+                                {{ edge.node.set1 }}
+                              </div>
+                              <div class="col-md-3">
+                                <b>Set 2</b>
+                                <br>
+                                {{ edge.node.set2 }}
+                              </div>
+                              <div class="col-md-3">
+                                <b>Set 3</b>
+                                <br>
+                                {{ edge.node.set3 }}
+                              </div>
+                              <div class="col-md-3">
+                                <b>Comment</b>
+                                <br>
+                                {{ edge.node.comment }}
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

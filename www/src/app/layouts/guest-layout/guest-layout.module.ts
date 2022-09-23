@@ -11,6 +11,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { HomeComponent } from './components/home/home.component';
 import { ArtistsComponent } from './components/artists/artists.component';
+import { ArtistComponent } from './components/artist/artist.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { ArtistsComponent } from './components/artists/artists.component';
   declarations: [
     HomeComponent,
     ArtistsComponent,
+    ArtistComponent,
   ]
 })
 

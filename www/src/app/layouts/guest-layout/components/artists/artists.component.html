@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-danger">
+          <div class="card-header card-header-warning">
             <p class="card-title">
               <a class="alphabet" [routerLink]="['/guest/artists']" [queryParams]="{chr: 'top100'}" [ngClass]="{
                   'alphabet-active': this.chr === 'top100'
@@ -116,17 +116,17 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-4">
-                  <a style="display: block" *ngFor="let edge of column(1)" href="/guest/artist/{{ edge.node.id }}">{{
+                  <a style="display: block" *ngFor="let edge of column(1)" routerLink="/guest/artist/{{ edge.node.id }}">{{
                     edge.node.name }}
                   </a>
                 </div>
                 <div class="col-md-4">
-                  <a style="display: block" *ngFor="let edge of column(2)" href="/guest/artist/{{ edge.node.id }}">{{
+                  <a style="display: block" *ngFor="let edge of column(2)" routerLink="/guest/artist/{{ edge.node.id }}">{{
                     edge.node.name }}
                   </a>
                 </div>
                 <div class="col-md-4">
-                  <a style="display: block" *ngFor="let edge of column(3)" href="/guest/artist/{{ edge.node.id }}">{{
+                  <a style="display: block" *ngFor="let edge of column(3)" routerLink="/guest/artist/{{ edge.node.id }}">{{
                     edge.node.name }}
                   </a>
                 </div>
