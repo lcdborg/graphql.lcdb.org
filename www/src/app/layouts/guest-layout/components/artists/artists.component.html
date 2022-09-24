@@ -6,7 +6,9 @@
           <div class="card-header card-header-warning">
             <p class="card-title">
               <span class="h3">Artists</span>
-              <br>
+            </p>
+
+            <p class="card-category">
               <a class="alphabet" [routerLink]="['/artists']" [queryParams]="{chr: 'top100'}" [ngClass]="{
                   'alphabet-active': this.chr === 'top100'
                 }">

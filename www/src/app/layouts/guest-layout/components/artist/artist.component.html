@@ -8,9 +8,6 @@
               {{ graphQLArtist.data.artist.name }}
               <br>
               <a *ngIf="graphQLArtist.data.sourceCount" class="btn btn-success btn-sm" (click)="this.showSets = ! this.showSets">Sources</a>
-
-
-
               <ng-container *ngIf="graphQLArtist.data.artist.artistToArtistGroups.edges">
                 <a
                   *ngFor="let artistGroupEdge of graphQLArtist.data.artist.artistToArtistGroups.edges"
@@ -32,7 +29,7 @@
                   year: y
                 }"
               >
-                {{ y }}
+                {{ y === 1939 ? 'unknown': y }}
               </a>
             </p>
           </div>
@@ -62,7 +59,7 @@
                       <tr>
                         <td>
                           <a routerLink="/performance/{{ edge.node.id }}">
-                            {{ edge.node.year }}-{{ edge.node.date | slice:0:2 }}-{{ edge.node.date | slice:3:5 }}
+                            {{ formatPerformanceDate(edge.node.date, edge.node.year) }}
                           </a>
                         </td>
                         <td>{{ edge.node.venue }}</td>

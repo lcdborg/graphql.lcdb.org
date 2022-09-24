@@ -95,6 +95,10 @@ export class ArtistComponent implements OnInit {
     });
   }
 
+  public formatPerformanceDate(date: string, year: number) {
+    return year + '-' + date.slice(0, 2) + '-' + date.slice(3, 5);
+  }
+
   ngOnInit(): void {
   }
 
