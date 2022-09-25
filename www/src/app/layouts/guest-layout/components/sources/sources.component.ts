@@ -105,7 +105,7 @@ export class SourcesComponent implements OnInit {
       } else {
 
         this.year = Number(params.year);
-        this.page = Number(params.page ? params.page : 1);
+        this.page = this.pageJump = Number(params.page ? params.page : 1);
 
         const parameters: any = {};
         parameters.after = btoa(String((this.page - 1) * 300 - 1));
