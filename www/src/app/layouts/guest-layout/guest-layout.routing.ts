@@ -3,6 +3,8 @@ import { ArtistComponent } from './components/artist/artist.component';
 import { ArtistsComponent } from './components/artists/artists.component';
 
 import { HomeComponent } from './components/home/home.component';
+import { SourceArtistsComponent } from './components/source-artists/source-artists.component';
+import { SourcesComponent } from './components/sources/sources.component';
 
 export const GuestLayoutRoutes: Routes = [
   {
@@ -21,5 +23,13 @@ export const GuestLayoutRoutes: Routes = [
   {
     component: ArtistComponent,
     path: 'artist/:id',
-},
+  },
+  {
+    component: SourceArtistsComponent,
+    path: 'source-artists'
+  },
+  {
+    component: SourcesComponent,
+    path: 'sources/:id'
+  },
 ];

@@ -4,17 +4,15 @@ import { GuestGraphQLService } from 'app/data/service/guest-graph-ql.service';
 import { combineLatest } from 'rxjs';
 
 @Component({
-  selector: 'app-artist',
-  templateUrl: './artist.component.html',
-  styleUrls: ['./artist.component.scss']
+  selector: 'app-sources',
+  templateUrl: './sources.component.html',
+  styleUrls: ['./sources.component.scss']
 })
-export class ArtistComponent implements OnInit {
+export class SourcesComponent implements OnInit {
 
   public query = `
-    query Artist($id: Int!, $year: Int = 2022) {
-      years: artistYears(id: $id)
-
-      sourceCount(id: $id)
+    query Sources($id: Int!) {
+      years: sourceYears(id: $id)
 
       artist (id: $id) {
         id
@@ -28,26 +26,36 @@ export class ArtistComponent implements OnInit {
             }
           }
         }
-        performances (filter: {year: $year date_sort: "ASC"}) {
-          edges {
-            node {
+      }
+
+      sources {
+        edges {
+          node {
+            id
+            createdAt
+            updatedAt
+
+            circdate
+            shndiskcount
+            wavdiskcount
+            archiveIdentifier
+
+            comments
+            textdoc
+
+            mediaSize
+            mediaSizeUncompressed
+
+            performance {
               id
               date
               year
               venue
               city
               state
-              set1
-              set2
-              set3
-              comment
-              sources {
-                edges {
-                  node {
-                    id
-                    comments
-                  }
-                }
+              artist {
+                id
+                name
               }
             }
           }
@@ -57,8 +65,8 @@ export class ArtistComponent implements OnInit {
   `;
 
   public latestYearQuery = `
-    query Artist($id: Int!) {
-      artistLatestYear(id: $id)
+    query SourceLatestYear($id: Int!) {
+      sourceLatestYear(id: $id)
     }
   `;
 
@@ -74,7 +82,6 @@ export class ArtistComponent implements OnInit {
     private router: Router
   ) {
 
-
     const urlParametrs = combineLatest(this.route.params,
       this.route.queryParams, (params, queryParams) => ({
       ...params, ...queryParams}));
@@ -83,12 +90,12 @@ export class ArtistComponent implements OnInit {
       if (! params.year) {
         this.guestGraphQLService.query(this.latestYearQuery, { id: Number(params.id) })
           .subscribe(latestYear => {
-            this.router.navigate(['/artist/' + params.id], { queryParams: { year: latestYear.data.artistLatestYear }})
+            this.router.navigate(['/sources/' + params.id], { queryParams: { year: latestYear.data.sourceLatestYear }})
         });
       } else {
         this.guestGraphQLService.query(this.query, { id: Number(params.id), year: Number(params.year) })
-          .subscribe(graphQLArtist => {
-            this.graphQL = graphQLArtist;
+          .subscribe(graphQL => {
+            this.graphQL = graphQL;
             this.year = Number(params.year);
         });
       }
@@ -101,5 +108,4 @@ export class ArtistComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

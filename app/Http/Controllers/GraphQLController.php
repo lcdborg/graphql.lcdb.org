@@ -37,9 +37,11 @@ class GraphQLController extends Controller
                     'artistGroups'     => GraphQLQuery\ArtistGroupsQuery::getDefinition($driver),
                     'performances'     => GraphQLQuery\PerformancesQuery::getDefinition($driver),
                     'performance'      => GraphQLQuery\PerformanceQuery::getDefinition($driver),
-                    'sources'          => GraphQLQuery\SourcesQuery::getDefinition($driver),
+                    'sources'          => GraphQLQuery\SourcesQuery::getDefinition($driver, $variables),
                     'source'           => GraphQLQuery\SourceQuery::getDefinition($driver),
                     'sourceCount'      => GraphQLQuery\SourceCountQuery::getDefinition($driver),
+                    'sourceYears'      => GraphQLQuery\SourceYearsQuery::getDefinition($driver),
+                    'sourceLatestYear' => GraphQLQuery\SourceLatestYearQuery::getDefinition($driver),
                     'users'            => GraphQLQuery\UsersQuery::getDefinition($driver),
                     'user'             => GraphQLQuery\UserQuery::getDefinition($driver),
                 ],
@@ -48,6 +50,6 @@ class GraphQLController extends Controller
 
         $result = GraphQL::executeQuery($schema, $query, null, null, $variables, $operationName);
 
-        return $result->toArray();
+        return mb_convert_encoding($result->toArray(), "UTF-8", "auto");
     }
 }

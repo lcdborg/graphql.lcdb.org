@@ -12,6 +12,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { HomeComponent } from './components/home/home.component';
 import { ArtistsComponent } from './components/artists/artists.component';
 import { ArtistComponent } from './components/artist/artist.component';
+import { SourcesComponent } from './components/sources/sources.component';
+import { SourceArtistsComponent } from './components/source-artists/source-artists.component';
 
 @NgModule({
   imports: [
@@ -30,6 +32,8 @@ import { ArtistComponent } from './components/artist/artist.component';
     HomeComponent,
     ArtistsComponent,
     ArtistComponent,
+    SourcesComponent,
+    SourceArtistsComponent,
   ]
 })
 

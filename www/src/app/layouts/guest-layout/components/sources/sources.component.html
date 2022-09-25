@@ -1,0 +1,100 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" *ngIf="graphQL">
+          <div class="card-header card-header-warning">
+            <p class="card-title h3">
+              Sources for {{ graphQL.data.artist.name }}
+              <br>
+              <a
+                class="btn btn-success btn-sm"
+                routerLink="/artist/{{ graphQL.data.artist.id }}"
+                [queryParams]="{year: year}"
+              >Performances</a>
+              <ng-container *ngIf="graphQL.data.artist.artistToArtistGroups.edges">
+                <a
+                  *ngFor="let artistGroupEdge of graphQL.data.artist.artistToArtistGroups.edges"
+                  class="btn btn-success btn-sm"
+                  (click)="this.showSets = ! this.showSets">{{ artistGroupEdge.node.artistGroup.title }} Artist Group</a>
+              </ng-container>
+            </p>
+
+            <p class="card-category">
+              <a
+                class="year-link"
+                [ngClass]="{
+                  'year-link-active': y === this.year
+                }"
+                *ngFor="let y of this.graphQL.data.years"
+                routerLink="/sources/{{ graphQL.data.artist.id }}"
+                [queryParams]="{
+                  year: y
+                }"
+              >{{ y === 1939 ? 'unknown': y }}</a>
+            </p>
+          </div>
+          <div class="card-body">
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <table class="table table-double-striped">
+                  <thead class=" text-primary">
+                    <th>
+                      SHNID
+                    </th>
+                    <th>
+                      Date
+                    </th>
+                    <th>
+                      Venue
+                    </th>
+                    <th>
+                      City
+                    </th>
+                    <th>
+                      State
+                    </th>
+                    <th>
+                      Archive Identifier
+                    </th>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let edge of graphQL.data.sources.edges">
+                      <tr>
+                        <td>
+                          <a routerLink="/source/{{ edge.node.id }}">
+                            {{ edge.node.id }}
+                          </a>
+                        </td>
+                        <td>
+                          <a routerLink="/performance/{{ edge.node.performance.id }}">
+                            {{ formatPerformanceDate(edge.node.performance.date, edge.node.performance.year) }}
+                          </a>
+                        </td>
+                        <td>{{ edge.node.performance.venue }}</td>
+                        <td>{{ edge.node.performance.city }}</td>
+                        <td>{{ edge.node.performance.state }}</td>
+                        <td>
+                          <a *ngIf="edge.node.archiveIdentifier"
+                            href="https://archive.org/details/{{ edge.node.archiveIdentifier }}"
+                          >
+                            {{ edge.node.archiveIdentifier }}
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="6" [innerHTML]="edge.node.comments"></td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

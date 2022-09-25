@@ -2,15 +2,20 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div class="card" *ngIf="graphQLArtist">
+        <div class="card" *ngIf="graphQL">
           <div class="card-header card-header-warning">
             <p class="card-title h3">
-              {{ graphQLArtist.data.artist.name }}
+              Performances for {{ graphQL.data.artist.name }}
               <br>
-              <a *ngIf="graphQLArtist.data.sourceCount" class="btn btn-success btn-sm" (click)="this.showSets = ! this.showSets">Sources</a>
-              <ng-container *ngIf="graphQLArtist.data.artist.artistToArtistGroups.edges">
+              <a
+                *ngIf="graphQL.data.sourceCount"
+                class="btn btn-success btn-sm"
+                routerLink="/sources/{{ graphQL.data.artist.id }}"
+                [queryParams]="{year: year}"
+              >Sources</a>
+              <ng-container *ngIf="graphQL.data.artist.artistToArtistGroups.edges">
                 <a
-                  *ngFor="let artistGroupEdge of graphQLArtist.data.artist.artistToArtistGroups.edges"
+                  *ngFor="let artistGroupEdge of graphQL.data.artist.artistToArtistGroups.edges"
                   class="btn btn-success btn-sm"
                   (click)="this.showSets = ! this.showSets">{{ artistGroupEdge.node.artistGroup.title }} Artist Group</a>
               </ng-container>
@@ -23,14 +28,12 @@
                 [ngClass]="{
                   'year-link-active': y === this.year
                 }"
-                *ngFor="let y of this.graphQLArtist.data.artistYears"
-                routerLink="/artist/{{ graphQLArtist.data.artist.id }}"
+                *ngFor="let y of this.graphQL.data.years"
+                routerLink="/artist/{{ graphQL.data.artist.id }}"
                 [queryParams]="{
                   year: y
                 }"
-              >
-                {{ y === 1939 ? 'unknown': y }}
-              </a>
+              >{{ y === 1939 ? 'unknown': y }}</a>
             </p>
           </div>
           <div class="card-body">
@@ -55,7 +58,7 @@
                     </th>
                   </thead>
                   <tbody>
-                    <ng-container *ngFor="let edge of graphQLArtist.data.artist.performances.edges">
+                    <ng-container *ngFor="let edge of graphQL.data.artist.performances.edges">
                       <tr>
                         <td>
                           <a routerLink="/performance/{{ edge.node.id }}">

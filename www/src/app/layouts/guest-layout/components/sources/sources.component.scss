@@ -1,0 +1,11 @@
+.year-link {
+  padding-right: 1em;
+}
+
+.year-link-active {
+  text-decoration: underline;
+}
+
+.table-double-striped tr:nth-child(4n+1), .table-double-striped tr:nth-child(4n+2) {
+  background: #f9f9f9;
+ }
