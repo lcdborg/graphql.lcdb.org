@@ -99,7 +99,7 @@
       border-bottom: none;
       background: transparent;
         .title{
-            color: $white-color;
+            color: $black-color;
         }
 
         &:not([class*="card-header-"]){
@@ -129,7 +129,7 @@
                 position: absolute;
                 bottom: 15px;
                 left: 15px;
-                color: $white-color;
+                color: $black-color;
                 font-size: $font-size-h4;
                 text-shadow: 0 2px 5px rgba(33, 33, 33, 0.5);
             }
@@ -251,12 +251,16 @@
 
     [class*="card-header-"],
     &[class*="bg-"]{
-        color: $white-color;
+        color: $black-color;
 
-        .card-title a,
         .card-title,
         .icon i{
-            color: $white-color;
+            color: $black-color;
+        }
+
+
+        .card-title a {
+          color: $black-color;
         }
 
         .icon i{
@@ -484,9 +488,9 @@
       padding: 0;
 
       .card-title + .card-category{
-        color: rgba(255, 255, 255, 0.62);
+        color: $black-color;
         a {
-          color: $white-color;
+          color: $brand-primary;
         }
       }
 
@@ -512,7 +516,7 @@
         margin-right: 0;
 
         .card-title{
-          color: $white-color;
+          color: $black-color;
           margin-top: 0;
         }
       }
@@ -521,15 +525,15 @@
 
       .ct-chart{
         .card-title{
-            color: $white-color;
+            color: $black-color;
         }
         .card-category{
             margin-bottom: 0;
-            color: rgba($white-color, .62);
+            color: rgba($black-color, .62);
         }
 
         .ct-label{
-            color: rgba($white-color, .7);
+            color: rgba($black-color, .7);
         }
         .ct-grid{
             stroke: rgba(255, 255, 255, 0.2);
