@@ -11,7 +11,7 @@ import { combineLatest } from 'rxjs';
 export class SourcesComponent implements OnInit {
 
   public query = `
-    query Sources($id: Int!) {
+    query Sources($id: Int!, $after: String = "LTE=") {
       years: sourceYears(id: $id)
 
       artist (id: $id) {
@@ -28,7 +28,12 @@ export class SourcesComponent implements OnInit {
         }
       }
 
-      sources {
+      sources (filter: {_after: $after}) {
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+        }
+        totalCount
         edges {
           node {
             id
@@ -76,6 +81,11 @@ export class SourcesComponent implements OnInit {
   public years = [];
   public showSets = false;
 
+  public page = 1;
+  public pages = [];
+  public maxPage = 1;
+  public pageJump = 1;
+
   constructor(
     private route: ActivatedRoute,
     private guestGraphQLService: GuestGraphQLService,
@@ -93,10 +103,55 @@ export class SourcesComponent implements OnInit {
             this.router.navigate(['/sources/' + params.id], { queryParams: { year: latestYear.data.sourceLatestYear }})
         });
       } else {
-        this.guestGraphQLService.query(this.query, { id: Number(params.id), year: Number(params.year) })
+
+        this.year = Number(params.year);
+        this.page = Number(params.page ? params.page : 1);
+
+        const parameters: any = {};
+        parameters.after = btoa(String((this.page - 1) * 300 - 1));
+        parameters.year = Number(params.year);
+        parameters.id = Number(params.id);
+
+        this.guestGraphQLService.query(this.query, parameters)
           .subscribe(graphQL => {
             this.graphQL = graphQL;
-            this.year = Number(params.year);
+            this.pages = [];
+
+            for (let i = this.page; i >= this.page - 2; i--) {
+              if (i && i > 0) {
+                this.pages.push(i);
+              }
+            }
+
+            for (let i = this.page + 1; i <= this.page + 4; i++) {
+              const total = Math.ceil(graphQL.data.sources.totalCount / 300) * 300;
+
+              if (total - (i * 300) >= 0) {
+                if (! this.pages.includes(i) && this.pages.length < 5) {
+                  this.pages.push(i);
+                }
+              }
+            }
+
+            for (let i = this.page; i > 1 + 4; i--) {
+              const total = Math.ceil(graphQL.data.sources.totalCount / 300) * 300;
+
+              if (total - (i * 300) >= 0) {
+                if (i >= 1 && ! this.pages.includes(i) && this.pages.length < 5) {
+                  this.pages.push(i);
+                }
+              }
+
+              if (this.pages.length === 5) {
+                break;
+              }
+            }
+
+            this.maxPage = Math.ceil(graphQL.data.sources.totalCount / 300);
+            this.pages.sort(function(a, b) {
+              return a - b;
+            });
+
         });
       }
     });
@@ -104,6 +159,21 @@ export class SourcesComponent implements OnInit {
 
   public formatPerformanceDate(date: string, year: number) {
     return year + '-' + date.slice(0, 2) + '-' + date.slice(3, 5);
+  }
+
+  public jumpToPage() {
+    if (this.pageJump > this.maxPage) {
+      this.pageJump = this.maxPage;
+    }
+
+    if (this.pageJump < 1) {
+      this.pageJump = 1;
+    }
+
+    this.router.navigate(['/sources/', this.graphQL.data.artist.id], {queryParams: {
+      year: this.year,
+      page: this.pageJump,
+    }});
   }
 
   ngOnInit(): void {

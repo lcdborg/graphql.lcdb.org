@@ -30,6 +30,8 @@ class SourcesQuery implements GraphQLQuery
                         ;
                     }
                 }
+
+//                die($queryBuilder->getQuery()->getResult());
             }
         );
 

@@ -20,7 +20,7 @@
               </ng-container>
             </p>
 
-            <p class="card-category">
+            <div class="card-category">
               <a
                 class="year-link"
                 [ngClass]="{
@@ -32,7 +32,48 @@
                   year: y
                 }"
               >{{ y === 1939 ? 'unknown': y }}</a>
-            </p>
+
+
+              <div *ngIf="graphQL && (
+                graphQL.data.sources.pageInfo.hasNextPage ||
+                graphQL.data.sources.pageInfo.hasPreviousPage
+                )">
+
+                <a routerLink="/sources/{{ graphQL.data.artist.id }}" [queryParams]="{year: year, page: 1}" class="pagination-link">
+                  |&lt; FIRST</a>
+
+                <a routerLink="/sources/{{ graphQL.data.artist.id }}" [queryParams]="{year: year, page: this.page - 1}" class="pagination-link"
+                  *ngIf="graphQL.data.sources.pageInfo.hasPreviousPage" class="pagination-link">
+                  &lt; PREV</a>
+
+                <ng-container *ngFor="let p of this.pages">
+                  <a routerLink="/sources/{{ graphQL.data.artist.id }}" [queryParams]="{year: year, page: p}" class="pagination-link"
+                    [ngClass]="
+                      {
+                        'pagination-link-active': p === this.page
+                      }
+                    ">{{ p }}</a>
+                </ng-container>
+
+                <a routerLink="/sources/{{ graphQL.data.artist.id }}" [queryParams]="{year: year, page: this.page + 1}" class="pagination-link"
+                  *ngIf="graphQL.data.sources.pageInfo.hasNextPage" class="pagination-link">
+                  NEXT &gt;</a>
+
+                <a routerLink="/sources/{{ graphQL.data.artist.id }}" [queryParams]="{year: year, page: this.maxPage}" class="pagination-link">
+                  LAST |&gt;</a>
+
+                Jump to page
+                <input
+                  type="number"
+                  min="1"
+                  max="{{ this.maxPage }}"
+                  style="width: 3em;"
+                  (change)="jumpToPage()"
+                  [(ngModel)]="pageJump"
+                >
+                of {{ this.maxPage }}
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <div class="card-body">

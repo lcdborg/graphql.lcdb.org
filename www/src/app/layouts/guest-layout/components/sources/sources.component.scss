@@ -9,3 +9,11 @@
 .table-double-striped tr:nth-child(4n+1), .table-double-striped tr:nth-child(4n+2) {
   background: #f9f9f9;
  }
+
+.pagination-link {
+  padding-right: 1em;
+}
+
+.pagination-link-active {
+  text-decoration: underline;
+}
