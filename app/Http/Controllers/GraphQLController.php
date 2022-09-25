@@ -30,14 +30,14 @@ class GraphQLController extends Controller
             'query' => new ObjectType([
                 'name' => 'query',
                 'fields' => [
-                    'artists'          => GraphQLQuery\ArtistsQuery::getDefinition($driver, $variables),
+                    'artists'          => GraphQLQuery\ArtistsQuery::getDefinition($driver, $variables, $operationName),
                     'artist'           => GraphQLQuery\AritstQuery::getDefinition($driver),
                     'artistYears'      => GraphQLQuery\ArtistYearsQuery::getDefinition($driver),
                     'artistLatestYear' => GraphQLQuery\ArtistLatestYearQuery::getDefinition($driver),
                     'artistGroups'     => GraphQLQuery\ArtistGroupsQuery::getDefinition($driver),
                     'performances'     => GraphQLQuery\PerformancesQuery::getDefinition($driver),
                     'performance'      => GraphQLQuery\PerformanceQuery::getDefinition($driver),
-                    'sources'          => GraphQLQuery\SourcesQuery::getDefinition($driver, $variables),
+                    'sources'          => GraphQLQuery\SourcesQuery::getDefinition($driver, $variables, $operationName),
                     'source'           => GraphQLQuery\SourceQuery::getDefinition($driver),
                     'sourceCount'      => GraphQLQuery\SourceCountQuery::getDefinition($driver),
                     'sourceYears'      => GraphQLQuery\SourceYearsQuery::getDefinition($driver),

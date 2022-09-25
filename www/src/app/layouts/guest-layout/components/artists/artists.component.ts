@@ -50,7 +50,7 @@ export class ArtistsComponent implements OnInit {
     `;
 
   private otherQuery = `
-    query ArtistList($after: String = "LTE=") {
+    query ArtistListOther($after: String = "LTE=") {
       artists (filter: { name_sort: "ASC", _after: $after }) {
         totalCount
         pageInfo {
@@ -125,6 +125,7 @@ export class ArtistsComponent implements OnInit {
       const parameters: any = {};
 
       let query = '';
+      let operationName = '';
       switch (this.chr) {
         case 'filter':
           parameters.filter = this.filterString;
@@ -135,9 +136,9 @@ export class ArtistsComponent implements OnInit {
           query = this.top100query;
           break;
         case 'other':
-          parameters._artists_other = true;
           parameters.after = btoa(String((this.page - 1) * 300 - 1))
           query = this.otherQuery;
+          operationName = 'ArtistListOther';
           break;
         default:
           parameters.chr = this.chr;
@@ -146,7 +147,7 @@ export class ArtistsComponent implements OnInit {
           break;
       }
 
-      this.guestGraphQLService.query(query, parameters).subscribe(graphQLResult => {
+      this.guestGraphQLService.query(query, parameters, operationName).subscribe(graphQLResult => {
         this.graphQLArtists = graphQLResult;
 
         this.pages = [];

@@ -11,7 +11,7 @@ import { combineLatest } from 'rxjs';
 export class SourcesComponent implements OnInit {
 
   public query = `
-    query Sources($id: Int!, $after: String = "LTE=") {
+    query ArtistSources($id: Int!, $after: String = "LTE=") {
       years: sourceYears(id: $id)
 
       artist (id: $id) {
@@ -112,7 +112,7 @@ export class SourcesComponent implements OnInit {
         parameters.year = Number(params.year);
         parameters.id = Number(params.id);
 
-        this.guestGraphQLService.query(this.query, parameters)
+        this.guestGraphQLService.query(this.query, parameters, 'ArtistSources')
           .subscribe(graphQL => {
             this.graphQL = graphQL;
             this.pages = [];

@@ -9,20 +9,27 @@ use League\Event\EventDispatcher;
 
 class ArtistsQuery implements GraphQLQuery
 {
-    public static function getDefinition(Driver $driver, array $variables = []): array
+    public static function getDefinition(Driver $driver, array $variables = [], string $operationName = null): array
     {
-        $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
-            function(FilterQueryBuilder $event) use ($variables) {
-                if (isset($variables['_artists_other']) && $variables['_artists_other']) {
+        if ($operationName === 'ArtistListOther') {
+            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+                function (FilterQueryBuilder $event) use ($variables) {
                     $queryBuilder = $event->getQueryBuilder();
                     $queryBuilder
-                        ->orWhere($queryBuilder->expr()->lt('entity.nameFirstLetter', ':min'))
-                        ->orWhere($queryBuilder->expr()->gt('entity.nameFirstLetter', ':max'))
+                        ->andWhere(
+                            $queryBuilder->expr()->orX(
+                                $queryBuilder->expr()->lt('entity.nameFirstLetter', ':min'),
+                                $queryBuilder->expr()->gt('entity.nameFirstLetter', ':max')
+
+                            )
+                        )
                         ->setParameter('min', 65)
                         ->setParameter('max', 122);
+
+#                    print_r($queryBuilder->getQuery()->getSQL());die();
                 }
-            }
-        );
+            );
+        }
 
         return [
             'type' => $driver->connection($driver->type(Artist::class)),
