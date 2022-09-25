@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GuestGraphQLService } from 'app/data/service/guest-graph-ql.service';
-import { combineLatest } from 'rxjs';
+import { GraphQLResponse } from 'app/data/types/graph-ql-response';
+import { combineLatest, Observable, tap } from 'rxjs';
+import { PaginatedComponent } from '../paginated/paginated.component';
 
 @Component({
   selector: 'app-sources',
   templateUrl: './sources.component.html',
   styleUrls: ['./sources.component.scss']
 })
-export class SourcesComponent implements OnInit {
+export class SourcesComponent extends PaginatedComponent {
 
   public query = `
     query ArtistSources($id: Int!, $after: String = "LTE=") {
@@ -77,9 +79,9 @@ export class SourcesComponent implements OnInit {
 
   public artistId = 0;
   public year: number;
-  public graphQL: any = null;
   public years = [];
   public showSets = false;
+  public graphQL$: Observable<GraphQLResponse>;
 
   public page = 1;
   public pages = [];
@@ -88,22 +90,27 @@ export class SourcesComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private guestGraphQLService: GuestGraphQLService,
+    private graphQLService: GuestGraphQLService,
     private router: Router
   ) {
+    super();
 
-    const urlParametrs = combineLatest(this.route.params,
-      this.route.queryParams, (params, queryParams) => ({
-      ...params, ...queryParams}));
+    const urlParametrs = combineLatest([
+      this.route.params,
+      this.route.queryParams
+    ], (params, queryParams) => ({...params, ...queryParams}));
 
     urlParametrs.subscribe(params => {
       if (! params.year) {
-        this.guestGraphQLService.query(this.latestYearQuery, { id: Number(params.id) })
+        this.graphQLService.query(this.latestYearQuery, { id: Number(params.id) })
           .subscribe(latestYear => {
-            this.router.navigate(['/sources/' + params.id], { queryParams: { year: latestYear.data.sourceLatestYear }})
+            this.router.navigate(['/sources/' + params.id], {
+              queryParams: { year: latestYear.data.sourceLatestYear
+            }})
         });
       } else {
 
+        this.artistId = params.id;
         this.year = Number(params.year);
         this.page = this.pageJump = Number(params.page ? params.page : 1);
 
@@ -112,54 +119,17 @@ export class SourcesComponent implements OnInit {
         parameters.year = Number(params.year);
         parameters.id = Number(params.id);
 
-        this.guestGraphQLService.query(this.query, parameters, 'ArtistSources')
-          .subscribe(graphQL => {
-            this.graphQL = graphQL;
-            this.pages = [];
-
-            for (let i = this.page; i >= this.page - 2; i--) {
-              if (i && i > 0) {
-                this.pages.push(i);
-              }
-            }
-
-            for (let i = this.page + 1; i <= this.page + 4; i++) {
-              const total = Math.ceil(graphQL.data.sources.totalCount / 300) * 300;
-
-              if (total - (i * 300) >= 0) {
-                if (! this.pages.includes(i) && this.pages.length < 5) {
-                  this.pages.push(i);
-                }
-              }
-            }
-
-            for (let i = this.page; i > 1 + 4; i--) {
-              const total = Math.ceil(graphQL.data.sources.totalCount / 300) * 300;
-
-              if (total - (i * 300) >= 0) {
-                if (i >= 1 && ! this.pages.includes(i) && this.pages.length < 5) {
-                  this.pages.push(i);
-                }
-              }
-
-              if (this.pages.length === 5) {
-                break;
-              }
-            }
-
-            this.maxPage = Math.ceil(graphQL.data.sources.totalCount / 300);
-            this.pages.sort(function(a, b) {
-              return a - b;
-            });
-
-        });
+        this.graphQL$ = this.graphQLService.query(this.query, parameters, 'ArtistSources')
+          .pipe(
+            tap(graphQL => {
+              this.pages = this.getPages(this.page, graphQL.data.sources.totalCount);
+              this.maxPage = Math.ceil(graphQL.data.sources.totalCount / 300);
+            })
+          );
       }
     });
   }
 
-  public formatPerformanceDate(date: string, year: number) {
-    return year + '-' + date.slice(0, 2) + '-' + date.slice(3, 5);
-  }
 
   public jumpToPage() {
     if (this.pageJump > this.maxPage) {
@@ -170,12 +140,9 @@ export class SourcesComponent implements OnInit {
       this.pageJump = 1;
     }
 
-    this.router.navigate(['/sources/', this.graphQL.data.artist.id], {queryParams: {
+    this.router.navigate(['/sources/', this.artistId], {queryParams: {
       year: this.year,
       page: this.pageJump,
     }});
-  }
-
-  ngOnInit(): void {
   }
 }

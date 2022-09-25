@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GuestGraphQLService } from 'app/data/service/guest-graph-ql.service';
-import { combineLatest } from 'rxjs';
+import { GraphQLResponse } from 'app/data/types/graph-ql-response';
+import { combineLatest, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-artist',
   templateUrl: './artist.component.html',
   styleUrls: ['./artist.component.scss']
 })
-export class ArtistComponent implements OnInit {
+export class ArtistComponent {
 
   public query = `
     query Artist($id: Int!, $year: Int = 2022) {
@@ -65,6 +66,7 @@ export class ArtistComponent implements OnInit {
   public artistId = 0;
   public year: number;
   public graphQL: any = null;
+  public graphQL$: Observable<GraphQLResponse>;
   public years = [];
   public showSets = false;
 
@@ -74,32 +76,25 @@ export class ArtistComponent implements OnInit {
     private router: Router
   ) {
 
-
-    const urlParametrs = combineLatest(this.route.params,
-      this.route.queryParams, (params, queryParams) => ({
+    const urlParametrs = combineLatest([this.route.params,
+      this.route.queryParams], (params, queryParams) => ({
       ...params, ...queryParams}));
 
     urlParametrs.subscribe(params => {
       if (! params.year) {
         this.guestGraphQLService.query(this.latestYearQuery, { id: Number(params.id) })
           .subscribe(latestYear => {
-            this.router.navigate(['/artist/' + params.id], { queryParams: { year: latestYear.data.artistLatestYear }})
+            this.router.navigate(['/artist/' + params.id], { queryParams: {
+              year: latestYear.data.artistLatestYear
+            }})
         });
       } else {
-        this.guestGraphQLService.query(this.query, { id: Number(params.id), year: Number(params.year) })
-          .subscribe(graphQLArtist => {
-            this.graphQL = graphQLArtist;
-            this.year = Number(params.year);
+        this.year = Number(params.year);
+        this.graphQL$ = this.guestGraphQLService.query(this.query, {
+          id: Number(params.id),
+          year: Number(params.year)
         });
       }
     });
   }
-
-  public formatPerformanceDate(date: string, year: number) {
-    return year + '-' + date.slice(0, 2) + '-' + date.slice(3, 5);
-  }
-
-  ngOnInit(): void {
-  }
-
 }

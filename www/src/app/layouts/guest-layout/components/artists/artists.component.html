@@ -2,6 +2,8 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
+        <ng-container *ngIf="graphQL$ | async as graphQL">
+
         <div class="card">
           <div class="card-header card-header-warning">
             <p class="card-title">
@@ -39,104 +41,119 @@
             </p>
 
 
-            <p class="card-category" *ngIf="graphQLArtists && (
-              graphQLArtists.data.artists.pageInfo.hasNextPage ||
-              graphQLArtists.data.artists.pageInfo.hasPreviousPage
-              )">
+              <p class="card-category" *ngIf="(
+                graphQL.data.artists.pageInfo.hasNextPage ||
+                graphQL.data.artists.pageInfo.hasPreviousPage
+                )">
 
-              <a routerLink="/artists" [queryParams]="{chr: this.chr, page: 1}" class="pagination-link">
-                |&lt; FIRST
-              </a>
-
-              <a routerLink="/artists" [queryParams]="{chr: this.chr, page: this.page - 1}"
-                *ngIf="graphQLArtists.data.artists.pageInfo.hasPreviousPage" class="pagination-link">
-                &lt; PREV
-              </a>
-
-              <ng-container *ngFor="let p of this.pages">
-                <a routerLink="/artists" [queryParams]="{chr: this.chr, page: p}" class="pagination-link"
-                  [ngClass]="
-                    {
-                      'pagination-link-active': p === this.page
-                    }
-                  ">
-                  {{ p }}
-                </a>
-              </ng-container>
-
-              <a routerLink="/artists" [queryParams]="{chr: this.chr, page: this.page + 1}"
-                *ngIf="graphQLArtists.data.artists.pageInfo.hasNextPage" class="pagination-link">
-                NEXT &gt;
-              </a>
-
-              <a routerLink="/artists" [queryParams]="{chr: this.chr, page: this.maxPage}"
-                class="pagination-link">
-                LAST |&gt;
-              </a>
-
-              Jump to page
-              <input
-                type="number"
-                min="1"
-                max="{{ this.maxPage }}"
-                style="width: 3em;"
-                (change)="jumpToPage()"
-                [(ngModel)]="pageJump"
-              >
-              of {{ this.maxPage }}
-
-              <!--
-              <span class="pagination-link">
-                {{ ((page - 1) * 300) + 1}} to {{ ((page - 1) * 300) + graphQLArtists.data.artists.edges.length }}
-                of {{ graphQLArtists.data.artists.totalCount }}
-              </span>
-              -->
-
-              <br>
-
-              <span class="pagination-link">
-                <a routerLink="/artist/{{ graphQLArtists.data.artists.edges[0].node.id }}">
-                  {{ graphQLArtists.data.artists.edges[0].node.name }}
-                </a>
-                to
-                <a
-                  routerLink="/artist/{{ graphQLArtists.data.artists.edges[graphQLArtists.data.artists.edges.length - 1].node.id }}">
-                  {{ graphQLArtists.data.artists.edges[graphQLArtists.data.artists.edges.length - 1].node.name }}
+                <a routerLink="/artists" [queryParams]="{chr: this.chr, page: 1}" class="pagination-link">
+                  |&lt; FIRST
                 </a>
 
-              </span>
-            </p>
-          </div>
-          <div class="card-body" *ngIf="graphQLArtists && ! graphQLArtists.data.artists.totalCount">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-12">
-                  No results found
+                <a routerLink="/artists" [queryParams]="{chr: this.chr, page: this.page - 1}"
+                  *ngIf="graphQL.data.artists.pageInfo.hasPreviousPage" class="pagination-link">
+                  &lt; PREV
+                </a>
+
+                <ng-container *ngFor="let p of this.pages">
+                  <a routerLink="/artists" [queryParams]="{chr: this.chr, page: p}" class="pagination-link"
+                    [ngClass]="
+                      {
+                        'pagination-link-active': p === this.page
+                      }
+                    ">
+                    {{ p }}
+                  </a>
+                </ng-container>
+
+                <a routerLink="/artists" [queryParams]="{chr: this.chr, page: this.page + 1}"
+                  *ngIf="graphQL.data.artists.pageInfo.hasNextPage" class="pagination-link">
+                  NEXT &gt;
+                </a>
+
+                <a routerLink="/artists" [queryParams]="{chr: this.chr, page: this.maxPage}"
+                  class="pagination-link">
+                  LAST |&gt;
+                </a>
+
+                Jump to page
+                <input
+                  type="number"
+                  min="1"
+                  max="{{ this.maxPage }}"
+                  style="width: 3em;"
+                  (change)="jumpToPage()"
+                  [(ngModel)]="pageJump"
+                >
+                of {{ this.maxPage }}
+
+                <!--
+                <span class="pagination-link">
+                  {{ ((page - 1) * 300) + 1}} to {{ ((page - 1) * 300) + graphQL.data.artists.edges.length }}
+                  of {{ graphQL.data.artists.totalCount }}
+                </span>
+                -->
+
+                <br>
+
+                <span class="pagination-link">
+                  <a routerLink="/artist/{{ graphQL.data.artists.edges[0].node.id }}">
+                    {{ graphQL.data.artists.edges[0].node.name }}
+                  </a>
+                  to
+                  <a
+                    routerLink="/artist/{{ graphQL.data.artists.edges[graphQL.data.artists.edges.length - 1].node.id }}">
+                    {{ graphQL.data.artists.edges[graphQL.data.artists.edges.length - 1].node.name }}
+                  </a>
+
+                </span>
+              </p>
+            </div>
+            <div class="card-body" *ngIf="graphQL && ! graphQL.data.artists.totalCount">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    No results found
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="card-body" *ngIf="graphQLArtists && graphQLArtists.data.artists.totalCount">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-4">
-                  <a style="display: block" *ngFor="let edge of column(1)" routerLink="/artist/{{ edge.node.id }}">{{
-                    edge.node.name }}
-                  </a>
-                </div>
-                <div class="col-md-4">
-                  <a style="display: block" *ngFor="let edge of column(2)" routerLink="/artist/{{ edge.node.id }}">{{
-                    edge.node.name }}
-                  </a>
-                </div>
-                <div class="col-md-4">
-                  <a style="display: block" *ngFor="let edge of column(3)" routerLink="/artist/{{ edge.node.id }}">{{
-                    edge.node.name }}
-                  </a>
+            <div class="card-body" *ngIf="graphQL && graphQL.data.artists.totalCount">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-4">
+                    <a style="display: block"
+                      *ngFor="let edge of graphQL.data.artists.edges.slice(
+                        0,
+                        (graphQL.data.artists.edges.length | ceil) / 3
+                      )"
+                      routerLink="/artist/{{ edge.node.id }}"
+                    >
+                      {{ edge.node.name }}</a>
+                  </div>
+                  <div class="col-md-4">
+                    <a style="display: block"
+                      *ngFor="let edge of graphQL.data.artists.edges.slice(
+                        (graphQL.data.artists.edges.length | ceil) / 3,
+                        ((graphQL.data.artists.edges.length | ceil) / 3) * 2
+                      )"
+                      routerLink="/artist/{{ edge.node.id }}">{{
+                      edge.node.name }}
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a style="display: block"
+                      *ngFor="let edge of graphQL.data.artists.edges.slice(
+                        ((graphQL.data.artists.edges.length | ceil) / 3) * 2
+                      )"
+                      routerLink="/artist/{{ edge.node.id }}">{{
+                      edge.node.name }}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
-      </div>
+      </ng-container>
+    </div>
     </div>

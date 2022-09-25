@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GuestGraphQLService } from 'app/data/service/guest-graph-ql.service';
-import { ideahub } from 'googleapis/build/src/apis/ideahub';
-import { param } from 'jquery';
+import { GraphQLResponse } from 'app/data/types/graph-ql-response';
+import { Observable, tap } from 'rxjs';
+import { PaginatedComponent } from '../paginated/paginated.component';
 
 @Component({
   selector: 'app-artists',
   templateUrl: './artists.component.html',
   styleUrls: ['./artists.component.scss']
 })
-export class ArtistsComponent implements OnInit {
+export class ArtistsComponent extends PaginatedComponent {
 
   private query = `
     query ArtistList($chr: String = "a", $after: String = "LTE=") {
@@ -88,21 +89,23 @@ export class ArtistsComponent implements OnInit {
   `;
 
   public chr = 'top100';
+  public filterString = '';
+  public graphQLArtists: any;
+  public graphQL$: Observable<GraphQLResponse>;
+
   public page = 1;
   public pages = [];
   public maxPage = 1;
   public pageJump = 1;
-  public filterString = '';
-  public graphQLArtists: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private guestGraphQLService: GuestGraphQLService,
+    private graphQLService: GuestGraphQLService,
     private router: Router
   ) {
-    this.activatedRoute.queryParamMap.subscribe(queryParamMap => {
-      this.graphQLArtists = null;
+    super();
 
+    this.activatedRoute.queryParamMap.subscribe(queryParamMap => {
       if (queryParamMap.get('chr')) {
         this.chr = queryParamMap.get('chr');
       }
@@ -147,50 +150,14 @@ export class ArtistsComponent implements OnInit {
           break;
       }
 
-      this.guestGraphQLService.query(query, parameters, operationName).subscribe(graphQLResult => {
-        this.graphQLArtists = graphQLResult;
-
-        this.pages = [];
-
-        for (let i = this.page; i >= this.page - 2; i--) {
-          if (i && i > 0) {
-            this.pages.push(i);
-          }
-        }
-
-        for (let i = this.page + 1; i <= this.page + 4; i++) {
-          const total = Math.ceil(graphQLResult.data.artists.totalCount / 300) * 300;
-
-          if (total - (i * 300) >= 0) {
-            if (! this.pages.includes(i) && this.pages.length < 5) {
-              this.pages.push(i);
-            }
-          }
-        }
-
-        for (let i = this.page; i > 1 + 4; i--) {
-          const total = Math.ceil(graphQLResult.data.artists.totalCount / 300) * 300;
-
-          if (total - (i * 300) >= 0) {
-            if (i >= 1 && ! this.pages.includes(i) && this.pages.length < 5) {
-              this.pages.push(i);
-            }
-          }
-
-          if (this.pages.length === 5) {
-            break;
-          }
-        }
-
-        this.maxPage = Math.ceil(graphQLResult.data.artists.totalCount / 300);
-        this.pages.sort(function(a, b) {
-          return a - b;
-        });
-      });
+      this.graphQL$ = this.graphQLService.query(query, parameters, operationName)
+        .pipe(
+          tap(graphQL => {
+            this.pages = this.getPages(this.page, graphQL.data.artists.totalCount);
+            this.maxPage = Math.ceil(graphQL.data.artists.totalCount / 300);
+          })
+        );
     });
-  }
-
-  ngOnInit(): void {
   }
 
   public jumpToPage() {
@@ -211,19 +178,6 @@ export class ArtistsComponent implements OnInit {
 
   public filter() {
     this.router.navigate(['/artists'], {queryParams: {chr: 'filter', filterString: this.filterString}});
-  }
-
-  public column(id: number): any {
-    const length = this.graphQLArtists.data.artists.edges.length;
-    const colSize = Math.ceil(length / 3);
-    switch (id) {
-      case 1:
-        return this.graphQLArtists.data.artists.edges.slice(0, colSize);
-      case 2:
-        return this.graphQLArtists.data.artists.edges.slice(colSize, colSize * 2);
-      case 3:
-        return this.graphQLArtists.data.artists.edges.slice(colSize * 2);
-    }
   }
 
   public getAlphabetLetter(code: number, caps: boolean = false) {

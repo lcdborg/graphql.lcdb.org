@@ -1,8 +1,8 @@
-<div class="main-content">
+<div class="main-content"  *ngIf="graphQL$ | async as graphQL">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div class="card" *ngIf="graphQL">
+        <div class="card">
           <div class="card-header card-header-warning">
             <p class="card-title h3">
               Sources for {{ graphQL.data.artist.name }}
@@ -109,9 +109,9 @@
                           </a>
                         </td>
                         <td>
-                          <a routerLink="/performance/{{ edge.node.performance.id }}">
-                            {{ formatPerformanceDate(edge.node.performance.date, edge.node.performance.year) }}
-                          </a>
+                          <a routerLink="/performance/{{ edge.node.performance.id }}"
+                            [innerHTML]="edge.node.performance | formatPerformanceDate"
+                          ></a>
                         </td>
                         <td>{{ edge.node.performance.venue }}</td>
                         <td>{{ edge.node.performance.city }}</td>

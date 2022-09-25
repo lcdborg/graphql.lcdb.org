@@ -8,6 +8,7 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { GuestLayoutComponent } from './layouts/guest-layout/guest-layout.component';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   imports: [

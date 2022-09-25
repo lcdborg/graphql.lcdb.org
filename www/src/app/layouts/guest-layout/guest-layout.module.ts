@@ -14,6 +14,8 @@ import { ArtistsComponent } from './components/artists/artists.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { SourcesComponent } from './components/sources/sources.component';
 import { SourceArtistsComponent } from './components/source-artists/source-artists.component';
+import { PipesModule } from 'app/pipes/pipes.module';
+import { PaginatedComponent } from './components/paginated/paginated.component';
 
 @NgModule({
   imports: [
@@ -27,6 +29,7 @@ import { SourceArtistsComponent } from './components/source-artists/source-artis
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    PipesModule,
   ],
   declarations: [
     HomeComponent,
@@ -34,6 +37,7 @@ import { SourceArtistsComponent } from './components/source-artists/source-artis
     ArtistComponent,
     SourcesComponent,
     SourceArtistsComponent,
+    PaginatedComponent,
   ]
 })
 

@@ -1,8 +1,8 @@
-<div class="main-content">
+<div class="main-content" *ngIf="graphQL$ | async as graphQL">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div class="card" *ngIf="graphQL">
+        <div class="card">
           <div class="card-header card-header-warning">
             <p class="card-title h3">
               Performances for {{ graphQL.data.artist.name }}
@@ -61,9 +61,9 @@
                     <ng-container *ngFor="let edge of graphQL.data.artist.performances.edges">
                       <tr>
                         <td>
-                          <a routerLink="/performance/{{ edge.node.id }}">
-                            {{ formatPerformanceDate(edge.node.date, edge.node.year) }}
-                          </a>
+                          <a routerLink="/performance/{{ edge.node.id }}"
+                            [innerHTML]="edge.node | formatPerformanceDate"
+                          ></a>
                         </td>
                         <td>{{ edge.node.venue }}</td>
                         <td>{{ edge.node.city }}</td>
