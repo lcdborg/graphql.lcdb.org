@@ -9,7 +9,7 @@ use League\Event\EventDispatcher;
 
 class ArtistsQuery implements GraphQLQuery
 {
-    public static function getDefinition(Driver $driver, array $variables = [], string $operationName = null): array
+    public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         if ($operationName === 'ArtistListOther') {
             $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',

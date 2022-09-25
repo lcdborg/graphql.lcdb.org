@@ -16,7 +16,7 @@ class GraphQLController extends Controller
     public function graphql(EntityManager $entityManager, Request $request)
     {
         $query = $request->get('query');
-        $variables = $request->get('variables');
+        $variables = $request->get('variables') ?? [];
         $operationName = $request->get('operationName');
 
         $driver = new Driver($entityManager, new Config([
