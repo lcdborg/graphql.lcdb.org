@@ -90,7 +90,6 @@ export class ArtistsComponent extends PaginatedComponent {
 
   public chr = 'top100';
   public filterString = '';
-  public graphQLArtists: any;
   public graphQL$: Observable<GraphQLResponse>;
 
   public page = 1;
@@ -178,11 +177,5 @@ export class ArtistsComponent extends PaginatedComponent {
 
   public filter() {
     this.router.navigate(['/artists'], {queryParams: {chr: 'filter', filterString: this.filterString}});
-  }
-
-  public getAlphabetLetter(code: number, caps: boolean = false) {
-    const offset = (caps) ? 65 : 97;
-
-    return String.fromCharCode(code + offset);
   }
 }

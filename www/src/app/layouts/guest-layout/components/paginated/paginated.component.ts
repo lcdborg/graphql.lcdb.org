@@ -52,4 +52,10 @@ export class PaginatedComponent {
 
     return pages;
   }
+
+  public getAlphabetLetter(code: number, caps: boolean = false) {
+    const offset = (caps) ? 65 : 97;
+
+    return String.fromCharCode(code + offset);
+  }
 }
