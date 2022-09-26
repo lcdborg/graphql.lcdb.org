@@ -29,8 +29,8 @@
                   <input
                     type="text"
                     style="width: 15em;"
-                    (change)="filter()"
-                    [(ngModel)]="filterString"
+                    (change)="applyFilter()"
+                    [(ngModel)]="filter"
                   >
                 </span>
               </p>

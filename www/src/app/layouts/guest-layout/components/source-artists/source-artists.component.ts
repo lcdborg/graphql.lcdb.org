@@ -70,7 +70,7 @@ export class SourceArtistsComponent extends PaginatedComponent {
   `;
 
   public chr = 'a';
-  public filterString = '';
+  public filter = '';
   public graphQL$: Observable<GraphQLResponse>;
 
   public page = 1;
@@ -92,10 +92,10 @@ export class SourceArtistsComponent extends PaginatedComponent {
         this.page = 1;
       }
 
-      if (queryParamMap.get('filterString')) {
-        this.filterString = queryParamMap.get('filterString');
+      if (queryParamMap.get('filter')) {
+        this.filter = queryParamMap.get('filter');
       } else {
-        this.filterString = '';
+        this.filter = '';
       }
 
       this.pageJump = this.page;
@@ -104,8 +104,8 @@ export class SourceArtistsComponent extends PaginatedComponent {
       let query = '';
       let operationName = 'SourceArtists';
 
-      if (this.filterString) {
-        parameters.filter = this.filterString;
+      if (this.filter) {
+        parameters.filter = this.filter;
         parameters.after = btoa(String((this.page - 1) * 300 - 1));
         query = this.filterQuery;
       } else if (queryParamMap.get('chr') === 'other') {
@@ -140,11 +140,11 @@ export class SourceArtistsComponent extends PaginatedComponent {
 
     this.router.navigate(['/source-artists'], {queryParams: {
       page: this.pageJump,
-      filterString: this.filterString
+      filter: this.filter
     }});
   }
 
-  public filter() {
-    this.router.navigate(['/source-artists'], {queryParams: {filterString: this.filterString}});
+  public applyFilter() {
+    this.router.navigate(['/source-artists'], {queryParams: {filter: this.filter}});
   }
 }

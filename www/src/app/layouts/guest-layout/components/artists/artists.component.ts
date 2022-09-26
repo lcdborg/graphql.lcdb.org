@@ -89,7 +89,7 @@ export class ArtistsComponent extends PaginatedComponent {
   `;
 
   public chr = 'top100';
-  public filterString = '';
+  public filter = '';
   public graphQL$: Observable<GraphQLResponse>;
 
   public page = 1;
@@ -115,11 +115,11 @@ export class ArtistsComponent extends PaginatedComponent {
         this.page = 1;
       }
 
-      if (queryParamMap.get('filterString')) {
+      if (queryParamMap.get('filter')) {
         this.chr = 'filter';
-        this.filterString = queryParamMap.get('filterString');
+        this.filter = queryParamMap.get('filter');
       } else {
-        this.filterString = '';
+        this.filter = '';
       }
 
       this.pageJump = this.page;
@@ -128,25 +128,27 @@ export class ArtistsComponent extends PaginatedComponent {
 
       let query = '';
       let operationName = '';
-      switch (this.chr) {
-        case 'filter':
-          parameters.filter = this.filterString;
-          parameters.after = btoa(String((this.page - 1) * 300 - 1))
-          query = this.filterQuery;
-          break;
-        case 'top100':
-          query = this.top100query;
-          break;
-        case 'other':
-          parameters.after = btoa(String((this.page - 1) * 300 - 1))
-          query = this.otherQuery;
-          operationName = 'ArtistListOther';
-          break;
-        default:
-          parameters.chr = this.chr;
-          parameters.after = btoa(String((this.page - 1) * 300 - 1))
-          query = this.query;
-          break;
+
+      if (this.filter) {
+        parameters.filter = this.filter;
+        parameters.after = btoa(String((this.page - 1) * 300 - 1))
+        query = this.filterQuery;
+      } else {
+        switch (this.chr) {
+          case 'top100':
+            query = this.top100query;
+            break;
+          case 'other':
+            parameters.after = btoa(String((this.page - 1) * 300 - 1))
+            query = this.otherQuery;
+            operationName = 'ArtistListOther';
+            break;
+          default:
+            parameters.chr = this.chr;
+            parameters.after = btoa(String((this.page - 1) * 300 - 1))
+            query = this.query;
+            break;
+        }
       }
 
       this.graphQL$ = this.graphQLService.query(query, parameters, operationName)
@@ -171,11 +173,11 @@ export class ArtistsComponent extends PaginatedComponent {
     this.router.navigate(['/artists'], {queryParams: {
       chr: this.chr,
       page: this.pageJump,
-      filterString: this.filterString
+      filter: this.filter
     }});
   }
 
-  public filter() {
-    this.router.navigate(['/artists'], {queryParams: {chr: 'filter', filterString: this.filterString}});
+  public applyFilter() {
+    this.router.navigate(['/artists'], {queryParams: {filter: this.filter}});
   }
 }
