@@ -16,6 +16,8 @@ import { SourcesComponent } from './components/sources/sources.component';
 import { SourceArtistsComponent } from './components/source-artists/source-artists.component';
 import { PipesModule } from 'app/pipes/pipes.module';
 import { PaginatedComponent } from './components/paginated/paginated.component';
+import { ArtistGroupsComponent } from './components/artist-groups/artist-groups.component';
+import { ArtistGroupComponent } from './components/artist-group/artist-group.component';
 
 @NgModule({
   imports: [
@@ -38,6 +40,8 @@ import { PaginatedComponent } from './components/paginated/paginated.component';
     SourcesComponent,
     SourceArtistsComponent,
     PaginatedComponent,
+    ArtistGroupsComponent,
+    ArtistGroupComponent,
   ]
 })
 

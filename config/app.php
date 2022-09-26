@@ -185,6 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
+        LaravelDoctrine\Extensions\BeberleiExtensionsServiceProvider::class,
 
         /*
          * Application Service Providers...

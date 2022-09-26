@@ -34,7 +34,7 @@ class GraphQLController extends Controller
                     'artist'           => GraphQLQuery\AritstQuery::getDefinition($driver),
                     'artistYears'      => GraphQLQuery\ArtistYearsQuery::getDefinition($driver),
                     'artistLatestYear' => GraphQLQuery\ArtistLatestYearQuery::getDefinition($driver),
-                    'artistGroups'     => GraphQLQuery\ArtistGroupsQuery::getDefinition($driver),
+                    'artistGroups'     => GraphQLQuery\ArtistGroupsQuery::getDefinition($driver, $variables, $operationName),
                     'performances'     => GraphQLQuery\PerformancesQuery::getDefinition($driver),
                     'performance'      => GraphQLQuery\PerformanceQuery::getDefinition($driver),
                     'sources'          => GraphQLQuery\SourcesQuery::getDefinition($driver, $variables, $operationName),

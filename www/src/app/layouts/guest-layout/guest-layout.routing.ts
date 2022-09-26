@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { ArtistGroupComponent } from './components/artist-group/artist-group.component';
+import { ArtistGroupsComponent } from './components/artist-groups/artist-groups.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { ArtistsComponent } from './components/artists/artists.component';
 
@@ -31,5 +33,13 @@ export const GuestLayoutRoutes: Routes = [
   {
     component: SourcesComponent,
     path: 'sources/:id'
+  },
+  {
+    component: ArtistGroupsComponent,
+    path: 'artist-groups'
+  },
+  {
+    component: ArtistGroupComponent,
+    path: 'artist-group/:id'
   },
 ];

@@ -11,6 +11,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/home', title: 'Home',  icon: 'dashboard', class: '' },
 //  { path: '/performance/add', title: 'Add Performance',  icon: 'dashboard', class: '' },
   { path: '/artists', title: 'Artists',  icon: 'dashboard', class: '' },
+  { path: '/artist-groups', title: 'Artist Groups',  icon: 'dashboard', class: '' },
   { path: '/source-artists', title: 'Sources',  icon: 'dashboard', class: '' },
 ];
 
