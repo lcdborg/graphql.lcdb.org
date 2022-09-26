@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['http://localhost:4200', 'https://lcdb.org'],
 
     'allowed_origins_patterns' => [],
 
