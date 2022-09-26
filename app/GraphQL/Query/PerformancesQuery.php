@@ -7,7 +7,7 @@ use App\ORM\Entity\Performance;
 
 class PerformancesQuery implements GraphQLQuery
 {
-    public static function getDefinition(Driver $driver): array
+    public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         return [
             'type' => $driver->connection($driver->type(Performance::class)),

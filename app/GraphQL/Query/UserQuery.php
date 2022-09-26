@@ -10,7 +10,7 @@ use GraphQL\Type\Definition\Type;
 
 class UserQuery implements GraphQLQuery
 {
-    public static function getDefinition(Driver $driver, array $variables = []): array
+    public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         return [
             'type' => $driver->type(User::class),

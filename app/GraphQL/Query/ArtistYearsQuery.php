@@ -10,7 +10,7 @@ use GraphQL\Type\Definition\Type;
 
 class ArtistYearsQuery implements GraphQLQuery
 {
-    public static function getDefinition(Driver $driver): array
+    public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         return [
             'type' => Type::listOf(Type::int()),

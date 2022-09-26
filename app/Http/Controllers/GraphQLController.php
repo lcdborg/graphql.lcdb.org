@@ -26,24 +26,43 @@ class GraphQLController extends Controller
             'globalIgnore' => ['password', 'realemail', 'email'],
         ]));
 
+        /**
+         * Operation names with special handling are listed below each field
+         */
         $schema = new Schema([
             'query' => new ObjectType([
                 'name' => 'query',
                 'fields' => [
                     'artists'          => GraphQLQuery\ArtistsQuery::getDefinition($driver, $variables, $operationName),
-                    'artist'           => GraphQLQuery\AritstQuery::getDefinition($driver),
-                    'artistYears'      => GraphQLQuery\ArtistYearsQuery::getDefinition($driver),
-                    'artistLatestYear' => GraphQLQuery\ArtistLatestYearQuery::getDefinition($driver),
+                    /**
+                     * ArtistListOther
+                     *      Fetch artist for non-a to z-names
+                     * SourceArtists
+                     *      Fetch artists with sources
+                     * SourceArtistsOther
+                     *      Fetch artists with sources for non-a to z-names
+                     */
+                    'artist'           => GraphQLQuery\AritstQuery::getDefinition($driver, $variables, $operationName),
+                    'artistYears'      => GraphQLQuery\ArtistYearsQuery::getDefinition($driver, $variables, $operationName),
+                    'artistLatestYear' => GraphQLQuery\ArtistLatestYearQuery::getDefinition($driver, $variables, $operationName),
                     'artistGroups'     => GraphQLQuery\ArtistGroupsQuery::getDefinition($driver, $variables, $operationName),
-                    'performances'     => GraphQLQuery\PerformancesQuery::getDefinition($driver),
-                    'performance'      => GraphQLQuery\PerformanceQuery::getDefinition($driver),
+                    /**
+                     * ArtistGroupsOther
+                     *      Fetch artist groups with non-a to z-names
+                     */
+                    'performances'     => GraphQLQuery\PerformancesQuery::getDefinition($driver, $variables, $operationName),
+                    'performance'      => GraphQLQuery\PerformanceQuery::getDefinition($driver, $variables, $operationName),
                     'sources'          => GraphQLQuery\SourcesQuery::getDefinition($driver, $variables, $operationName),
-                    'source'           => GraphQLQuery\SourceQuery::getDefinition($driver),
-                    'sourceCount'      => GraphQLQuery\SourceCountQuery::getDefinition($driver),
-                    'sourceYears'      => GraphQLQuery\SourceYearsQuery::getDefinition($driver),
-                    'sourceLatestYear' => GraphQLQuery\SourceLatestYearQuery::getDefinition($driver),
-                    'users'            => GraphQLQuery\UsersQuery::getDefinition($driver),
-                    'user'             => GraphQLQuery\UserQuery::getDefinition($driver),
+                    /**
+                     * ArtistSources
+                     *      Fetch sources by artist $id and $year
+                     */
+                    'source'           => GraphQLQuery\SourceQuery::getDefinition($driver, $variables, $operationName),
+                    'sourceCount'      => GraphQLQuery\SourceCountQuery::getDefinition($driver, $variables, $operationName),
+                    'sourceYears'      => GraphQLQuery\SourceYearsQuery::getDefinition($driver, $variables, $operationName),
+                    'sourceLatestYear' => GraphQLQuery\SourceLatestYearQuery::getDefinition($driver, $variables, $operationName),
+                    'users'            => GraphQLQuery\UsersQuery::getDefinition($driver, $variables, $operationName),
+                    'user'             => GraphQLQuery\UserQuery::getDefinition($driver, $variables, $operationName),
                 ],
             ]),
         ]);

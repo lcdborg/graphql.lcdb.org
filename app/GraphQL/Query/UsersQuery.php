@@ -7,7 +7,7 @@ use App\ORM\Entity\User;
 
 class UsersQuery implements GraphQLQuery
 {
-    public static function getDefinition(Driver $driver, array $variables = []): array
+    public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         return [
             'type' => $driver->connection($driver->type(User::class)),
