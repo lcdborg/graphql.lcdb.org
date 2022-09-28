@@ -1,8 +1,9 @@
 <?php
 
-namespace App\GraphQL\Query;
+namespace App\GraphQL\Query\Source;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
+use App\GraphQL\Query\GraphQLQuery;
 use App\ORM\Entity\Source;
 use Doctrine\ORM\EntityManager;
 use GraphQL\Type\Definition\ResolveInfo;

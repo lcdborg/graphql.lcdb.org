@@ -1,9 +1,10 @@
 <?php
 
-namespace App\GraphQL\Query;
+namespace App\GraphQL\Query\Source;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
+use App\GraphQL\Query\GraphQLQuery;
 use App\ORM\Entity\Source;
 use League\Event\EventDispatcher;
 
@@ -21,6 +22,31 @@ class SourcesQuery implements GraphQLQuery
                             ->innerJoin('performance.artist', 'artist')
                             ->andWhere($queryBuilder->expr()->eq('artist.id', ':artistId'))
                             ->setParameter('artistId', $variables['id']);
+
+                        if (isset($variables['year']) && $variables['year']) {
+                            $queryBuilder
+                                ->andWhere($queryBuilder->expr()->eq('performance.year', ':performanceYear'))
+                                ->setParameter('performanceYear', $variables['year'])
+                                ->orderBy('entity.id')
+                                ->orderBy('performance.date');
+                        }
+                    }
+                }
+            );
+        }
+
+        if ($operationName === 'ArtistGroupSources') {
+            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+                function (FilterQueryBuilder $event) use ($variables) {
+                    if (isset($variables['id']) && $variables['id']) {
+                        $queryBuilder = $event->getQueryBuilder();
+                        $queryBuilder
+                            ->innerJoin('entity.performance', 'performance')
+                            ->innerJoin('performance.artist', 'artist')
+                            ->innerJoin('artist.artistToArtistGroups', 'artistToArtistGroups')
+                            ->innerJoin('artistToArtistGroups.artistGroup', 'artistGroup')
+                            ->andWhere($queryBuilder->expr()->eq('artistGroup.id', ':artistGroupId'))
+                            ->setParameter('artistGroupId', $variables['id']);
 
                         if (isset($variables['year']) && $variables['year']) {
                             $queryBuilder

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\GraphQL\Query;
+namespace App\GraphQL\Query\Performance;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
+use App\GraphQL\Query\GraphQLQuery;
 use App\ORM\Entity\Performance;
 use League\Event\EventDispatcher;
 

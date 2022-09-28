@@ -1,9 +1,10 @@
 <?php
 
-namespace App\GraphQL\Query;
+namespace App\GraphQL\Query\ArtistGroup;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
+use App\GraphQL\Query\GraphQLQuery;
 use App\ORM\Entity\ArtistGroup;
 use League\Event\EventDispatcher;
 

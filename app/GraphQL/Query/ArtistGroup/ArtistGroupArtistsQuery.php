@@ -1,34 +1,37 @@
 <?php
 
-namespace App\GraphQL\Query;
+namespace App\GraphQL\Query\ArtistGroup;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
-use App\ORM\Entity\Performance;
+use App\GraphQL\Query\GraphQLQuery;
+use App\ORM\Entity\Artist;
 use Doctrine\ORM\EntityManager;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
-class ArtistGroupLatestYearQuery implements GraphQLQuery
+class ArtistGroupArtistsQuery implements GraphQLQuery
 {
+    /**
+     * This function exists because you can't sort artists by name when querying through `artistGroup`
+     */
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         return [
-            'type' => Type::int(),
+            'type' => Type::listOf($driver->type(Artist::class)),
             'args' => [
                 'id' => Type::nonNull(Type::int()),
             ],
             'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
-                $queryBuilder->select('MAX(performance.year)')
-                    ->from(Performance::class, 'performance')
-                    ->innerJoin('performance.artist', 'artist')
+                $queryBuilder->select('artist')
+                    ->from(Artist::class, 'artist')
                     ->innerJoin('artist.artistToArtistGroups', 'artistToArtistGroups')
                     ->innerJoin('artistToArtistGroups.artistGroup', 'artistGroup')
                     ->andWhere($queryBuilder->expr()->eq('artistGroup.id', ':artistGroupId'))
                     ->setParameter('artistGroupId', $args['id'])
-                    ->orderBy('performance.year', 'ASC');
+                    ->orderBy('artist.name', 'ASC');
 
-                return $queryBuilder->getQuery()->getSingleScalarResult();
+                return $queryBuilder->getQuery()->getResult();
             },
         ];
     }

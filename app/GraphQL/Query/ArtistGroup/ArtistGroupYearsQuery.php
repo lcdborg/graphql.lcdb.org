@@ -1,36 +1,41 @@
 <?php
 
-namespace App\GraphQL\Query;
+namespace App\GraphQL\Query\ArtistGroup;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
-use App\ORM\Entity\Artist;
+use App\GraphQL\Query\GraphQLQuery;
+use App\ORM\Entity\Performance;
 use Doctrine\ORM\EntityManager;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
-class ArtistGroupArtistsQuery implements GraphQLQuery
+class ArtistGroupYearsQuery implements GraphQLQuery
 {
-    /**
-     * This function exists because you can't sort artists by name when querying through `artistGroup`
-     */
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         return [
-            'type' => Type::listOf($driver->type(Artist::class)),
+            'type' => Type::listOf(Type::int()),
             'args' => [
                 'id' => Type::nonNull(Type::int()),
             ],
             'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
-                $queryBuilder->select('artist')
-                    ->from(Artist::class, 'artist')
+                $queryBuilder->select('performance.year')
+                    ->distinct()
+                    ->from(Performance::class, 'performance')
+                    ->innerJoin('performance.artist', 'artist')
                     ->innerJoin('artist.artistToArtistGroups', 'artistToArtistGroups')
                     ->innerJoin('artistToArtistGroups.artistGroup', 'artistGroup')
                     ->andWhere($queryBuilder->expr()->eq('artistGroup.id', ':artistGroupId'))
                     ->setParameter('artistGroupId', $args['id'])
-                    ->orderBy('artist.name', 'ASC');
+                    ->orderBy('performance.year', 'ASC');
 
-                return $queryBuilder->getQuery()->getResult();
+                $years = [];
+                foreach($queryBuilder->getQuery()->getArrayResult() as $result) {
+                    $years[] = $result['year'];
+                }
+
+                return $years;
             },
         ];
     }
