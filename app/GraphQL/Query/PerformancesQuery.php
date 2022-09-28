@@ -3,12 +3,30 @@
 namespace App\GraphQL\Query;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
+use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
 use App\ORM\Entity\Performance;
+use League\Event\EventDispatcher;
 
 class PerformancesQuery implements GraphQLQuery
 {
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
+        if ($operationName === 'ArtistGroupPerformances') {
+            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+                function (FilterQueryBuilder $event) use ($variables) {
+                    $queryBuilder = $event->getQueryBuilder();
+                    $queryBuilder
+                        ->innerJoin('entity.artist', 'artist')
+                        ->innerJoin('artist.artistToArtistGroups', 'artistToArtistGroups')
+                        ->innerJoin('artistToArtistGroups.artistGroup', 'artistGroup')
+                        ->andWhere($queryBuilder->expr()->eq('artistGroup.id', ':artistGroupId'))
+                        ->setParameter('artistGroupId', $variables['id']);
+
+#                    print_r($queryBuilder->getQuery()->getSQL());die();
+                }
+            );
+        }
+
         return [
             'type' => $driver->connection($driver->type(Performance::class)),
             'args' => [

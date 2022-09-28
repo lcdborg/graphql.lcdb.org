@@ -42,15 +42,28 @@ class GraphQLController extends Controller
                      * SourceArtistsOther
                      *      Fetch artists with sources for non-a to z-names
                      */
-                    'artist'           => GraphQLQuery\AritstQuery::getDefinition($driver, $variables, $operationName),
-                    'artistYears'      => GraphQLQuery\ArtistYearsQuery::getDefinition($driver, $variables, $operationName),
-                    'artistLatestYear' => GraphQLQuery\ArtistLatestYearQuery::getDefinition($driver, $variables, $operationName),
-                    'artistGroups'     => GraphQLQuery\ArtistGroupsQuery::getDefinition($driver, $variables, $operationName),
+                    'artist'                 => GraphQLQuery\AritstQuery::getDefinition($driver, $variables, $operationName),
+                    'artistYears'            => GraphQLQuery\ArtistYearsQuery::getDefinition($driver, $variables, $operationName),
+                    'artistLatestYear'       => GraphQLQuery\ArtistLatestYearQuery::getDefinition($driver, $variables, $operationName),
+                    'artistGroup'            => GraphQLQuery\ArtistGroupQuery::getDefinition($driver, $variables, $operationName),
+                    'artistGroups'           => GraphQLQuery\ArtistGroupsQuery::getDefinition($driver, $variables, $operationName),
                     /**
                      * ArtistGroupsOther
                      *      Fetch artist groups with non-a to z-names
+                     * SourceArtistGroups
+                     *      Fetch artist groups with sources
+                     * SourceArtistGroupsOther
+                     *      Fetch artist groups with sources for non-a to z-names
                      */
+                    'artistGroupArtists'     => GraphQLQuery\ArtistGroupArtistsQuery::getDefinition($driver, $variables, $operationName),
+                    'artistGroupLatestYear'  => GraphQLQuery\ArtistGroupLatestYearQuery::getDefinition($driver, $variables, $operationName),
+                    'artistGroupSourceCount' => GraphQLQuery\ArtistGroupSourceCountQuery::getDefinition($driver, $variables, $operationName),
+                    'artistGroupYears'       => GraphQLQuery\ArtistGroupYearsQuery::getDefinition($driver, $variables, $operationName),
                     'performances'     => GraphQLQuery\PerformancesQuery::getDefinition($driver, $variables, $operationName),
+                    /**
+                     * ArtistGroupPerformances
+                     *      Fetch performances for the given artist group $id and $year
+                     */
                     'performance'      => GraphQLQuery\PerformanceQuery::getDefinition($driver, $variables, $operationName),
                     'sources'          => GraphQLQuery\SourcesQuery::getDefinition($driver, $variables, $operationName),
                     /**

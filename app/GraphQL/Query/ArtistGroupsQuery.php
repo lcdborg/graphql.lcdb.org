@@ -31,6 +31,47 @@ class ArtistGroupsQuery implements GraphQLQuery
             );
         }
 
+        if ($operationName === 'SourceArtistGroups') {
+            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+                function (FilterQueryBuilder $event) use ($variables) {
+                    $queryBuilder = $event->getQueryBuilder();
+                    $queryBuilder
+                        ->distinct()
+                        ->innerJoin('entity.artistToArtistGroups', 'artistToArtistGroups')
+                        ->innerJoin('artistToArtistGroups.artist', 'artist')
+                        ->innerJoin('artist.performances', 'performances')
+                        ->innerJoin('performances.sources', 'sources');
+
+#                    print_r($queryBuilder->getQuery()->getSQL());die();
+                }
+            );
+        }
+
+        if ($operationName === 'SourceArtistGroupsOther') {
+            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+                function (FilterQueryBuilder $event) use ($variables) {
+                    $queryBuilder = $event->getQueryBuilder();
+                    $queryBuilder
+                        ->distinct()
+                        ->innerJoin('entity.artistToArtistGroups', 'artistToArtistGroups')
+                        ->innerJoin('artistToArtistGroups.artist', 'artist')
+                        ->innerJoin('artist.performances', 'performances')
+                        ->innerJoin('performances.sources', 'sources')
+                        ->andWhere(
+                            $queryBuilder->expr()->orX(
+                                $queryBuilder->expr()->lt('ASCII(entity.title)', ':min'),
+                                $queryBuilder->expr()->gt('ASCII(entity.title)', ':max')
+
+                            )
+                        )
+                        ->setParameter('min', 65)
+                        ->setParameter('max', 122);
+
+#                    print_r($queryBuilder->getQuery()->getSQL());die();
+                }
+            );
+        }
+
         return [
             'type' => $driver->connection($driver->type(ArtistGroup::class)),
             'args' => [
