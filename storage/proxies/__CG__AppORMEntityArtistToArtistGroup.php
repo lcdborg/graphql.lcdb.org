@@ -67,10 +67,10 @@ class ArtistToArtistGroup extends \App\ORM\Entity\ArtistToArtistGroup implements
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'reason', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'artistGroup', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'artist', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'user'];
+            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'reason', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'artistGroup', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'artist', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'user', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'artistUnprefix'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'reason', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'artistGroup', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'artist', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'user'];
+        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'reason', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'artistGroup', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'artist', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'user', '' . "\0" . 'App\\ORM\\Entity\\ArtistToArtistGroup' . "\0" . 'artistUnprefix'];
     }
 
     /**
@@ -263,6 +263,28 @@ class ArtistToArtistGroup extends \App\ORM\Entity\ArtistToArtistGroup implements
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', []);
 
         return parent::getUser();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setArtistUnprefix(\App\ORM\Entity\ArtistUnprefix $artistUnprefix)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setArtistUnprefix', [$artistUnprefix]);
+
+        return parent::setArtistUnprefix($artistUnprefix);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArtistUnprefix()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArtistUnprefix', []);
+
+        return parent::getArtistUnprefix();
     }
 
 }

@@ -67,10 +67,10 @@ class Checksum extends \App\ORM\Entity\Checksum implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'md5desc', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'md5text', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'source'];
+            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'description', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'body', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'source'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'md5desc', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'md5text', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'source'];
+        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'description', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'body', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Checksum' . "\0" . 'source'];
     }
 
     /**
@@ -180,45 +180,45 @@ class Checksum extends \App\ORM\Entity\Checksum implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
-    public function setMd5desc($md5desc = NULL)
+    public function setDescription($description = NULL)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMd5desc', [$md5desc]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDescription', [$description]);
 
-        return parent::setMd5desc($md5desc);
+        return parent::setDescription($description);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getMd5desc()
+    public function getDescription()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMd5desc', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', []);
 
-        return parent::getMd5desc();
+        return parent::getDescription();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setMd5text($md5text = NULL)
+    public function setBody($body = NULL)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMd5text', [$md5text]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBody', [$body]);
 
-        return parent::setMd5text($md5text);
+        return parent::setBody($body);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getMd5text()
+    public function getBody()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMd5text', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBody', []);
 
-        return parent::getMd5text();
+        return parent::getBody();
     }
 
     /**

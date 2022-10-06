@@ -67,10 +67,10 @@ class User extends \App\ORM\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'realemail', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'perms', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'validemail', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'css', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'activetrading', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'rules', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_showrules', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_colors', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_columns', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'columnorder', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'city', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'state', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'zipcode', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'tradenotes', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'confirm_hash', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'cookie_hash', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'msg_yahoo', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'picture', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artists', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artistToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userLists', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'template', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'wantedPerformances'];
+            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'realemail', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'perms', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'validemail', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'css', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'activetrading', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'rules', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_showrules', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_colors', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_columns', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'columnorder', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'city', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'state', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'zipcode', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'tradenotes', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'confirm_hash', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'cookie_hash', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'msg_yahoo', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'picture', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artists', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artistToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artistsUnprefix', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userLists', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'template', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'wantedPerformances'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'realemail', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'perms', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'validemail', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'css', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'activetrading', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'rules', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_showrules', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_colors', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_columns', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'columnorder', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'city', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'state', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'zipcode', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'tradenotes', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'confirm_hash', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'cookie_hash', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'msg_yahoo', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'picture', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artists', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artistToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userLists', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'template', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'wantedPerformances'];
+        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'realemail', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'perms', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'validemail', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'css', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'activetrading', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'rules', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_showrules', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_colors', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'config_columns', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'columnorder', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'city', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'state', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'zipcode', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'tradenotes', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'confirm_hash', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'cookie_hash', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'msg_yahoo', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'picture', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artists', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artistToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'artistsUnprefix', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'userLists', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'template', '' . "\0" . 'App\\ORM\\Entity\\User' . "\0" . 'wantedPerformances'];
     }
 
     /**
@@ -850,6 +850,39 @@ class User extends \App\ORM\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUserToArtistGroups', []);
 
         return parent::getUserToArtistGroups();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addArtistsUnprefix(\App\ORM\Entity\ArtistUnprefix $artistsUnprefix)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addArtistsUnprefix', [$artistsUnprefix]);
+
+        return parent::addArtistsUnprefix($artistsUnprefix);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeArtistsUnprefix(\App\ORM\Entity\ArtistUnprefix $artistsUnprefix)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeArtistsUnprefix', [$artistsUnprefix]);
+
+        return parent::removeArtistsUnprefix($artistsUnprefix);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArtistsUnprefix()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArtistsUnprefix', []);
+
+        return parent::getArtistsUnprefix();
     }
 
     /**
