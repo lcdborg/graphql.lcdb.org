@@ -6,6 +6,7 @@ use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
 use App\GraphQL\Query\GraphQLQuery;
 use App\ORM\Entity\Artist;
+use App\ORM\Entity\ArtistUnprefix;
 use League\Event\EventDispatcher;
 
 class ArtistsQuery implements GraphQLQuery
@@ -72,11 +73,11 @@ class ArtistsQuery implements GraphQLQuery
         }
 
         return [
-            'type' => $driver->connection($driver->type(Artist::class)),
+            'type' => $driver->connection($driver->type(ArtistUnprefix::class)),
             'args' => [
-                'filter' => $driver->filter(Artist::class),
+                'filter' => $driver->filter(ArtistUnprefix::class),
             ],
-            'resolve' => $driver->resolve(Artist::class),
+            'resolve' => $driver->resolve(ArtistUnprefix::class),
         ];
     }
 }

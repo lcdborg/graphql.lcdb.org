@@ -133,6 +133,11 @@ class Performance
     private $artist;
 
     /**
+     * @var \App\ORM\Entity\ArtistUnprefix
+     */
+    private $artistUnprefix;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $wantedUsers = array();
@@ -755,6 +760,30 @@ class Performance
     public function getArtist()
     {
         return $this->artist;
+    }
+
+    /**
+     * Set artistUnprefix.
+     *
+     * @param \App\ORM\Entity\ArtistUnprefix $artistUnprefix
+     *
+     * @return Performance
+     */
+    public function setArtistUnprefix(\App\ORM\Entity\ArtistUnprefix $artistUnprefix)
+    {
+        $this->artistUnprefix = $artistUnprefix;
+
+        return $this;
+    }
+
+    /**
+     * Get artistUnprefix.
+     *
+     * @return \App\ORM\Entity\ArtistUnprefix
+     */
+    public function getArtistUnprefix()
+    {
+        return $this->artistUnprefix;
     }
 
     /**

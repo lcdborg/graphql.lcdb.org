@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\ORM\Entity\ArtistUnprefix" table="artists_unprefix" read-only="true">
+    <id name="id" type="integer" column="artist_key">
+      <generator strategy="AUTO"/>
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </id>
+    <field name="name" type="string" length="85" nullable="false"/>
+    <field name="fanUrl" type="string" length="100" nullable="true" column="fan_url"/>
+    <field name="officialUrl" type="string" length="100" nullable="true" column="official_url"/>
+    <field name="icon" type="string" length="100" nullable="false"/>
+    <field name="artistuserid" type="string" length="32" nullable="false"/>
+    <field name="createdAt" type="datetime" nullable="true" column="dateadded"/>
+    <field name="abbrev" type="string" length="10" nullable="false"/>
+    <field name="isTradable" type="boolean" nullable="false" column="tradable">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="ref_shnartist" type="integer" nullable="false">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="nameFirstLetter" type="integer" nullable="false" column="name_firstletter">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="archive_key" type="integer" nullable="false">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="top100" type="boolean" nullable="true"/>
+    <field name="nameNormalized" type="string" length="60" nullable="true" column="name_normalized"/>
+    <field name="notes" type="text" nullable="true"/>
+    <field name="nameUnprefix" type="string" nullable="true" column="name_unprefix"/>
+    <many-to-one field="user" target-entity="App\ORM\Entity\User" inversed-by="artistsUnprefix">
+      <join-columns>
+        <join-column name="ref_lastuser" referenced-column-name="user_key" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="performances" target-entity="App\ORM\Entity\Performance" mapped-by="artistUnprefix"/>
+    <one-to-many field="artistToArtistGroups" target-entity="App\ORM\Entity\ArtistToArtistGroup" mapped-by="artistUnprefix"/>
+  </entity>
+</doctrine-mapping>

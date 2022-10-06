@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use ApiSkeletons\Doctrine\GraphQL\Config;
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use App\GraphQL\Query as GraphQLQuery;
+use App\ORM\Entity\ArtistUnprefix;
 use Doctrine\ORM\EntityManager;
 use GraphQL\GraphQL;
 use GraphQL\Type\Definition\ObjectType;

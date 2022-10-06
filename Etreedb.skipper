@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<skipper version="3.3.1.1787" mvc="Without MVC" orm="Doctrine2" name="etreedb" uuid="86867978-467d-4645-89af-ae6c6570c0a0">
+<skipper version="3.3.2.1792" mvc="Without MVC" orm="Doctrine2" name="etreedb" uuid="86867978-467d-4645-89af-ae6c6570c0a0">
   <module name="\etreedb" local-name="etreedb" namespace="\App\ORM\Entity" local-namespace="App\ORM\Entity" export-format="Doctrine2Xml" export-path="config/orm" uuid="4bdbac3f-18d0-4584-8d7a-5a7c7524365d">
     <entity name="\App\ORM\Entity\Performance" local-name="Performance" namespace="\App\ORM\Entity" uuid="abc81034-65f7-4f53-a4a4-6749dd9cb1ed">
       <field name="id" type="integer" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="8486e70a-c98c-4ec7-8ec9-7cfdeac7dc81">
@@ -63,6 +63,9 @@
     </entity>
     <association from="\App\ORM\Entity\Performance" to="\App\ORM\Entity\Artist" caption="artist performances" owner-alias="performances" inverse-alias="artist" many-owner="true" many-inverse="false" parent-required="true" uuid="0dbe071d-4e8f-4a97-8ac6-bf2a92089226">
       <association-field from="artist_id" to="id" uuid="d9ee8de6-c9b2-4b02-97e9-bdbf22c676d0"/>
+    </association>
+    <association from="\App\ORM\Entity\Performance" to="\App\ORM\Entity\ArtistUnprefix" caption="ArtistUnprefix Performances" owner-alias="performances" inverse-alias="artistUnprefix" many-owner="true" many-inverse="false" parent-required="true" uuid="1ba686e7-01ea-408d-b231-067a6963559b">
+      <association-field from="artist_id" to="id" uuid="d2af383e-ebc9-49a9-91d7-2416cc52194b"/>
     </association>
     <entity name="\App\ORM\Entity\UserWantlist" local-name="UserWantlist" namespace="\App\ORM\Entity" uuid="48174308-294b-4868-847e-f412335a417e">
       <field name="performance_id" type="integer" required="true" primary="true" unsigned="true" uuid="7a138076-786a-45ed-9907-29652713c4ac">
@@ -268,6 +271,65 @@
           <attribute name="table">artist_groups_users_xref</attribute>
         </orm-attributes>
       </entity>
+      <entity name="\App\ORM\Entity\ArtistUnprefix" local-name="ArtistUnprefix" namespace="\App\ORM\Entity" uuid="820c6bf7-6411-4fce-bfdc-fda1370126b5">
+        <field name="id" type="integer" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="53720288-92ee-42a9-80c0-551288cb7598">
+          <orm-attributes>
+            <attribute name="column">artist_key</attribute>
+          </orm-attributes>
+        </field>
+        <field name="user_id" type="integer" required="true" unsigned="true" uuid="67639e10-53b8-4012-94b7-9f8b5c7ab324">
+          <orm-attributes>
+            <attribute name="column">ref_lastuser</attribute>
+          </orm-attributes>
+        </field>
+        <field name="name" type="string" size="85" required="true" uuid="8eec2680-6352-4a10-a2df-672b87bd91d4"/>
+        <field name="fanUrl" type="string" size="100" uuid="035c6ddf-a7bd-47da-bfc3-e6d378a24ab3">
+          <orm-attributes>
+            <attribute name="column">fan_url</attribute>
+          </orm-attributes>
+        </field>
+        <field name="officialUrl" type="string" size="100" uuid="a5da4660-4903-444d-ab2b-4bc0eca64024">
+          <orm-attributes>
+            <attribute name="column">official_url</attribute>
+          </orm-attributes>
+        </field>
+        <field name="icon" type="string" size="100" required="true" uuid="9bce289e-d9c0-449c-98c3-f82743e43054"/>
+        <field name="artistuserid" type="string" size="32" required="true" uuid="8e3b3bae-1867-4b8f-9769-c611847267ab"/>
+        <field name="createdAt" type="datetime" uuid="a9dbc221-8459-492f-84bd-ea4042b2607c">
+          <orm-attributes>
+            <attribute name="column">dateadded</attribute>
+          </orm-attributes>
+        </field>
+        <field name="abbrev" type="string" size="10" required="true" uuid="2d46810f-ea94-44da-affc-1b67107b670d"/>
+        <field name="isTradable" type="boolean" required="true" unsigned="true" uuid="44403cd5-7a8b-49bd-9942-429fac19c1c0">
+          <orm-attributes>
+            <attribute name="column">tradable</attribute>
+          </orm-attributes>
+        </field>
+        <field name="ref_shnartist" type="integer" required="true" unsigned="true" uuid="78b2f473-ecbe-4002-aadb-e3acc3d2290d"/>
+        <field name="nameFirstLetter" type="integer" required="true" unsigned="true" uuid="064bfe58-42ac-4d6b-9e16-5aecf67670e8">
+          <orm-attributes>
+            <attribute name="column">name_firstletter</attribute>
+          </orm-attributes>
+        </field>
+        <field name="archive_key" type="integer" required="true" unsigned="true" uuid="8c588b69-4ab6-4be0-82a0-f92e54573a0b"/>
+        <field name="top100" type="boolean" uuid="741a30d4-a483-4c76-814b-454fc60d0931"/>
+        <field name="nameNormalized" type="string" size="60" uuid="9996652e-839d-4eb7-b7e0-82b0067b7e5f">
+          <orm-attributes>
+            <attribute name="column">name_normalized</attribute>
+          </orm-attributes>
+        </field>
+        <field name="notes" type="text" uuid="84fab969-d818-4255-992e-bdadabea6d7e"/>
+        <field name="nameUnprefix" type="string" uuid="493c7e41-d167-477c-b0c5-38fb7e1023de">
+          <orm-attributes>
+            <attribute name="column">name_unprefix</attribute>
+          </orm-attributes>
+        </field>
+        <orm-attributes>
+          <attribute name="table">artists_unprefix</attribute>
+          <attribute name="read-only">true</attribute>
+        </orm-attributes>
+      </entity>
     </region>
     <association from="\App\ORM\Entity\Artist" to="\App\ORM\Entity\User" caption="user artists" owner-alias="artists" inverse-alias="user" many-owner="true" many-inverse="false" parent-required="true" uuid="352c5d8f-3d3a-4935-b2ef-db5130fbe724">
       <association-field from="user_id" to="id" uuid="b8b009d9-0c67-4665-bb45-be86fbf09064"/>
@@ -284,11 +346,17 @@
     <association from="\App\ORM\Entity\ArtistToArtistGroup" to="\App\ORM\Entity\User" caption="user artistToArtistGroups" owner-alias="artistToArtistGroups" inverse-alias="user" many-owner="true" many-inverse="false" parent-required="true" uuid="a79dda9c-84f1-4832-ba3d-ee9ec8241a8f">
       <association-field from="user_id" to="id" uuid="0c2f18e7-ea0f-4d78-9ba9-a0a3f33e5be5"/>
     </association>
+    <association from="\App\ORM\Entity\ArtistToArtistGroup" to="\App\ORM\Entity\ArtistUnprefix" caption="ArtistUnprefix ArtistToArtistGroups" owner-alias="artistToArtistGroups" inverse-alias="artistUnprefix" many-owner="true" many-inverse="false" parent-required="true" uuid="95f6d178-7b6d-414b-b1c2-9e2a9a406da0">
+      <association-field from="artist_id" to="id" uuid="b94d1eb5-7407-45f8-a1be-4f3d7b3f0cdd"/>
+    </association>
     <association from="\App\ORM\Entity\UserToArtistGroup" to="\App\ORM\Entity\User" caption="artist userToArtistGroups" owner-alias="userToArtistGroups" inverse-alias="user" many-owner="true" many-inverse="false" parent-required="true" uuid="b2a07378-c017-421e-86ed-68e269766fb7">
       <association-field from="user_id" to="id" uuid="a07d74c8-33f4-416c-94f4-cb1fe6f8d793"/>
     </association>
     <association from="\App\ORM\Entity\UserToArtistGroup" to="\App\ORM\Entity\ArtistGroup" caption="artistGroup userToArtistGroups" owner-alias="userToArtistGroups" inverse-alias="artistGroup" many-owner="true" many-inverse="false" parent-required="true" uuid="6db23085-4fe3-4a29-b1ec-58e7b5b4147e">
       <association-field from="artist_group_id" to="id" uuid="7c190415-3d1b-4c67-bfc4-3b3d1278e4b9"/>
+    </association>
+    <association from="\App\ORM\Entity\ArtistUnprefix" to="\App\ORM\Entity\User" caption="user artists" owner-alias="artistsUnprefix" inverse-alias="user" many-owner="true" many-inverse="false" parent-required="true" uuid="84301a9e-03fe-4547-bdf5-9a0cd8e3261a">
+      <association-field from="user_id" to="id" uuid="1f190e20-bff7-47d7-b33f-4b5e42b53673"/>
     </association>
     <region namespace="\App\ORM\Entity" caption="Source" uuid="2967124d-29d7-4a03-a16d-f053f6354a95">
       <entity name="\App\ORM\Entity\Source" local-name="Source" namespace="\App\ORM\Entity" uuid="a19828bf-c45c-4b8b-9dfb-499de8f36256">
@@ -520,12 +588,15 @@
   <visual-data>
     <association uuid="0dbe071d-4e8f-4a97-8ac6-bf2a92089226" caption1-position-x="0" caption1-position-y="0" center-position-x="5" center-position-y="0" color="#969696"/>
     <association uuid="16b500ea-53e0-45eb-96f0-9cd0b6684344" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="1ba686e7-01ea-408d-b231-067a6963559b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="2ab7b8c4-084c-4fa8-b8ae-3bde9af49e2e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="352c5d8f-3d3a-4935-b2ef-db5130fbe724" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="516e957e-bab5-4898-8936-a61738f9f7ec" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="6db23085-4fe3-4a29-b1ec-58e7b5b4147e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
-    <association uuid="82bcb6ac-4476-4772-b80e-01c29a395577" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="82bcb6ac-4476-4772-b80e-01c29a395577" caption1-position-x="-4" caption1-position-y="2" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="84301a9e-03fe-4547-bdf5-9a0cd8e3261a" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="8cf064e1-d036-4bf1-b2f0-873bb0c0f6ff" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="95f6d178-7b6d-414b-b1c2-9e2a9a406da0" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="9ff1cfd7-7156-4d55-954d-a8cbcf633150" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="a79dda9c-84f1-4832-ba3d-ee9ec8241a8f" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="ab2a1c20-14a8-4887-a0be-9b67d3799d54" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
@@ -539,12 +610,13 @@
     <entity uuid="2c7f10c8-201c-4a63-82fa-53972812613b" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="531" position-y="45" size-x="0" size-x2="150" size-y="0" size-y2="395"/>
     <entity uuid="4057bc91-3552-4ce3-9082-9a8b64635a90" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="31" position-y="100" size-x="0" size-x2="126" size-y="0" size-y2="185"/>
     <entity uuid="44033769-c6df-4627-b0c1-3b3cb8808258" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="20" position-y="20" size-x="0" size-x2="89" size-y="0" size-y2="87"/>
-    <entity uuid="48174308-294b-4868-847e-f412335a417e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1290" position-y="121" size-x="0" size-x2="122" size-y="0" size-y2="60"/>
+    <entity uuid="48174308-294b-4868-847e-f412335a417e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1502" position-y="114" size-x="0" size-x2="122" size-y="0" size-y2="60"/>
     <entity uuid="6063f304-7bd2-40c9-ac9a-6a09d3374f5f" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="70" position-y="322" size-x="0" size-x2="105" size-y="0" size-y2="87"/>
     <entity uuid="6ddcef17-f5aa-4855-8e71-36d20afc0731" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="277" position-y="148" size-x="0" size-x2="138" size-y="0" size-y2="241"/>
     <entity uuid="76cf8f87-5081-458d-ad36-338487086320" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="283" position-y="28" size-x="0" size-x2="119" size-y="0" size-y2="73"/>
+    <entity uuid="820c6bf7-6411-4fce-bfdc-fda1370126b5" bg-color="#FFFFFF" hdr-color="#A58C75" position-x="507" position-y="20" size-x="0" size-x2="138" size-y="0" size-y2="241"/>
     <entity uuid="a19828bf-c45c-4b8b-9dfb-499de8f36256" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="44" position-y="36" size-x="0" size-x2="156" size-y="0" size-y2="213"/>
-    <entity uuid="abc81034-65f7-4f53-a4a4-6749dd9cb1ed" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1279" position-y="288" size-x="0" size-x2="144" size-y="0" size-y2="339"/>
+    <entity uuid="abc81034-65f7-4f53-a4a4-6749dd9cb1ed" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1491" position-y="281" size-x="0" size-x2="144" size-y="0" size-y2="339"/>
     <entity uuid="f5df89cc-cb56-45f0-a18a-57fa5f8660ae" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="234" position-y="27" size-x="0" size-x2="134" size-y="0" size-y2="381"/>
     <entity uuid="fddae02e-0aa1-41ee-af8e-8b90539a7b81" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="231" position-y="300" size-x="0" size-x2="150" size-y="0" size-y2="60"/>
     <many-to-many-association uuid="0e7fb72a-8bc2-4e1a-aea7-2251b16cd1ee" color="#969696"/>
@@ -556,6 +628,6 @@
     <region uuid="2967124d-29d7-4a03-a16d-f053f6354a95" bg-color="#EAE4F1" position-x="966" position-y="648" size-x="0" size-x2="262" size-y="0" size-y2="449"/>
     <region uuid="3358fa2a-8ef9-4b96-b0c8-b90f8d172a4d" bg-color="#FEEFE3" position-x="19" position-y="28" size-x="0" size-x2="420" size-y="0" size-y2="433"/>
     <region uuid="72dfbd2b-0a7f-47f9-833d-ac845e34c1c0" bg-color="#E7F5FD" position-x="68" position-y="528" size-x="0" size-x2="737" size-y="0" size-y2="468"/>
-    <region uuid="be205dd0-a443-425f-83ad-03caf1147bfd" bg-color="#FDEBEF" position-x="614" position-y="28" size-x="55" size-x2="485" size-y="0" size-y2="428"/>
+    <region uuid="be205dd0-a443-425f-83ad-03caf1147bfd" bg-color="#FDEBEF" position-x="614" position-y="28" size-x="55" size-x2="685" size-y="0" size-y2="428"/>
   </visual-data>
 </skipper>
