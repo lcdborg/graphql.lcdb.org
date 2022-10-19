@@ -16,7 +16,7 @@ class SourceQuery implements GraphQLQuery
         return [
             'type' => $driver->type(Source::class),
             'args' => [
-                'id' => Type::nonNull(Type::id()),
+                'id' => Type::nonNull(Type::int()),
             ],
             'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)->getRepository(Source::class)->find($args['id']);

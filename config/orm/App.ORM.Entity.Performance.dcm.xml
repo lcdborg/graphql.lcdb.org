@@ -15,8 +15,8 @@
     <field name="set2" type="text" nullable="true"/>
     <field name="set3" type="text" nullable="true"/>
     <field name="comment" type="text" nullable="true"/>
-    <field name="updatedAt" type="datetime" nullable="true" column="lastupdate"/>
-    <field name="createdAt" type="datetime" nullable="true" column="dateentered"/>
+    <field name="updatedAt" type="datetime" nullable="true" column="dateentered"/>
+    <field name="createdAt" type="datetime" nullable="true" column="lastupdate"/>
     <field name="year" type="integer" nullable="true" column="showyear"/>
     <field name="showsuserid" type="string" length="32" nullable="false"/>
     <field name="ref_festival" type="integer" nullable="false">

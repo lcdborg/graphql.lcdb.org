@@ -26,12 +26,12 @@
       <field name="comment" type="text" uuid="be988ab0-40a8-4a0b-b2db-91ac9e7ac5a5"/>
       <field name="updatedAt" type="datetime" uuid="a707a64b-4bd2-45d0-8dd8-6eefa195c0fe">
         <orm-attributes>
-          <attribute name="column">lastupdate</attribute>
+          <attribute name="column">dateentered</attribute>
         </orm-attributes>
       </field>
       <field name="createdAt" type="datetime" uuid="b230283e-dd91-4dfb-849e-3148e707ded1">
         <orm-attributes>
-          <attribute name="column">dateentered</attribute>
+          <attribute name="column">lastupdate</attribute>
         </orm-attributes>
       </field>
       <field name="year" type="integer" uuid="d7286441-6937-4f70-b0e5-1c6914368604">
