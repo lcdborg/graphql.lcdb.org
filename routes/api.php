@@ -26,3 +26,6 @@ Route::post('/graphql', 'GraphQLController@graphql')
 
 Route::get('/api/source/{id}/textdoc/download', 'Api\SourceDownloadTextdocController@download')
     ->name('source.textdoc.download.get');
+
+Route::get('/api/checksum/{id}/download', 'Api\ChecksumDownloadController@download')
+    ->name('checksum.download.get');
