@@ -33,5 +33,6 @@
     </many-to-one>
     <one-to-many field="checksums" target-entity="App\ORM\Entity\Checksum" mapped-by="source"/>
     <one-to-many field="userPerformances" target-entity="App\ORM\Entity\UserPerformance" mapped-by="source"/>
+    <one-to-many field="identifier" target-entity="App\ORM\Entity\InternetArchive\Identifier" mapped-by="source"/>
   </entity>
 </doctrine-mapping>

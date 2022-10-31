@@ -83,6 +83,11 @@ class Source
     private $userPerformances;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $identifier;
+
+    /**
      * @var \App\ORM\Entity\Performance
      */
     private $performance;
@@ -94,6 +99,7 @@ class Source
     {
         $this->checksums = new \Doctrine\Common\Collections\ArrayCollection();
         $this->userPerformances = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->identifier = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -478,6 +484,42 @@ class Source
     public function getUserPerformances()
     {
         return $this->userPerformances;
+    }
+
+    /**
+     * Add identifier.
+     *
+     * @param \App\ORM\Entity\InternetArchive\Identifier $identifier
+     *
+     * @return Source
+     */
+    public function addIdentifier(\App\ORM\Entity\InternetArchive\Identifier $identifier)
+    {
+        $this->identifier[] = $identifier;
+
+        return $this;
+    }
+
+    /**
+     * Remove identifier.
+     *
+     * @param \App\ORM\Entity\InternetArchive\Identifier $identifier
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeIdentifier(\App\ORM\Entity\InternetArchive\Identifier $identifier)
+    {
+        return $this->identifier->removeElement($identifier);
+    }
+
+    /**
+     * Get identifier.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
     }
 
     /**

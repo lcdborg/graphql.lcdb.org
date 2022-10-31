@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\ORM\Entity\InternetArchive\Creator" table="Creator_InternetArchive">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="name" type="string" unique="true" nullable="false"/>
+    <many-to-one field="artist" target-entity="App\ORM\Entity\Artist" inversed-by="creator">
+      <join-columns>
+        <join-column name="artist_id" referenced-column-name="artist_key"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="artistUnprefix" target-entity="App\ORM\Entity\ArtistUnprefix" inversed-by="creators">
+      <join-columns>
+        <join-column name="artist_id" referenced-column-name="artist_key"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="identifier" target-entity="App\ORM\Entity\InternetArchive\Identifier" mapped-by="creator"/>
+    <options>
+      <option name="charset">utf8mb3</option>
+      <option name="engine">MyISAM</option>
+    </options>
+  </entity>
+</doctrine-mapping>

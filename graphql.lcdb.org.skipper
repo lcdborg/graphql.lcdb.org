@@ -584,6 +584,105 @@
         <many-to-many-field from="user_list_id" to="id" uuid="4af1020a-00c0-4d05-94e6-a1e7fe4d70f4"/>
       </many-to-many-entity>
     </many-to-many>
+    <region namespace="\App\ORM\Entity\InternetArchive" local-namespace="\App\ORM\Entity\InternetArchive" export-path="." caption="Internet Archive" uuid="665cac84-240b-440d-a8b6-372a64fa72f7">
+      <entity name="\App\ORM\Entity\InternetArchive\Identifier" local-name="Identifier" namespace="\App\ORM\Entity\InternetArchive" uuid="91d68648-c90a-40ab-97f0-9158d5f08378">
+        <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="63258e06-de0e-4547-a80c-58399f51784c"/>
+        <field name="archiveIdentifier" type="string" required="true" uuid="725df3b5-45a9-4e8c-af45-18e465789f82"/>
+        <field name="server" type="string" uuid="1f290664-f9a9-4162-a29c-9133488ea55f"/>
+        <field name="performanceDate" type="string" uuid="ce4f4ddc-3892-4703-abcc-e81349dff4f4"/>
+        <field name="addedAt" type="datetime" required="true" uuid="4aef2190-be98-4193-b018-5f4b712ae6ab"/>
+        <field name="title" type="string" uuid="ee9d35a1-3c12-4f6c-88aa-a83aca70fba2"/>
+        <field name="description" type="text" uuid="7f38a758-7c35-4a0f-bcc9-b236c1b5c045"/>
+        <field name="uploader" type="string" uuid="da0e6e9e-c160-4a8d-97b2-d4d2883467f2"/>
+        <field name="venue" type="string" uuid="b95a7cb7-e6c0-4c1a-bfee-e86f6b3915e4"/>
+        <field name="coverage" description="City, State" type="string" uuid="fcfa6df9-d063-4133-ba97-da75daf1943e"/>
+        <field name="year" type="string" uuid="2ba02bd5-b272-4013-9b9d-23755b22511d"/>
+        <field name="notes" type="text" uuid="66054f31-f8cd-4122-a179-5edd46a1a908"/>
+        <field name="taper" type="text" uuid="b40db2f7-f48e-4ea0-a8ed-f264fea9b124"/>
+        <field name="lineage" type="text" uuid="373a4d2e-ef88-47ba-85af-aa2753a88abd"/>
+        <field name="archiveSource" type="text" uuid="9d7f6d90-e2e6-4b6d-8d5c-3b941bdc2d1b"/>
+        <field name="md5s" type="text" uuid="c4694915-18ce-4db4-99ff-047ba9f2b86d"/>
+        <field name="creator_id" type="integer" required="true" uuid="cdcf8931-9b35-48ee-8521-ad4b81a4bfa0"/>
+        <field name="source_id" type="integer" unsigned="true" uuid="1a55d8f9-ae82-44cb-b52d-2a919b5685bb"/>
+        <orm-attributes>
+          <attribute name="table">Identifier_InternetArchive</attribute>
+          <attribute name="options">
+            <attribute name="charset">utf8mb3</attribute>
+            <attribute name="engine">MyISAM</attribute>
+          </attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\App\ORM\Entity\InternetArchive\Creator" local-name="Creator" namespace="\App\ORM\Entity\InternetArchive" uuid="8b52b83c-d48c-42f4-81c0-b6122717acb0">
+        <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="7379fffb-3a6d-44d0-8351-291df7c0d16e"/>
+        <field name="name" type="string" required="true" unique="true" uuid="158de7eb-e817-4ba6-a5ee-0ef24abd893e"/>
+        <field name="artist_id" type="integer" unsigned="true" uuid="b1807e83-b13b-4283-b1f2-24f119df1054"/>
+        <orm-attributes>
+          <attribute name="table">Creator_InternetArchive</attribute>
+          <attribute name="options">
+            <attribute name="charset">utf8mb3</attribute>
+            <attribute name="engine">MyISAM</attribute>
+          </attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\App\ORM\Entity\InternetArchive\Collection" local-name="Collection" namespace="\App\ORM\Entity\InternetArchive" uuid="946ae204-be62-43be-97f0-aec2786f30a4">
+        <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="17b13ff7-4d0f-4ac8-849a-50020c202f9e"/>
+        <field name="name" type="string" required="true" unique="true" uuid="58605fa2-1ed2-4cfe-ba3d-ca60b968fca6"/>
+        <orm-attributes>
+          <attribute name="table">Collection_InternetArchive</attribute>
+          <attribute name="options">
+            <attribute name="charset">utf8mb3</attribute>
+            <attribute name="engine">MyISAM</attribute>
+          </attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\App\ORM\Entity\InternetArchive\Collection2Identifier" local-name="Collection2Identifier" namespace="\App\ORM\Entity\InternetArchive" uuid="763f8ddd-b9a3-4d09-a6db-9e4b79c10a8d">
+        <field name="collection_id" type="integer" required="true" primary="true" uuid="ce9122dd-f2e6-49c4-9941-64946b09ed9e"/>
+        <field name="identifier_id" type="integer" required="true" primary="true" uuid="3e2e5152-6d4a-4d00-acdf-ce5e3d8b10c2"/>
+        <orm-attributes>
+          <attribute name="table">CollectionToIdentifier_InternetArchive</attribute>
+          <attribute name="options">
+            <attribute name="charset">utf8mb3</attribute>
+            <attribute name="engine">MyISAM</attribute>
+          </attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\App\ORM\Entity\InternetArchive\File" local-name="File" namespace="\App\ORM\Entity\InternetArchive" uuid="e0b66329-df7b-491b-a811-49aab1b7926e">
+        <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="ad8004c9-187f-4ae5-b7e5-a61ec00997fb"/>
+        <field name="identifier_id" type="integer" required="true" uuid="d8af0120-620b-4080-aa31-572875ae7fa1"/>
+        <field name="name" type="string" required="true" uuid="2e30bde1-4915-4e44-badb-628af4baa99f"/>
+        <field name="body" type="text" uuid="b650a1f9-1eef-42d7-bd8f-5e2e3000966d"/>
+        <orm-attributes>
+          <attribute name="table">File_InternetArchive</attribute>
+          <attribute name="options">
+            <attribute name="charset">utf8mb3</attribute>
+            <attribute name="engine">MyISAM</attribute>
+          </attribute>
+        </orm-attributes>
+      </entity>
+    </region>
+    <association from="\App\ORM\Entity\InternetArchive\Identifier" to="\App\ORM\Entity\InternetArchive\Creator" caption="Creator Identifier" owner-alias="identifier" inverse-alias="creator" many-owner="true" many-inverse="false" parent-required="true" uuid="9ecb8e2b-14e4-4263-a89a-0305b113bf09">
+      <association-field from="creator_id" to="id" uuid="bd0d6566-7b34-486a-bd7c-13ba4db0e9a4"/>
+    </association>
+    <association from="\App\ORM\Entity\InternetArchive\Identifier" to="\App\ORM\Entity\Source" caption="Source Identifier" owner-alias="identifier" inverse-alias="source" many-owner="true" many-inverse="false" uuid="ffd84ee4-95c8-48d6-8643-1c8b9be9137c">
+      <association-field from="source_id" to="id" uuid="73cff1aa-0011-457f-a6f0-94a8d14cb23d"/>
+    </association>
+    <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\Artist" caption="Artist Creator" owner-alias="creator" inverse-alias="artist" many-owner="true" many-inverse="false" uuid="90011e81-a66d-436f-9ba5-6e0ee9590607">
+      <association-field from="artist_id" to="id" uuid="3ffd71dc-6525-4020-9a7e-eed0d40a7d9c"/>
+    </association>
+    <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\ArtistUnprefix" caption="ArtistUnprefix Creators" owner-alias="creators" inverse-alias="artistUnprefix" many-owner="true" many-inverse="false" uuid="4ad97b98-c064-435c-9b7b-575acb342034">
+      <association-field from="artist_id" to="id" uuid="191b5b19-35eb-4b14-9373-f478ead3b44f"/>
+    </association>
+    <many-to-many mn-entity="\App\ORM\Entity\InternetArchive\Collection2Identifier" caption="Collection to Identifier" uuid="a4139038-c5e3-4964-8192-1a0786a6266b">
+      <many-to-many-entity name="\App\ORM\Entity\InternetArchive\Identifier" owning-side="true" alias="identifier" uuid="b1f8c002-5732-4715-995c-374b5fa7df28">
+        <many-to-many-field from="identifier_id" to="id" uuid="ab887ef8-c2bd-4063-aa4f-ceb29eeacc25"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="\App\ORM\Entity\InternetArchive\Collection" owning-side="false" alias="collection" uuid="ad1b1a5f-ca14-4e7d-8292-7ae467403881">
+        <many-to-many-field from="collection_id" to="id" uuid="cf15cca4-b7a9-4dac-af28-e5bec7a4d56b"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <association from="\App\ORM\Entity\InternetArchive\File" to="\App\ORM\Entity\InternetArchive\Identifier" caption="Identifier Files" owner-alias="file" inverse-alias="identifier" many-owner="true" many-inverse="false" parent-required="true" uuid="dcab53a0-1ef9-4ae8-bee6-cc51e0c54c46">
+      <association-field from="identifier_id" to="id" uuid="cba72a14-8741-4c35-8529-9c245012fc40"/>
+    </association>
   </module>
   <visual-data>
     <association uuid="0dbe071d-4e8f-4a97-8ac6-bf2a92089226" caption1-position-x="0" caption1-position-y="0" center-position-x="5" center-position-y="0" color="#969696"/>
@@ -591,12 +690,15 @@
     <association uuid="1ba686e7-01ea-408d-b231-067a6963559b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="2ab7b8c4-084c-4fa8-b8ae-3bde9af49e2e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="352c5d8f-3d3a-4935-b2ef-db5130fbe724" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
+    <association uuid="4ad97b98-c064-435c-9b7b-575acb342034" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="516e957e-bab5-4898-8936-a61738f9f7ec" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="6db23085-4fe3-4a29-b1ec-58e7b5b4147e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="82bcb6ac-4476-4772-b80e-01c29a395577" caption1-position-x="-4" caption1-position-y="2" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="84301a9e-03fe-4547-bdf5-9a0cd8e3261a" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="8cf064e1-d036-4bf1-b2f0-873bb0c0f6ff" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="90011e81-a66d-436f-9ba5-6e0ee9590607" caption1-position-x="0" caption1-position-y="-2" caption2-position-x="-1" caption2-position-y="12" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="95f6d178-7b6d-414b-b1c2-9e2a9a406da0" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="9ecb8e2b-14e4-4263-a89a-0305b113bf09" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-21" color="#969696"/>
     <association uuid="9ff1cfd7-7156-4d55-954d-a8cbcf633150" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="a79dda9c-84f1-4832-ba3d-ee9ec8241a8f" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="ab2a1c20-14a8-4887-a0be-9b67d3799d54" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
@@ -604,7 +706,9 @@
     <association uuid="b2df600d-7b27-4ea4-8c7f-f46a6b7834eb" caption1-position-x="0" caption1-position-y="0" center-position-x="-55" center-position-y="0" color="#969696"/>
     <association uuid="b3f75f44-f1bf-402d-8602-781e0daa3bc1" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="bf5889ca-a445-4b71-97c6-3c790114f297" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="dcab53a0-1ef9-4ae8-bee6-cc51e0c54c46" caption1-position-x="2" caption1-position-y="3" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="e7f61705-5ae2-4bda-b1bc-a9d72cede334" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="ffd84ee4-95c8-48d6-8643-1c8b9be9137c" caption1-position-x="-3" caption1-position-y="-10" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <entity uuid="100fa54c-0cae-436f-bb4d-77c09696f412" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="30" position-y="86" size-x="0" size-x2="112" size-y="0" size-y2="157"/>
     <entity uuid="1add2d4a-bcb2-4fe6-b4d0-0339dc51957f" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="8" position-y="162" size-x="0" size-x2="125" size-y="0" size-y2="73"/>
     <entity uuid="2c7f10c8-201c-4a63-82fa-53972812613b" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="531" position-y="45" size-x="0" size-x2="150" size-y="0" size-y2="395"/>
@@ -613,20 +717,29 @@
     <entity uuid="48174308-294b-4868-847e-f412335a417e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1502" position-y="114" size-x="0" size-x2="122" size-y="0" size-y2="60"/>
     <entity uuid="6063f304-7bd2-40c9-ac9a-6a09d3374f5f" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="70" position-y="322" size-x="0" size-x2="105" size-y="0" size-y2="87"/>
     <entity uuid="6ddcef17-f5aa-4855-8e71-36d20afc0731" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="277" position-y="148" size-x="0" size-x2="138" size-y="0" size-y2="241"/>
+    <entity uuid="763f8ddd-b9a3-4d09-a6db-9e4b79c10a8d" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="494" position-y="364" size-x="0" size-x2="120" size-y="0" size-y2="60"/>
     <entity uuid="76cf8f87-5081-458d-ad36-338487086320" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="283" position-y="28" size-x="0" size-x2="119" size-y="0" size-y2="73"/>
     <entity uuid="820c6bf7-6411-4fce-bfdc-fda1370126b5" bg-color="#FFFFFF" hdr-color="#A58C75" position-x="507" position-y="20" size-x="0" size-x2="138" size-y="0" size-y2="241"/>
+    <entity uuid="8b52b83c-d48c-42f4-81c0-b6122717acb0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="443" position-y="180" size-x="0" size-x2="91" size-y="0" size-y2="59"/>
+    <entity uuid="91d68648-c90a-40ab-97f0-9158d5f08378" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="77" position-y="149" size-x="0" size-x2="124" size-y="0" size-y2="269"/>
+    <entity uuid="946ae204-be62-43be-97f0-aec2786f30a4" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="514" position-y="257" size-x="0" size-x2="77" size-y="0" size-y2="45"/>
     <entity uuid="a19828bf-c45c-4b8b-9dfb-499de8f36256" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="44" position-y="36" size-x="0" size-x2="156" size-y="0" size-y2="213"/>
     <entity uuid="abc81034-65f7-4f53-a4a4-6749dd9cb1ed" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1491" position-y="281" size-x="0" size-x2="144" size-y="0" size-y2="339"/>
+    <entity uuid="e0b66329-df7b-491b-a811-49aab1b7926e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="255" position-y="48" size-x="0" size-x2="100" size-y="0" size-y2="73"/>
     <entity uuid="f5df89cc-cb56-45f0-a18a-57fa5f8660ae" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="234" position-y="27" size-x="0" size-x2="134" size-y="0" size-y2="381"/>
     <entity uuid="fddae02e-0aa1-41ee-af8e-8b90539a7b81" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="231" position-y="300" size-x="0" size-x2="150" size-y="0" size-y2="60"/>
     <many-to-many-association uuid="0e7fb72a-8bc2-4e1a-aea7-2251b16cd1ee" color="#969696"/>
+    <many-to-many-association uuid="a4139038-c5e3-4964-8192-1a0786a6266b" color="#969696"/>
     <many-to-many-association uuid="c0a09ea4-7c5c-431c-84a5-1c99a8b512f0" color="#969696"/>
     <many-to-many-association-entity uuid="99b5171b-c34f-4345-b44e-fbff6dc0e050" split="1"/>
+    <many-to-many-association-entity uuid="ad1b1a5f-ca14-4e7d-8292-7ae467403881" caption1-position-x="0" caption1-position-y="0" center-position-x="3" center-position-y="0"/>
+    <many-to-many-association-entity uuid="b1f8c002-5732-4715-995c-374b5fa7df28" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <many-to-many-association-entity uuid="b98d3026-31bf-4419-a8b5-f23d024f3da6" caption1-position-x="2" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
-    <module uuid="4bdbac3f-18d0-4584-8d7a-5a7c7524365d" bg-color="#FFBF87" position-x="61" position-y="72" size-x="11" size-x2="1671" size-y="22" size-y2="1207"/>
-    <project uuid="86867978-467d-4645-89af-ae6c6570c0a0" size-x="0" size-x2="1782" size-y="0" size-y2="1329"/>
+    <module uuid="4bdbac3f-18d0-4584-8d7a-5a7c7524365d" bg-color="#FFBF87" position-x="61" position-y="72" size-x="11" size-x2="2779" size-y="22" size-y2="1207"/>
+    <project uuid="86867978-467d-4645-89af-ae6c6570c0a0" size-x="0" size-x2="2890" size-y="0" size-y2="1329"/>
     <region uuid="2967124d-29d7-4a03-a16d-f053f6354a95" bg-color="#EAE4F1" position-x="966" position-y="648" size-x="0" size-x2="262" size-y="0" size-y2="449"/>
     <region uuid="3358fa2a-8ef9-4b96-b0c8-b90f8d172a4d" bg-color="#FEEFE3" position-x="19" position-y="28" size-x="0" size-x2="420" size-y="0" size-y2="433"/>
+    <region uuid="665cac84-240b-440d-a8b6-372a64fa72f7" bg-color="#E7F5FD" position-x="1705" position-y="48" size-x="0" size-x2="734" size-y="0" size-y2="544"/>
     <region uuid="72dfbd2b-0a7f-47f9-833d-ac845e34c1c0" bg-color="#E7F5FD" position-x="68" position-y="528" size-x="0" size-x2="737" size-y="0" size-y2="468"/>
     <region uuid="be205dd0-a443-425f-83ad-03caf1147bfd" bg-color="#FDEBEF" position-x="614" position-y="28" size-x="55" size-x2="685" size-y="0" size-y2="428"/>
   </visual-data>

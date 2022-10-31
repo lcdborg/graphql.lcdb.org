@@ -98,6 +98,11 @@ class ArtistUnprefix
     private $artistToArtistGroups;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $creators;
+
+    /**
      * @var \App\ORM\Entity\User
      */
     private $user;
@@ -109,6 +114,7 @@ class ArtistUnprefix
     {
         $this->performances = new \Doctrine\Common\Collections\ArrayCollection();
         $this->artistToArtistGroups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->creators = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -551,6 +557,42 @@ class ArtistUnprefix
     public function getArtistToArtistGroups()
     {
         return $this->artistToArtistGroups;
+    }
+
+    /**
+     * Add creator.
+     *
+     * @param \App\ORM\Entity\InternetArchive\Creator $creator
+     *
+     * @return ArtistUnprefix
+     */
+    public function addCreator(\App\ORM\Entity\InternetArchive\Creator $creator)
+    {
+        $this->creators[] = $creator;
+
+        return $this;
+    }
+
+    /**
+     * Remove creator.
+     *
+     * @param \App\ORM\Entity\InternetArchive\Creator $creator
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCreator(\App\ORM\Entity\InternetArchive\Creator $creator)
+    {
+        return $this->creators->removeElement($creator);
+    }
+
+    /**
+     * Get creators.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCreators()
+    {
+        return $this->creators;
     }
 
     /**

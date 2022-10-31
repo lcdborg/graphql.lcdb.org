@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\ORM\Entity\InternetArchive\Collection" table="Collection_InternetArchive">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="name" type="string" unique="true" nullable="false"/>
+    <many-to-many field="identifier" target-entity="App\ORM\Entity\InternetArchive\Identifier" mapped-by="collection"/>
+    <options>
+      <option name="charset">utf8mb3</option>
+      <option name="engine">MyISAM</option>
+    </options>
+  </entity>
+</doctrine-mapping>
