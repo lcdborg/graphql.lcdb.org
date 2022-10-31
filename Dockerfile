@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install --yes \
     snmp \
     libsnmp-dev \
     libcurl4-openssl-dev \
-    libzip-dev
+    libzip-dev \
+    supervisor
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -54,4 +55,9 @@ RUN php composer-setup.php
 RUN mv composer.phar /bin/composer
 RUN php -r "unlink('composer-setup.php');"
 
+# Install Supervisor Laravel Queue processor
+COPY .docker/config/laravel-worker.conf /etc/supervisor/conf.d/
+
 EXPOSE 80
+
+CMD service apache2 start && service supervisor start && tail -F /var/www/worker.log
