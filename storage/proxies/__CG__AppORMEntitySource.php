@@ -67,10 +67,10 @@ class Source extends \App\ORM\Entity\Source implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'enterUsername', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'circdate', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'shndiskcount', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'wavdiskcount', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'textdoc', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'comments', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'archiveIdentifier', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'mediaSize', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'mediaSizeUncompressed', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'dummyColumn', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'checksums', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'performance'];
+            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'enterUsername', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'circdate', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'shndiskcount', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'wavdiskcount', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'textdoc', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'comments', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'archiveIdentifier', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'mediaSize', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'mediaSizeUncompressed', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'dummyColumn', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'checksums', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'identifier', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'performance'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'enterUsername', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'circdate', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'shndiskcount', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'wavdiskcount', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'textdoc', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'comments', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'archiveIdentifier', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'mediaSize', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'mediaSizeUncompressed', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'dummyColumn', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'checksums', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'performance'];
+        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'enterUsername', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'circdate', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'shndiskcount', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'wavdiskcount', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'textdoc', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'comments', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'archiveIdentifier', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'mediaSize', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'mediaSizeUncompressed', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'dummyColumn', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'checksums', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'identifier', '' . "\0" . 'App\\ORM\\Entity\\Source' . "\0" . 'performance'];
     }
 
     /**
@@ -531,6 +531,39 @@ class Source extends \App\ORM\Entity\Source implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUserPerformances', []);
 
         return parent::getUserPerformances();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addIdentifier(\App\ORM\Entity\InternetArchive\Identifier $identifier)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addIdentifier', [$identifier]);
+
+        return parent::addIdentifier($identifier);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeIdentifier(\App\ORM\Entity\InternetArchive\Identifier $identifier)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeIdentifier', [$identifier]);
+
+        return parent::removeIdentifier($identifier);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIdentifier()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIdentifier', []);
+
+        return parent::getIdentifier();
     }
 
     /**
