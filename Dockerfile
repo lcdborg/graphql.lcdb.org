@@ -60,4 +60,7 @@ COPY .docker/config/laravel-worker.conf /etc/supervisor/conf.d/
 
 EXPOSE 80
 
-CMD service apache2 start && service supervisor start && tail -F /var/www/worker.log
+CMD php /var/www/artisan doctrine:generate:proxies \
+    && service apache2 start \
+    && service supervisor start \
+    && tail -F /var/www/worker.log
