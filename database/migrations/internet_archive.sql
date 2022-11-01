@@ -10,3 +10,7 @@ ALTER TABLE Identifier_InternetArchive ADD CONSTRAINT FK_977D2AE861220EA6 FOREIG
 ALTER TABLE Identifier_InternetArchive ADD CONSTRAINT FK_977D2AE8953C1C61 FOREIGN KEY (source_id) REFERENCES shninfo (shninfo_key);
 ALTER TABLE CollectionToIdentifier_InternetArchive ADD CONSTRAINT FK_3CE1696CEF794DF6 FOREIGN KEY (identifier_id) REFERENCES Identifier_InternetArchive (id);
 ALTER TABLE CollectionToIdentifier_InternetArchive ADD CONSTRAINT FK_3CE1696C514956FD FOREIGN KEY (collection_id) REFERENCES Collection_InternetArchive (id)
+
+CREATE VIEW CreatorUnprefix_InternetArchive AS
+    SELECT id, name, artist_id, unprefix(name) AS nameUnprefix
+    FROM Creator_InternetArchive;

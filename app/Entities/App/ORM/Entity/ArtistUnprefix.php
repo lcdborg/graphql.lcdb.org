@@ -103,6 +103,11 @@ class ArtistUnprefix
     private $creators;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $creatorUnprefixes;
+
+    /**
      * @var \App\ORM\Entity\User
      */
     private $user;
@@ -115,6 +120,7 @@ class ArtistUnprefix
         $this->performances = new \Doctrine\Common\Collections\ArrayCollection();
         $this->artistToArtistGroups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->creators = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->creatorUnprefixes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -593,6 +599,42 @@ class ArtistUnprefix
     public function getCreators()
     {
         return $this->creators;
+    }
+
+    /**
+     * Add creatorUnprefix.
+     *
+     * @param \App\ORM\Entity\InternetArchive\CreatorUnprefix $creatorUnprefix
+     *
+     * @return ArtistUnprefix
+     */
+    public function addCreatorUnprefix(\App\ORM\Entity\InternetArchive\CreatorUnprefix $creatorUnprefix)
+    {
+        $this->creatorUnprefixes[] = $creatorUnprefix;
+
+        return $this;
+    }
+
+    /**
+     * Remove creatorUnprefix.
+     *
+     * @param \App\ORM\Entity\InternetArchive\CreatorUnprefix $creatorUnprefix
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCreatorUnprefix(\App\ORM\Entity\InternetArchive\CreatorUnprefix $creatorUnprefix)
+    {
+        return $this->creatorUnprefixes->removeElement($creatorUnprefix);
+    }
+
+    /**
+     * Get creatorUnprefixes.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCreatorUnprefixes()
+    {
+        return $this->creatorUnprefixes;
     }
 
     /**

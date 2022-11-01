@@ -67,10 +67,10 @@ class Identifier extends \App\ORM\Entity\InternetArchive\Identifier implements \
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'archiveIdentifier', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'server', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'performanceDate', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'addedAt', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'title', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'description', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'uploader', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'venue', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'coverage', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'year', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'notes', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'taper', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'lineage', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'archiveSource', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'md5s', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'files', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'creator', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'source', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'collections'];
+            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'archiveIdentifier', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'server', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'performanceDate', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'addedAt', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'title', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'description', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'uploader', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'venue', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'coverage', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'year', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'notes', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'taper', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'lineage', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'archiveSource', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'md5s', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'files', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'creator', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'source', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'creatorUnprefix', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'collections'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'archiveIdentifier', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'server', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'performanceDate', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'addedAt', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'title', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'description', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'uploader', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'venue', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'coverage', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'year', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'notes', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'taper', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'lineage', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'archiveSource', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'md5s', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'files', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'creator', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'source', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'collections'];
+        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'archiveIdentifier', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'server', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'performanceDate', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'addedAt', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'title', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'description', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'uploader', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'venue', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'coverage', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'year', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'notes', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'taper', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'lineage', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'archiveSource', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'md5s', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'files', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'creator', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'source', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'creatorUnprefix', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Identifier' . "\0" . 'collections'];
     }
 
     /**
@@ -597,6 +597,28 @@ class Identifier extends \App\ORM\Entity\InternetArchive\Identifier implements \
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSource', []);
 
         return parent::getSource();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCreatorUnprefix(\App\ORM\Entity\InternetArchive\CreatorUnprefix $creatorUnprefix)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreatorUnprefix', [$creatorUnprefix]);
+
+        return parent::setCreatorUnprefix($creatorUnprefix);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreatorUnprefix()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatorUnprefix', []);
+
+        return parent::getCreatorUnprefix();
     }
 
     /**

@@ -103,6 +103,11 @@ class Identifier
     private $source;
 
     /**
+     * @var \App\ORM\Entity\InternetArchive\CreatorUnprefix
+     */
+    private $creatorUnprefix;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $collections = array();
@@ -568,6 +573,30 @@ class Identifier
     public function getSource()
     {
         return $this->source;
+    }
+
+    /**
+     * Set creatorUnprefix.
+     *
+     * @param \App\ORM\Entity\InternetArchive\CreatorUnprefix $creatorUnprefix
+     *
+     * @return Identifier
+     */
+    public function setCreatorUnprefix(\App\ORM\Entity\InternetArchive\CreatorUnprefix $creatorUnprefix)
+    {
+        $this->creatorUnprefix = $creatorUnprefix;
+
+        return $this;
+    }
+
+    /**
+     * Get creatorUnprefix.
+     *
+     * @return \App\ORM\Entity\InternetArchive\CreatorUnprefix
+     */
+    public function getCreatorUnprefix()
+    {
+        return $this->creatorUnprefix;
     }
 
     /**

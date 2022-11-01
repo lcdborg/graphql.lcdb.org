@@ -45,5 +45,6 @@
     <one-to-many field="performances" target-entity="App\ORM\Entity\Performance" mapped-by="artist"/>
     <one-to-many field="artistToArtistGroups" target-entity="App\ORM\Entity\ArtistToArtistGroup" mapped-by="artist"/>
     <one-to-many field="creators" target-entity="App\ORM\Entity\InternetArchive\Creator" mapped-by="artist"/>
+    <one-to-many field="creatorUnprefixes" target-entity="App\ORM\Entity\InternetArchive\CreatorUnprefix" mapped-by="artist"/>
   </entity>
 </doctrine-mapping>

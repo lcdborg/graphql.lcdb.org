@@ -659,6 +659,15 @@
           </attribute>
         </orm-attributes>
       </entity>
+      <entity name="\App\ORM\Entity\InternetArchive\CreatorUnprefix" local-name="CreatorUnprefix" namespace="\App\ORM\Entity\InternetArchive" uuid="d840570a-1222-4835-8704-2d1e10e8d718">
+        <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="914c3f58-b0c8-485c-9371-9c9d5c8df54a"/>
+        <field name="name" type="string" size="250" required="true" unique="true" uuid="e68d6375-cb46-4774-b096-930a948a2e47"/>
+        <field name="nameUnprefix" type="string" uuid="71d1ecd2-0e94-42c1-8168-30bbc6e18d85"/>
+        <field name="artist_id" type="integer" unsigned="true" uuid="31b56846-d4aa-411b-a43c-571673a06fef"/>
+        <orm-attributes>
+          <attribute name="table">CreatorUnprefix_InternetArchive</attribute>
+        </orm-attributes>
+      </entity>
     </region>
     <association from="\App\ORM\Entity\InternetArchive\Identifier" to="\App\ORM\Entity\InternetArchive\Creator" caption="Creator Identifier" owner-alias="identifiers" inverse-alias="creator" many-owner="true" many-inverse="false" parent-required="true" uuid="9ecb8e2b-14e4-4263-a89a-0305b113bf09">
       <association-field from="creator_id" to="id" uuid="bd0d6566-7b34-486a-bd7c-13ba4db0e9a4"/>
@@ -666,10 +675,13 @@
     <association from="\App\ORM\Entity\InternetArchive\Identifier" to="\App\ORM\Entity\Source" caption="Source Identifier" owner-alias="identifier" inverse-alias="source" many-owner="true" many-inverse="false" uuid="ffd84ee4-95c8-48d6-8643-1c8b9be9137c">
       <association-field from="source_id" to="id" uuid="73cff1aa-0011-457f-a6f0-94a8d14cb23d"/>
     </association>
-    <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\Artist" caption="Artist Creator" owner-alias="creators" inverse-alias="artist" many-owner="true" many-inverse="false" uuid="90011e81-a66d-436f-9ba5-6e0ee9590607">
+    <association from="\App\ORM\Entity\InternetArchive\Identifier" to="\App\ORM\Entity\InternetArchive\CreatorUnprefix" caption="CreatorUnprefix Identifiers" owner-alias="identifiers" inverse-alias="creatorUnprefix" many-owner="true" many-inverse="false" parent-required="true" uuid="9fb0ccc9-b12c-4a43-8cdc-d5079ac80750">
+      <association-field from="creator_id" to="id" uuid="3211302d-4b86-40c4-bced-d337fb9dfe6c"/>
+    </association>
+    <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\Artist" caption="artist creators" owner-alias="creators" inverse-alias="artist" many-owner="true" many-inverse="false" uuid="90011e81-a66d-436f-9ba5-6e0ee9590607">
       <association-field from="artist_id" to="id" uuid="3ffd71dc-6525-4020-9a7e-eed0d40a7d9c"/>
     </association>
-    <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\ArtistUnprefix" caption="ArtistUnprefix Creators" owner-alias="creators" inverse-alias="artistUnprefix" many-owner="true" many-inverse="false" uuid="4ad97b98-c064-435c-9b7b-575acb342034">
+    <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\ArtistUnprefix" caption="artistUnprefix creators" owner-alias="creators" inverse-alias="artistUnprefix" many-owner="true" many-inverse="false" uuid="4ad97b98-c064-435c-9b7b-575acb342034">
       <association-field from="artist_id" to="id" uuid="191b5b19-35eb-4b14-9373-f478ead3b44f"/>
     </association>
     <many-to-many mn-entity="\App\ORM\Entity\InternetArchive\Collection2Identifier" caption="Collection to Identifier" uuid="a4139038-c5e3-4964-8192-1a0786a6266b">
@@ -683,10 +695,17 @@
     <association from="\App\ORM\Entity\InternetArchive\File" to="\App\ORM\Entity\InternetArchive\Identifier" caption="Identifier Files" owner-alias="files" inverse-alias="identifier" many-owner="true" many-inverse="false" parent-required="true" uuid="dcab53a0-1ef9-4ae8-bee6-cc51e0c54c46">
       <association-field from="identifier_id" to="id" uuid="cba72a14-8741-4c35-8529-9c245012fc40"/>
     </association>
+    <association from="\App\ORM\Entity\InternetArchive\CreatorUnprefix" to="\App\ORM\Entity\Artist" caption="artist creatorUnprefixes" owner-alias="creatorUnprefixes" inverse-alias="artist" many-owner="true" many-inverse="false" uuid="1a29554d-03fe-477c-bc07-5c0e6c0f5aad">
+      <association-field from="artist_id" to="id" uuid="4c5771ac-8de5-4b33-ae79-042251100e2d"/>
+    </association>
+    <association from="\App\ORM\Entity\InternetArchive\CreatorUnprefix" to="\App\ORM\Entity\ArtistUnprefix" caption="ArtistUnprefix CreatorUnprefixes" owner-alias="creatorUnprefixes" inverse-alias="artistUnprefix" many-owner="true" many-inverse="false" uuid="c2112be3-4d80-4f4c-aeab-3b39b86878eb">
+      <association-field from="artist_id" to="id" uuid="3cf41d12-a4a5-4060-97b5-806dc3bb9f74"/>
+    </association>
   </module>
   <visual-data>
     <association uuid="0dbe071d-4e8f-4a97-8ac6-bf2a92089226" caption1-position-x="0" caption1-position-y="0" center-position-x="5" center-position-y="0" color="#969696"/>
     <association uuid="16b500ea-53e0-45eb-96f0-9cd0b6684344" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="1a29554d-03fe-477c-bc07-5c0e6c0f5aad" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="1ba686e7-01ea-408d-b231-067a6963559b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="2ab7b8c4-084c-4fa8-b8ae-3bde9af49e2e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="352c5d8f-3d3a-4935-b2ef-db5130fbe724" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
@@ -699,6 +718,7 @@
     <association uuid="90011e81-a66d-436f-9ba5-6e0ee9590607" caption1-position-x="0" caption1-position-y="-2" caption2-position-x="-1" caption2-position-y="12" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="95f6d178-7b6d-414b-b1c2-9e2a9a406da0" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="9ecb8e2b-14e4-4263-a89a-0305b113bf09" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-21" color="#969696"/>
+    <association uuid="9fb0ccc9-b12c-4a43-8cdc-d5079ac80750" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="9ff1cfd7-7156-4d55-954d-a8cbcf633150" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="a79dda9c-84f1-4832-ba3d-ee9ec8241a8f" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="ab2a1c20-14a8-4887-a0be-9b67d3799d54" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
@@ -706,6 +726,7 @@
     <association uuid="b2df600d-7b27-4ea4-8c7f-f46a6b7834eb" caption1-position-x="0" caption1-position-y="0" center-position-x="-55" center-position-y="0" color="#969696"/>
     <association uuid="b3f75f44-f1bf-402d-8602-781e0daa3bc1" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="bf5889ca-a445-4b71-97c6-3c790114f297" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="c2112be3-4d80-4f4c-aeab-3b39b86878eb" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="dcab53a0-1ef9-4ae8-bee6-cc51e0c54c46" caption1-position-x="2" caption1-position-y="3" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="e7f61705-5ae2-4bda-b1bc-a9d72cede334" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="ffd84ee4-95c8-48d6-8643-1c8b9be9137c" caption1-position-x="-3" caption1-position-y="-10" caption2-position-x="0" caption2-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
@@ -717,22 +738,23 @@
     <entity uuid="48174308-294b-4868-847e-f412335a417e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1502" position-y="114" size-x="0" size-x2="122" size-y="0" size-y2="60"/>
     <entity uuid="6063f304-7bd2-40c9-ac9a-6a09d3374f5f" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="70" position-y="322" size-x="0" size-x2="105" size-y="0" size-y2="87"/>
     <entity uuid="6ddcef17-f5aa-4855-8e71-36d20afc0731" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="277" position-y="148" size-x="0" size-x2="138" size-y="0" size-y2="241"/>
-    <entity uuid="763f8ddd-b9a3-4d09-a6db-9e4b79c10a8d" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="494" position-y="364" size-x="0" size-x2="120" size-y="0" size-y2="60"/>
+    <entity uuid="763f8ddd-b9a3-4d09-a6db-9e4b79c10a8d" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="266" position-y="447" size-x="0" size-x2="120" size-y="0" size-y2="60"/>
     <entity uuid="76cf8f87-5081-458d-ad36-338487086320" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="283" position-y="28" size-x="0" size-x2="119" size-y="0" size-y2="73"/>
     <entity uuid="820c6bf7-6411-4fce-bfdc-fda1370126b5" bg-color="#FFFFFF" hdr-color="#A58C75" position-x="507" position-y="20" size-x="0" size-x2="138" size-y="0" size-y2="241"/>
-    <entity uuid="8b52b83c-d48c-42f4-81c0-b6122717acb0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="443" position-y="181" size-x="0" size-x2="91" size-y="0" size-y2="59"/>
-    <entity uuid="91d68648-c90a-40ab-97f0-9158d5f08378" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="77" position-y="149" size-x="0" size-x2="124" size-y="0" size-y2="269"/>
-    <entity uuid="946ae204-be62-43be-97f0-aec2786f30a4" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="514" position-y="257" size-x="0" size-x2="77" size-y="0" size-y2="45"/>
+    <entity uuid="8b52b83c-d48c-42f4-81c0-b6122717acb0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="384" position-y="48" size-x="0" size-x2="98" size-y="0" size-y2="59"/>
+    <entity uuid="91d68648-c90a-40ab-97f0-9158d5f08378" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="43" position-y="60" size-x="0" size-x2="124" size-y="0" size-y2="269"/>
+    <entity uuid="946ae204-be62-43be-97f0-aec2786f30a4" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="474" position-y="400" size-x="0" size-x2="98" size-y="0" size-y2="45"/>
     <entity uuid="a19828bf-c45c-4b8b-9dfb-499de8f36256" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="44" position-y="36" size-x="0" size-x2="156" size-y="0" size-y2="213"/>
     <entity uuid="abc81034-65f7-4f53-a4a4-6749dd9cb1ed" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1491" position-y="281" size-x="0" size-x2="144" size-y="0" size-y2="339"/>
-    <entity uuid="e0b66329-df7b-491b-a811-49aab1b7926e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="255" position-y="48" size-x="0" size-x2="100" size-y="0" size-y2="73"/>
+    <entity uuid="d840570a-1222-4835-8704-2d1e10e8d718" bg-color="#FFFFFF" hdr-color="#A58C75" position-x="384" position-y="160" size-x="0" size-x2="110" size-y="0" size-y2="73"/>
+    <entity uuid="e0b66329-df7b-491b-a811-49aab1b7926e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="74" position-y="460" size-x="0" size-x2="106" size-y="0" size-y2="73"/>
     <entity uuid="f5df89cc-cb56-45f0-a18a-57fa5f8660ae" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="234" position-y="27" size-x="0" size-x2="134" size-y="0" size-y2="381"/>
     <entity uuid="fddae02e-0aa1-41ee-af8e-8b90539a7b81" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="231" position-y="300" size-x="0" size-x2="150" size-y="0" size-y2="60"/>
     <many-to-many-association uuid="0e7fb72a-8bc2-4e1a-aea7-2251b16cd1ee" color="#969696"/>
     <many-to-many-association uuid="a4139038-c5e3-4964-8192-1a0786a6266b" color="#969696"/>
     <many-to-many-association uuid="c0a09ea4-7c5c-431c-84a5-1c99a8b512f0" color="#969696"/>
     <many-to-many-association-entity uuid="99b5171b-c34f-4345-b44e-fbff6dc0e050" split="1"/>
-    <many-to-many-association-entity uuid="ad1b1a5f-ca14-4e7d-8292-7ae467403881" caption1-position-x="0" caption1-position-y="0" center-position-x="3" center-position-y="0"/>
+    <many-to-many-association-entity uuid="ad1b1a5f-ca14-4e7d-8292-7ae467403881" caption1-position-x="0" caption1-position-y="0" center-position-x="9" center-position-y="0"/>
     <many-to-many-association-entity uuid="b1f8c002-5732-4715-995c-374b5fa7df28" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <many-to-many-association-entity uuid="b98d3026-31bf-4419-a8b5-f23d024f3da6" caption1-position-x="2" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
     <module uuid="4bdbac3f-18d0-4584-8d7a-5a7c7524365d" bg-color="#FFBF87" position-x="61" position-y="72" size-x="11" size-x2="2779" size-y="22" size-y2="1207"/>
