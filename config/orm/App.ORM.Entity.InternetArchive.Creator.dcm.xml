@@ -5,7 +5,7 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" unique="true" nullable="false"/>
-    <many-to-one field="artist" target-entity="App\ORM\Entity\Artist" inversed-by="creator">
+    <many-to-one field="artist" target-entity="App\ORM\Entity\Artist" inversed-by="creators">
       <join-columns>
         <join-column name="artist_id" referenced-column-name="artist_key"/>
       </join-columns>
@@ -15,9 +15,9 @@
         <join-column name="artist_id" referenced-column-name="artist_key"/>
       </join-columns>
     </many-to-one>
-    <one-to-many field="identifier" target-entity="App\ORM\Entity\InternetArchive\Identifier" mapped-by="creator"/>
+    <one-to-many field="identifiers" target-entity="App\ORM\Entity\InternetArchive\Identifier" mapped-by="creator"/>
     <options>
-      <option name="charset">utf8mb3</option>
+      <option name="charset">utf8mb4</option>
       <option name="engine">MyISAM</option>
     </options>
   </entity>

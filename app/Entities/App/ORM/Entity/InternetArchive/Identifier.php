@@ -90,7 +90,7 @@ class Identifier
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $file;
+    private $files;
 
     /**
      * @var \App\ORM\Entity\InternetArchive\Creator
@@ -105,15 +105,15 @@ class Identifier
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $collection = array();
+    private $collections = array();
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->file = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->collection = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->files = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->collections = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -495,7 +495,7 @@ class Identifier
      */
     public function addFile(\App\ORM\Entity\InternetArchive\File $file)
     {
-        $this->file[] = $file;
+        $this->files[] = $file;
 
         return $this;
     }
@@ -509,17 +509,17 @@ class Identifier
      */
     public function removeFile(\App\ORM\Entity\InternetArchive\File $file)
     {
-        return $this->file->removeElement($file);
+        return $this->files->removeElement($file);
     }
 
     /**
-     * Get file.
+     * Get files.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getFile()
+    public function getFiles()
     {
-        return $this->file;
+        return $this->files;
     }
 
     /**
@@ -579,7 +579,7 @@ class Identifier
      */
     public function addCollection(\App\ORM\Entity\InternetArchive\Collection $collection)
     {
-        $this->collection[] = $collection;
+        $this->collections[] = $collection;
 
         return $this;
     }
@@ -593,16 +593,16 @@ class Identifier
      */
     public function removeCollection(\App\ORM\Entity\InternetArchive\Collection $collection)
     {
-        return $this->collection->removeElement($collection);
+        return $this->collections->removeElement($collection);
     }
 
     /**
-     * Get collection.
+     * Get collections.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCollection()
+    public function getCollections()
     {
-        return $this->collection;
+        return $this->collections;
     }
 }

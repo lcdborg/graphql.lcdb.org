@@ -6,13 +6,13 @@
     </id>
     <field name="name" type="string" nullable="false"/>
     <field name="body" type="text" nullable="true"/>
-    <many-to-one field="identifier" target-entity="App\ORM\Entity\InternetArchive\Identifier" inversed-by="file">
+    <many-to-one field="identifier" target-entity="App\ORM\Entity\InternetArchive\Identifier" inversed-by="files">
       <join-columns>
         <join-column name="identifier_id" referenced-column-name="id" nullable="false"/>
       </join-columns>
     </many-to-one>
     <options>
-      <option name="charset">utf8mb3</option>
+      <option name="charset">utf8mb4</option>
       <option name="engine">MyISAM</option>
     </options>
   </entity>

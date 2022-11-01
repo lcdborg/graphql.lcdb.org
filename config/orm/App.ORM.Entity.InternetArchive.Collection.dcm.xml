@@ -5,9 +5,9 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="name" type="string" unique="true" nullable="false"/>
-    <many-to-many field="identifier" target-entity="App\ORM\Entity\InternetArchive\Identifier" mapped-by="collection"/>
+    <many-to-many field="identifiers" target-entity="App\ORM\Entity\InternetArchive\Identifier" mapped-by="collections"/>
     <options>
-      <option name="charset">utf8mb3</option>
+      <option name="charset">utf8mb4</option>
       <option name="engine">MyISAM</option>
     </options>
   </entity>

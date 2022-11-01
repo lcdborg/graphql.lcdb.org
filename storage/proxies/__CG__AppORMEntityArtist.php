@@ -67,10 +67,10 @@ class Artist extends \App\ORM\Entity\Artist implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'fanUrl', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'officialUrl', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'icon', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'artistuserid', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'abbrev', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'isTradable', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'ref_shnartist', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'nameFirstLetter', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'archive_key', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'top100', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'nameNormalized', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'notes', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'performances', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'artistToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'creator', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'user'];
+            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'fanUrl', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'officialUrl', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'icon', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'artistuserid', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'abbrev', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'isTradable', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'ref_shnartist', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'nameFirstLetter', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'archive_key', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'top100', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'nameNormalized', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'notes', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'performances', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'artistToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'creators', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'user'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'fanUrl', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'officialUrl', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'icon', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'artistuserid', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'abbrev', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'isTradable', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'ref_shnartist', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'nameFirstLetter', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'archive_key', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'top100', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'nameNormalized', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'notes', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'performances', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'artistToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'creator', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'user'];
+        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'fanUrl', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'officialUrl', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'icon', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'artistuserid', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'abbrev', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'isTradable', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'ref_shnartist', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'nameFirstLetter', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'archive_key', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'top100', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'nameNormalized', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'notes', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'performances', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'artistToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'creators', '' . "\0" . 'App\\ORM\\Entity\\Artist' . "\0" . 'user'];
     }
 
     /**
@@ -591,12 +591,12 @@ class Artist extends \App\ORM\Entity\Artist implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getCreator()
+    public function getCreators()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreator', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreators', []);
 
-        return parent::getCreator();
+        return parent::getCreators();
     }
 
     /**

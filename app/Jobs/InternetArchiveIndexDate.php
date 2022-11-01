@@ -103,7 +103,7 @@ class InternetArchiveIndexDate implements
                     $entityManager->persist($collection);
                 }
 
-                if (! $identifier->getCollection()->contains($collection)) {
+                if (! $identifier->getCollections()->contains($collection)) {
                     $identifier->addCollection($collection);
                     $collection->addIdentifier($identifier);
                 }

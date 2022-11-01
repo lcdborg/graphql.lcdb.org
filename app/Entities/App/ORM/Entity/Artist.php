@@ -95,7 +95,7 @@ class Artist
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $creator;
+    private $creators;
 
     /**
      * @var \App\ORM\Entity\User
@@ -109,7 +109,7 @@ class Artist
     {
         $this->performances = new \Doctrine\Common\Collections\ArrayCollection();
         $this->artistToArtistGroups = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->creator = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->creators = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -539,7 +539,7 @@ class Artist
      */
     public function addCreator(\App\ORM\Entity\InternetArchive\Creator $creator)
     {
-        $this->creator[] = $creator;
+        $this->creators[] = $creator;
 
         return $this;
     }
@@ -553,17 +553,17 @@ class Artist
      */
     public function removeCreator(\App\ORM\Entity\InternetArchive\Creator $creator)
     {
-        return $this->creator->removeElement($creator);
+        return $this->creators->removeElement($creator);
     }
 
     /**
-     * Get creator.
+     * Get creators.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCreator()
+    public function getCreators()
     {
-        return $this->creator;
+        return $this->creators;
     }
 
     /**

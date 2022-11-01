@@ -607,7 +607,7 @@
         <orm-attributes>
           <attribute name="table">Identifier_InternetArchive</attribute>
           <attribute name="options">
-            <attribute name="charset">utf8mb3</attribute>
+            <attribute name="charset">utf8mb4</attribute>
             <attribute name="engine">MyISAM</attribute>
           </attribute>
         </orm-attributes>
@@ -619,7 +619,7 @@
         <orm-attributes>
           <attribute name="table">Creator_InternetArchive</attribute>
           <attribute name="options">
-            <attribute name="charset">utf8mb3</attribute>
+            <attribute name="charset">utf8mb4</attribute>
             <attribute name="engine">MyISAM</attribute>
           </attribute>
         </orm-attributes>
@@ -630,7 +630,7 @@
         <orm-attributes>
           <attribute name="table">Collection_InternetArchive</attribute>
           <attribute name="options">
-            <attribute name="charset">utf8mb3</attribute>
+            <attribute name="charset">utf8mb4</attribute>
             <attribute name="engine">MyISAM</attribute>
           </attribute>
         </orm-attributes>
@@ -641,7 +641,7 @@
         <orm-attributes>
           <attribute name="table">CollectionToIdentifier_InternetArchive</attribute>
           <attribute name="options">
-            <attribute name="charset">utf8mb3</attribute>
+            <attribute name="charset">utf8mb4</attribute>
             <attribute name="engine">MyISAM</attribute>
           </attribute>
         </orm-attributes>
@@ -654,33 +654,33 @@
         <orm-attributes>
           <attribute name="table">File_InternetArchive</attribute>
           <attribute name="options">
-            <attribute name="charset">utf8mb3</attribute>
+            <attribute name="charset">utf8mb4</attribute>
             <attribute name="engine">MyISAM</attribute>
           </attribute>
         </orm-attributes>
       </entity>
     </region>
-    <association from="\App\ORM\Entity\InternetArchive\Identifier" to="\App\ORM\Entity\InternetArchive\Creator" caption="Creator Identifier" owner-alias="identifier" inverse-alias="creator" many-owner="true" many-inverse="false" parent-required="true" uuid="9ecb8e2b-14e4-4263-a89a-0305b113bf09">
+    <association from="\App\ORM\Entity\InternetArchive\Identifier" to="\App\ORM\Entity\InternetArchive\Creator" caption="Creator Identifier" owner-alias="identifiers" inverse-alias="creator" many-owner="true" many-inverse="false" parent-required="true" uuid="9ecb8e2b-14e4-4263-a89a-0305b113bf09">
       <association-field from="creator_id" to="id" uuid="bd0d6566-7b34-486a-bd7c-13ba4db0e9a4"/>
     </association>
     <association from="\App\ORM\Entity\InternetArchive\Identifier" to="\App\ORM\Entity\Source" caption="Source Identifier" owner-alias="identifier" inverse-alias="source" many-owner="true" many-inverse="false" uuid="ffd84ee4-95c8-48d6-8643-1c8b9be9137c">
       <association-field from="source_id" to="id" uuid="73cff1aa-0011-457f-a6f0-94a8d14cb23d"/>
     </association>
-    <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\Artist" caption="Artist Creator" owner-alias="creator" inverse-alias="artist" many-owner="true" many-inverse="false" uuid="90011e81-a66d-436f-9ba5-6e0ee9590607">
+    <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\Artist" caption="Artist Creator" owner-alias="creators" inverse-alias="artist" many-owner="true" many-inverse="false" uuid="90011e81-a66d-436f-9ba5-6e0ee9590607">
       <association-field from="artist_id" to="id" uuid="3ffd71dc-6525-4020-9a7e-eed0d40a7d9c"/>
     </association>
     <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\ArtistUnprefix" caption="ArtistUnprefix Creators" owner-alias="creators" inverse-alias="artistUnprefix" many-owner="true" many-inverse="false" uuid="4ad97b98-c064-435c-9b7b-575acb342034">
       <association-field from="artist_id" to="id" uuid="191b5b19-35eb-4b14-9373-f478ead3b44f"/>
     </association>
     <many-to-many mn-entity="\App\ORM\Entity\InternetArchive\Collection2Identifier" caption="Collection to Identifier" uuid="a4139038-c5e3-4964-8192-1a0786a6266b">
-      <many-to-many-entity name="\App\ORM\Entity\InternetArchive\Identifier" owning-side="true" alias="identifier" uuid="b1f8c002-5732-4715-995c-374b5fa7df28">
+      <many-to-many-entity name="\App\ORM\Entity\InternetArchive\Identifier" owning-side="true" alias="identifiers" uuid="b1f8c002-5732-4715-995c-374b5fa7df28">
         <many-to-many-field from="identifier_id" to="id" uuid="ab887ef8-c2bd-4063-aa4f-ceb29eeacc25"/>
       </many-to-many-entity>
-      <many-to-many-entity name="\App\ORM\Entity\InternetArchive\Collection" owning-side="false" alias="collection" uuid="ad1b1a5f-ca14-4e7d-8292-7ae467403881">
+      <many-to-many-entity name="\App\ORM\Entity\InternetArchive\Collection" owning-side="false" alias="collections" uuid="ad1b1a5f-ca14-4e7d-8292-7ae467403881">
         <many-to-many-field from="collection_id" to="id" uuid="cf15cca4-b7a9-4dac-af28-e5bec7a4d56b"/>
       </many-to-many-entity>
     </many-to-many>
-    <association from="\App\ORM\Entity\InternetArchive\File" to="\App\ORM\Entity\InternetArchive\Identifier" caption="Identifier Files" owner-alias="file" inverse-alias="identifier" many-owner="true" many-inverse="false" parent-required="true" uuid="dcab53a0-1ef9-4ae8-bee6-cc51e0c54c46">
+    <association from="\App\ORM\Entity\InternetArchive\File" to="\App\ORM\Entity\InternetArchive\Identifier" caption="Identifier Files" owner-alias="files" inverse-alias="identifier" many-owner="true" many-inverse="false" parent-required="true" uuid="dcab53a0-1ef9-4ae8-bee6-cc51e0c54c46">
       <association-field from="identifier_id" to="id" uuid="cba72a14-8741-4c35-8529-9c245012fc40"/>
     </association>
   </module>
@@ -720,7 +720,7 @@
     <entity uuid="763f8ddd-b9a3-4d09-a6db-9e4b79c10a8d" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="494" position-y="364" size-x="0" size-x2="120" size-y="0" size-y2="60"/>
     <entity uuid="76cf8f87-5081-458d-ad36-338487086320" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="283" position-y="28" size-x="0" size-x2="119" size-y="0" size-y2="73"/>
     <entity uuid="820c6bf7-6411-4fce-bfdc-fda1370126b5" bg-color="#FFFFFF" hdr-color="#A58C75" position-x="507" position-y="20" size-x="0" size-x2="138" size-y="0" size-y2="241"/>
-    <entity uuid="8b52b83c-d48c-42f4-81c0-b6122717acb0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="443" position-y="180" size-x="0" size-x2="91" size-y="0" size-y2="59"/>
+    <entity uuid="8b52b83c-d48c-42f4-81c0-b6122717acb0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="443" position-y="181" size-x="0" size-x2="91" size-y="0" size-y2="59"/>
     <entity uuid="91d68648-c90a-40ab-97f0-9158d5f08378" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="77" position-y="149" size-x="0" size-x2="124" size-y="0" size-y2="269"/>
     <entity uuid="946ae204-be62-43be-97f0-aec2786f30a4" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="514" position-y="257" size-x="0" size-x2="77" size-y="0" size-y2="45"/>
     <entity uuid="a19828bf-c45c-4b8b-9dfb-499de8f36256" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="44" position-y="36" size-x="0" size-x2="156" size-y="0" size-y2="213"/>

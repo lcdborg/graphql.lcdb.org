@@ -67,10 +67,10 @@ class Collection extends \App\ORM\Entity\InternetArchive\Collection implements \
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'identifier'];
+            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'identifiers'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'identifier'];
+        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Collection' . "\0" . 'identifiers'];
     }
 
     /**
@@ -239,12 +239,12 @@ class Collection extends \App\ORM\Entity\InternetArchive\Collection implements \
     /**
      * {@inheritDoc}
      */
-    public function getIdentifier()
+    public function getIdentifiers()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIdentifier', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIdentifiers', []);
 
-        return parent::getIdentifier();
+        return parent::getIdentifiers();
     }
 
 }

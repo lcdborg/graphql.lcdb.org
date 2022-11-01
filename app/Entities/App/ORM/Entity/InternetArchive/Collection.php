@@ -20,14 +20,14 @@ class Collection
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $identifier = array();
+    private $identifiers = array();
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->identifier = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->identifiers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -73,7 +73,7 @@ class Collection
      */
     public function addIdentifier(\App\ORM\Entity\InternetArchive\Identifier $identifier)
     {
-        $this->identifier[] = $identifier;
+        $this->identifiers[] = $identifier;
 
         return $this;
     }
@@ -87,16 +87,16 @@ class Collection
      */
     public function removeIdentifier(\App\ORM\Entity\InternetArchive\Identifier $identifier)
     {
-        return $this->identifier->removeElement($identifier);
+        return $this->identifiers->removeElement($identifier);
     }
 
     /**
-     * Get identifier.
+     * Get identifiers.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getIdentifier()
+    public function getIdentifiers()
     {
-        return $this->identifier;
+        return $this->identifiers;
     }
 }
