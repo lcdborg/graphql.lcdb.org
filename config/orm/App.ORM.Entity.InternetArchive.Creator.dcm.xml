@@ -4,7 +4,7 @@
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
-    <field name="name" type="string" unique="true" nullable="false"/>
+    <field name="name" type="string" unique="true" length="250" nullable="false"/>
     <many-to-one field="artist" target-entity="App\ORM\Entity\Artist" inversed-by="creators">
       <join-columns>
         <join-column name="artist_id" referenced-column-name="artist_key"/>

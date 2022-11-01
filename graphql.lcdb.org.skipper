@@ -614,7 +614,7 @@
       </entity>
       <entity name="\App\ORM\Entity\InternetArchive\Creator" local-name="Creator" namespace="\App\ORM\Entity\InternetArchive" uuid="8b52b83c-d48c-42f4-81c0-b6122717acb0">
         <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="7379fffb-3a6d-44d0-8351-291df7c0d16e"/>
-        <field name="name" type="string" required="true" unique="true" uuid="158de7eb-e817-4ba6-a5ee-0ef24abd893e"/>
+        <field name="name" type="string" size="250" required="true" unique="true" uuid="158de7eb-e817-4ba6-a5ee-0ef24abd893e"/>
         <field name="artist_id" type="integer" unsigned="true" uuid="b1807e83-b13b-4283-b1f2-24f119df1054"/>
         <orm-attributes>
           <attribute name="table">Creator_InternetArchive</attribute>
@@ -626,7 +626,7 @@
       </entity>
       <entity name="\App\ORM\Entity\InternetArchive\Collection" local-name="Collection" namespace="\App\ORM\Entity\InternetArchive" uuid="946ae204-be62-43be-97f0-aec2786f30a4">
         <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="17b13ff7-4d0f-4ac8-849a-50020c202f9e"/>
-        <field name="name" type="string" required="true" unique="true" uuid="58605fa2-1ed2-4cfe-ba3d-ca60b968fca6"/>
+        <field name="name" type="string" size="250" required="true" unique="true" uuid="58605fa2-1ed2-4cfe-ba3d-ca60b968fca6"/>
         <orm-attributes>
           <attribute name="table">Collection_InternetArchive</attribute>
           <attribute name="options">
