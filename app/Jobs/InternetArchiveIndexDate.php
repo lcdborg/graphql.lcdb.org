@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use ApiSkeletons\Utf8;
 use App\ORM\Entity\Artist;
 use App\ORM\Entity\InternetArchive\Collection;
 use App\ORM\Entity\InternetArchive\Creator;
@@ -191,7 +190,6 @@ class InternetArchiveIndexDate implements
 
     private function saveFiles(EntityManager $entityManager, Identifier $identifier)
     {
-        $correctUtf8Encoding = new Utf8\CorrectUtf8Encoding();
         $fileRepository = $entityManager->getRepository(File::class);
         $url = 'https://archive.org/compress/' . $identifier->getArchiveIdentifier() . '/formats=TEXT,METADATA';
 
@@ -233,7 +231,7 @@ class InternetArchiveIndexDate implements
                 $file->setName($fileinfo->getFilename());
                 $body = file_get_contents($tempDir . '/' . $fileinfo->getFilename());
                 if ($body) {
-                    $file->setBody($correctUtf8Encoding($body));
+                    $file->setBody($body);
                 }
 
                 try {
