@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d8c21e48bec00355a68a0cc3436e354",
+    "content-hash": "064584f6e283030dabd51422c3858973",
     "packages": [
+        {
+            "name": "api-skeletons/correct-utf8-encoding",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/API-Skeletons/correct-utf8-encoding.git",
+                "reference": "e47327d211fc22e115cf427f48bedd72e3a011b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/API-Skeletons/correct-utf8-encoding/zipball/e47327d211fc22e115cf427f48bedd72e3a011b2",
+                "reference": "e47327d211fc22e115cf427f48bedd72e3a011b2",
+                "shasum": ""
+            },
+            "require-dev": {
+                "api-skeletons/coding-standard": "^1.0",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ApiSkeletons\\Utf8\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom H Anderson",
+                    "email": "tom.h.anderson@gmail.com"
+                }
+            ],
+            "description": "Correct badly encoded and multiple encoded UTF8 characters by examining each byte in a string.",
+            "support": {
+                "issues": "https://github.com/API-Skeletons/correct-utf8-encoding/issues",
+                "source": "https://github.com/API-Skeletons/correct-utf8-encoding/tree/1.0.0"
+            },
+            "time": "2019-01-19T23:51:00+00:00"
+        },
         {
             "name": "api-skeletons/doctrine-graphql",
             "version": "6.1.6",
@@ -9497,7 +9539,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.0.2"
+        "php": "^8.0.2",
+        "ext-curl": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
