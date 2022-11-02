@@ -28,7 +28,6 @@ ELSE RETURN n;
 END IF;
 END;
 //
-
 delimiter ;
 
 CREATE VIEW CreatorUnprefix_InternetArchive AS
