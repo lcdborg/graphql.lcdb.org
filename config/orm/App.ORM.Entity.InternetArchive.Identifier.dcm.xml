@@ -29,11 +29,6 @@
         <join-column name="source_id" referenced-column-name="shninfo_key"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="creatorUnprefix" target-entity="App\ORM\Entity\InternetArchive\CreatorUnprefix" inversed-by="identifiers">
-      <join-columns>
-        <join-column name="creator_id" referenced-column-name="id" nullable="false"/>
-      </join-columns>
-    </many-to-one>
     <one-to-many field="files" target-entity="App\ORM\Entity\InternetArchive\File" mapped-by="identifier"/>
     <many-to-many field="collections" target-entity="App\ORM\Entity\InternetArchive\Collection" inversed-by="identifiers">
       <join-table name="CollectionToIdentifier_InternetArchive">

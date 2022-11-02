@@ -5,7 +5,7 @@ namespace App\GraphQL\Query\InternetArchive\Creator;
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
 use App\GraphQL\Query\GraphQLQuery;
-use App\ORM\Entity\InternetArchive\CreatorUnprefix;
+use App\ORM\Entity\InternetArchive\Creator;
 use League\Event\EventDispatcher;
 
 class CreatorsQuery implements GraphQLQuery
@@ -33,11 +33,11 @@ class CreatorsQuery implements GraphQLQuery
         }
 
         return [
-            'type' => $driver->connection($driver->type(CreatorUnprefix::class)),
+            'type' => $driver->connection($driver->type(Creator::class)),
             'args' => [
-                'filter' => $driver->filter(CreatorUnprefix::class),
+                'filter' => $driver->filter(Creator::class),
             ],
-            'resolve' => $driver->resolve(CreatorUnprefix::class),
+            'resolve' => $driver->resolve(Creator::class),
         ];
     }
 }

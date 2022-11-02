@@ -68,6 +68,8 @@ class InternetArchiveIndexDate implements
             ->getRepository(Creator::class);
         $artistRepository = $entityManager
             ->getRepository(Artist::class);
+        $sourceRepository = $entityManager
+            ->getRepository(Source::class);
 
         $params = [
             'q'      => 'addeddate:"' . $this->dateTime->format('Y-m-d') . '"'
@@ -128,10 +130,15 @@ class InternetArchiveIndexDate implements
 
                 $creator->setArtist($artist);
                 $identifier->setCreator($creator);
+                $creator->addIdentifier($identifier);
+            } else {
+
+                print_r($detail);
+                die('there is no creator');
             }
 
             $identifier->setArchiveIdentifier($detail['identifier']);
-            $source = $entityManager->getRepository(Source::class)
+            $source = $sourceRepository
                 ->findOneBy([
                     'archiveIdentifier' => $detail['identifier'],
                 ]);
