@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\InternetArchiveIndexDate;
+use Doctrine\ORM\EntityManager;
 use Illuminate\Console\Command;
 
 class InternetArchiveIndexDateNow extends Command
@@ -26,9 +27,11 @@ class InternetArchiveIndexDateNow extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(EntityManager $entityManager)
     {
-        InternetArchiveIndexDate::dispatchSync($this->argument('date'));
+        $job = new InternetArchiveIndexDate($this->argument('date'));
+
+        $job->handle($entityManager);
 
         return Command::SUCCESS;
     }
