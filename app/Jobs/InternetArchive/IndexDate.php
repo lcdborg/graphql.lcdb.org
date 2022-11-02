@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\InternetArchive;
 
 use App\ORM\Entity\Artist;
 use App\ORM\Entity\InternetArchive\Collection;
@@ -16,7 +16,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 
-class InternetArchiveIndexDate implements
+class IndexDate implements
     ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\InternetArchive;
 
-use App\Jobs\InternetArchiveIndexDate;
+use App\Jobs\InternetArchive\IndexDate;
 use Doctrine\ORM\EntityManager;
 use Illuminate\Console\Command;
 
-class InternetArchiveIndexDateNow extends Command
+class IndexDateNow extends Command
 {
     /**
      * The name and signature of the console command.
@@ -29,7 +29,7 @@ class InternetArchiveIndexDateNow extends Command
      */
     public function handle(EntityManager $entityManager)
     {
-        $job = new InternetArchiveIndexDate($this->argument('date'));
+        $job = new IndexDate($this->argument('date'));
 
         $job->handle($entityManager);
 
