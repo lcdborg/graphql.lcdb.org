@@ -11,6 +11,26 @@ ALTER TABLE Identifier_InternetArchive ADD CONSTRAINT FK_977D2AE8953C1C61 FOREIG
 ALTER TABLE CollectionToIdentifier_InternetArchive ADD CONSTRAINT FK_3CE1696CEF794DF6 FOREIGN KEY (identifier_id) REFERENCES Identifier_InternetArchive (id);
 ALTER TABLE CollectionToIdentifier_InternetArchive ADD CONSTRAINT FK_3CE1696C514956FD FOREIGN KEY (collection_id) REFERENCES Collection_InternetArchive (id);
 
+alter table Identifier_InternetArchive change archiveIdentifier archiveIdentifier varchar(250) not null;
+create index idx_identifier on Identifier_InternetArchive (archiveIdentifier);
+
+delimiter //
+CREATE FUNCTION unprefix_utf8mb4(n varchar(250)) RETURNS varchar(250) CHARSET utf8mb4
+BEGIN
+IF lower(substring(n, 1, 2)) = 'a ' THEN RETURN substring(n, 3);
+ELSEIF lower(substring(n, 1, 3)) = 'an ' THEN RETURN substring(n, 4);
+ELSEIF lower(substring(n, 1, 4)) = 'the ' THEN return substring(n, 5);
+ELSEIF lower(substring(n, 1, 3)) = 'la ' THEN return substring(n, 4);
+ELSEIF lower(substring(n, 1, 3)) = 'le ' THEN return substring(n, 4);
+ELSEIF lower(substring(n, 1, 2)) = "l'" THEN return substring(n, 3);
+ELSEIF lower(substring(n, 1, 1)) = "[" THEN return substring(n, 2);
+ELSE RETURN n;
+END IF;
+END;
+//
+
+delimiter ;
+
 CREATE VIEW CreatorUnprefix_InternetArchive AS
-    SELECT id, name, artist_id, unprefix(name) AS nameUnprefix
-    FROM Creator_InternetArchive;
+SELECT id, name, unprefix_utf8mb4(name) AS nameUnprefix
+FROM Creator_InternetArchive;

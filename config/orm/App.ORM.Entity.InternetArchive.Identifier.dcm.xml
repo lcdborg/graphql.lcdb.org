@@ -4,7 +4,7 @@
     <id name="id" type="integer">
       <generator strategy="AUTO"/>
     </id>
-    <field name="archiveIdentifier" type="string" nullable="false"/>
+    <field name="archiveIdentifier" type="string" length="250" nullable="false"/>
     <field name="server" type="string" nullable="true"/>
     <field name="performanceDate" type="string" nullable="true"/>
     <field name="addedAt" type="datetime" nullable="false"/>
@@ -19,6 +19,9 @@
     <field name="lineage" type="text" nullable="true"/>
     <field name="archiveSource" type="text" nullable="true"/>
     <field name="md5s" type="text" nullable="true"/>
+    <indexes>
+      <index name="idx_identifier" columns="archiveIdentifier"/>
+    </indexes>
     <many-to-one field="creator" target-entity="App\ORM\Entity\InternetArchive\Creator" inversed-by="identifiers">
       <join-columns>
         <join-column name="creator_id" referenced-column-name="id" nullable="false"/>
