@@ -87,11 +87,13 @@ class GraphQLController extends Controller
                     'user'             => GraphQLQuery\User\UserQuery::getDefinition($driver, $variables, $operationName),
 
                     ## Internet Archive
-                    'creator'          => GraphQLQuery\InternetArchive\Creator\CreatorQuery::getDefinition($driver, $variables, $operationName),
-                    'creators'         => GraphQLQuery\InternetArchive\Creator\CreatorsQuery::getDefinition($driver, $variables, $operationName),
-                    'creatorsUnprefix' => GraphQLQuery\InternetArchive\Creator\CreatorsUnprefixQuery::getDefinition($driver, $variables, $operationName),
-                    'identifier'       => GraphQLQuery\InternetArchive\Identifier\IdentifierQuery::getDefinition($driver, $variables, $operationName),
-                    'identifiers'      => GraphQLQuery\InternetArchive\Identifier\IdentifiersQuery::getDefinition($driver, $variables, $operationName),
+                    'creator'              => GraphQLQuery\InternetArchive\Creator\CreatorQuery::getDefinition($driver, $variables, $operationName),
+                    'creators'             => GraphQLQuery\InternetArchive\Creator\CreatorsQuery::getDefinition($driver, $variables, $operationName),
+                    'creatorsUnprefix'     => GraphQLQuery\InternetArchive\Creator\CreatorsUnprefixQuery::getDefinition($driver, $variables, $operationName),
+                    'identifier'           => GraphQLQuery\InternetArchive\Identifier\IdentifierQuery::getDefinition($driver, $variables, $operationName),
+                    'identifiers'          => GraphQLQuery\InternetArchive\Identifier\IdentifiersQuery::getDefinition($driver, $variables, $operationName),
+                    'identifierYears'      => GraphQLQuery\InternetArchive\Identifier\IdentifierYearsQuery::getDefinition($driver, $variables, $operationName),
+                    'identifierLatestYear' => GraphQLQuery\InternetArchive\Identifier\IdentifierLatestYearQuery::getDefinition($driver, $variables, $operationName),
                 ],
             ]),
         ]);
