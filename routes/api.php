@@ -32,3 +32,9 @@ Route::get('/api/source/{id}/textdoc/download', 'Api\SourceDownloadTextdocContro
 
 Route::get('/api/checksum/{id}/download', 'Api\ChecksumDownloadController@download')
     ->name('checksum.download.get');
+
+Route::get('/api/file/{id}/download', 'Api\FileDownloadController@download')
+    ->name('file.download.get');
+
+Route::get('/api/identifier/{id}/download', 'Api\IdentifierDownloadAllController@download')
+    ->name('identifier.download.all.get');

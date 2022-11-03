@@ -38,7 +38,7 @@ class SourceDownloadAllController extends BaseController
         $zip = new \ZipArchive();
         $zip->open($zipfile, \ZIPARCHIVE::CREATE);
         $zip->addEmptyDir($prefix);
-        $zip->setArchiveComment('Downloaded from http://lcdb.org/shn/' . $source->getId());
+        $zip->setArchiveComment('Downloaded from https://lcdb.org/source/' . $source->getId());
 
         $zip->addFromString("$prefix/$prefix.txt", $source->getTextdoc());
         foreach ($source->getChecksums() as $checksum) {
