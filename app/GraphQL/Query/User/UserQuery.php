@@ -21,6 +21,9 @@ class UserQuery implements GraphQLQuery
             'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)->getRepository(User::class)->find($args['id']);
             },
+            'description' => <<<EOF
+Fetch a single user.
+EOF,
         ];
     }
 }

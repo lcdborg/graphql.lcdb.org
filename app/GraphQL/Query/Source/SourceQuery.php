@@ -21,6 +21,9 @@ class SourceQuery implements GraphQLQuery
             'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)->getRepository(Source::class)->find($args['id']);
             },
+            'description' => <<<EOF
+Fetch a single source.
+EOF,
         ];
     }
 }

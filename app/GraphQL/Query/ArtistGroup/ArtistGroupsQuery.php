@@ -79,6 +79,21 @@ class ArtistGroupsQuery implements GraphQLQuery
                 'filter' => $driver->filter(ArtistGroup::class),
             ],
             'resolve' => $driver->resolve(ArtistGroup::class),
+            'description' => <<<EOF
+Fetch a collection of artist groups.
+
+Special Operations
+
+* ArtistGroupsOther
+
+    Fetch artist groups with non-a to z-names
+* SourceArtistGroups
+
+    Fetch artist groups with sources
+* SourceArtistGroupsOther
+
+    Fetch artist groups with sources with non-a to z-names
+EOF,
         ];
     }
 }

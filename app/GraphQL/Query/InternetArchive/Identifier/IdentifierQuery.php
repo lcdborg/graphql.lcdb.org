@@ -24,6 +24,9 @@ class IdentifierQuery implements GraphQLQuery
                         'archiveIdentifier' => $args['id']
                     ]);
             },
+            'description' => <<<EOF
+Fetch a single identifier.
+EOF,
         ];
     }
 }

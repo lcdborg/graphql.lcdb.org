@@ -34,6 +34,15 @@ class PerformancesQuery implements GraphQLQuery
                 'filter' => $driver->filter(Performance::class),
             ],
             'resolve' => $driver->resolve(Performance::class),
+            'description' => <<<EOF
+Fetch a collection of performances.
+
+Special Operations
+
+* ArtistGroupPerformances
+
+    Fetch performances for the given artist group \$id and \$year
+EOF,
         ];
     }
 }

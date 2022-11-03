@@ -28,6 +28,9 @@ class SourceCountQuery implements GraphQLQuery
 
                 return $queryBuilder->getQuery()->getSingleScalarResult();
             },
+            'description' => <<<EOF
+Fetch the number of sources for an artist.
+EOF,
         ];
     }
 }

@@ -29,6 +29,9 @@ class SourceLatestYearQuery implements GraphQLQuery
 
                 return $queryBuilder->getQuery()->getSingleScalarResult();
             },
+            'description' => <<<EOF
+Fetch the most recent performance year for an artist with sources.
+EOF,
         ];
     }
 }

@@ -37,6 +37,9 @@ class ArtistGroupYearsQuery implements GraphQLQuery
 
                 return $years;
             },
+            'description' => <<<EOF
+Fetch an array of years for artist group performances.
+EOF,
         ];
     }
 }

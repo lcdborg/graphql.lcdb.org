@@ -18,6 +18,9 @@ class CreatorsQuery implements GraphQLQuery
                 'filter' => $driver->filter(Creator::class),
             ],
             'resolve' => $driver->resolve(Creator::class),
+            'description' => <<<EOF
+Fetch a collection of creators.
+EOF,
         ];
     }
 }

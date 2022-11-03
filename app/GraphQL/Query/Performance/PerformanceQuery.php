@@ -21,6 +21,9 @@ class PerformanceQuery implements GraphQLQuery
             'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)->getRepository(Performance::class)->find($args['id']);
             },
+            'description' => <<<EOF
+Fetch a single performance.
+EOF,
         ];
     }
 }

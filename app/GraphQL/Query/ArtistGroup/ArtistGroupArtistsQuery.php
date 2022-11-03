@@ -33,6 +33,9 @@ class ArtistGroupArtistsQuery implements GraphQLQuery
 
                 return $queryBuilder->getQuery()->getResult();
             },
+            'description' => <<<EOF
+Return a list of artists in an artist group.
+EOF,
         ];
     }
 }

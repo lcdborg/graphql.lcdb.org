@@ -78,6 +78,21 @@ class ArtistsQuery implements GraphQLQuery
                 'filter' => $driver->filter(ArtistUnprefix::class),
             ],
             'resolve' => $driver->resolve(ArtistUnprefix::class),
+            'description' => <<<EOF
+Fetch a collection of artists.
+
+Special Operations:
+
+* ArtistListOther
+
+    Fetch artists with non-a to z-names
+* SourceArtists
+
+    Fetch artists with sources
+* SourceArtistsOther
+
+    Fetch artists with sources with non-a to z-names
+EOF,
         ];
     }
 }

@@ -21,6 +21,9 @@ class ArtistGroupQuery implements GraphQLQuery
             'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)->getRepository(ArtistGroup::class)->find($args['id']);
             },
+            'description' => <<<EOF
+Fetch a single artist group.
+EOF,
         ];
     }
 }

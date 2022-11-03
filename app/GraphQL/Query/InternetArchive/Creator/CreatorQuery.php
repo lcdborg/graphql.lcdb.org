@@ -21,6 +21,9 @@ class CreatorQuery implements GraphQLQuery
             'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)->getRepository(Creator::class)->find($args['id']);
             },
+            'description' => <<<EOF
+Fetch a single creator.
+EOF,
         ];
     }
 }

@@ -16,6 +16,9 @@ class UsersQuery implements GraphQLQuery
                 'filter' => $driver->filter(User::class),
             ],
             'resolve' => $driver->resolve(User::class),
+            'description' => <<<EOF
+Fetch a collection of users.
+EOF,
         ];
     }
 }

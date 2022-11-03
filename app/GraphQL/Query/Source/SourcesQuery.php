@@ -66,6 +66,18 @@ class SourcesQuery implements GraphQLQuery
                 'filter' => $driver->filter(Source::class),
             ],
             'resolve' => $driver->resolve(Source::class),
+            'description' => <<<EOF
+Fetch a collection of sources.
+
+Special Operations
+
+* ArtistSources
+
+    Fetch sources by artist \$id and \$year
+* ArtistGroupSources
+
+    Fetch sources by artist group \$id and \$year
+EOF,
         ];
     }
 }

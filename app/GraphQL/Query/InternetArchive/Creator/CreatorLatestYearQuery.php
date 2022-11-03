@@ -29,6 +29,9 @@ class CreatorLatestYearQuery implements GraphQLQuery
 
                 return $queryBuilder->getQuery()->getSingleScalarResult();
             },
+            'description' => <<<EOF
+Fetch the most recent identifier year for a creator.
+EOF,
         ];
     }
 }

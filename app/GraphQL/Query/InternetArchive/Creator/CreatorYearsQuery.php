@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Query\InternetArchive\Identifier;
+namespace App\GraphQL\Query\InternetArchive\Creator;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use App\GraphQL\Query\GraphQLQuery;
@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManager;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 
-class IdentifierYearsQuery implements GraphQLQuery
+class CreatorYearsQuery implements GraphQLQuery
 {
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
@@ -35,6 +35,9 @@ class IdentifierYearsQuery implements GraphQLQuery
 
                 return $years;
             },
+            'description' => <<<EOF
+Fetch an array of years for creator identifiers.
+EOF,
         ];
     }
 }
