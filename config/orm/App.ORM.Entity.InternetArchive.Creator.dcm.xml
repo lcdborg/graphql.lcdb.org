@@ -10,11 +10,6 @@
         <join-column name="artist_id" referenced-column-name="artist_key"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="artistUnprefix" target-entity="App\ORM\Entity\ArtistUnprefix" inversed-by="creators">
-      <join-columns>
-        <join-column name="artist_id" referenced-column-name="artist_key"/>
-      </join-columns>
-    </many-to-one>
     <one-to-many field="identifiers" target-entity="App\ORM\Entity\InternetArchive\Identifier" mapped-by="creator"/>
     <options>
       <option name="charset">utf8mb4</option>

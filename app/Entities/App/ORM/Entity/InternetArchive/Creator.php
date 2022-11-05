@@ -28,11 +28,6 @@ class Creator
     private $artist;
 
     /**
-     * @var \App\ORM\Entity\ArtistUnprefix
-     */
-    private $artistUnprefix;
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -132,29 +127,5 @@ class Creator
     public function getArtist()
     {
         return $this->artist;
-    }
-
-    /**
-     * Set artistUnprefix.
-     *
-     * @param \App\ORM\Entity\ArtistUnprefix|null $artistUnprefix
-     *
-     * @return Creator
-     */
-    public function setArtistUnprefix(\App\ORM\Entity\ArtistUnprefix $artistUnprefix = null)
-    {
-        $this->artistUnprefix = $artistUnprefix;
-
-        return $this;
-    }
-
-    /**
-     * Get artistUnprefix.
-     *
-     * @return \App\ORM\Entity\ArtistUnprefix|null
-     */
-    public function getArtistUnprefix()
-    {
-        return $this->artistUnprefix;
     }
 }

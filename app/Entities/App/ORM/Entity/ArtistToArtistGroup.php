@@ -27,11 +27,6 @@ class ArtistToArtistGroup
      */
     private $user;
 
-    /**
-     * @var \App\ORM\Entity\ArtistUnprefix
-     */
-    private $artistUnprefix;
-
 
     /**
      * Set reason.
@@ -127,29 +122,5 @@ class ArtistToArtistGroup
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set artistUnprefix.
-     *
-     * @param \App\ORM\Entity\ArtistUnprefix $artistUnprefix
-     *
-     * @return ArtistToArtistGroup
-     */
-    public function setArtistUnprefix(\App\ORM\Entity\ArtistUnprefix $artistUnprefix)
-    {
-        $this->artistUnprefix = $artistUnprefix;
-
-        return $this;
-    }
-
-    /**
-     * Get artistUnprefix.
-     *
-     * @return \App\ORM\Entity\ArtistUnprefix
-     */
-    public function getArtistUnprefix()
-    {
-        return $this->artistUnprefix;
     }
 }

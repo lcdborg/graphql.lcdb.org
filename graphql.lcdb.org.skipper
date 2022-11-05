@@ -64,9 +64,6 @@
     <association from="\App\ORM\Entity\Performance" to="\App\ORM\Entity\Artist" caption="artist performances" owner-alias="performances" inverse-alias="artist" many-owner="true" many-inverse="false" parent-required="true" uuid="0dbe071d-4e8f-4a97-8ac6-bf2a92089226">
       <association-field from="artist_id" to="id" uuid="d9ee8de6-c9b2-4b02-97e9-bdbf22c676d0"/>
     </association>
-    <association from="\App\ORM\Entity\Performance" to="\App\ORM\Entity\ArtistUnprefix" caption="ArtistUnprefix Performances" owner-alias="performances" inverse-alias="artistUnprefix" many-owner="true" many-inverse="false" parent-required="true" uuid="1ba686e7-01ea-408d-b231-067a6963559b">
-      <association-field from="artist_id" to="id" uuid="d2af383e-ebc9-49a9-91d7-2416cc52194b"/>
-    </association>
     <entity name="\App\ORM\Entity\UserWantlist" local-name="UserWantlist" namespace="\App\ORM\Entity" uuid="48174308-294b-4868-847e-f412335a417e">
       <field name="performance_id" type="integer" required="true" primary="true" unsigned="true" uuid="7a138076-786a-45ed-9907-29652713c4ac">
         <orm-attributes>
@@ -271,64 +268,11 @@
           <attribute name="table">artist_groups_users_xref</attribute>
         </orm-attributes>
       </entity>
-      <entity name="\App\ORM\Entity\ArtistUnprefix" local-name="ArtistUnprefix" namespace="\App\ORM\Entity" uuid="820c6bf7-6411-4fce-bfdc-fda1370126b5">
-        <field name="id" type="integer" required="true" unique="true" primary="true" unsigned="true" auto-increment="true" uuid="53720288-92ee-42a9-80c0-551288cb7598">
-          <orm-attributes>
-            <attribute name="column">artist_key</attribute>
-          </orm-attributes>
-        </field>
-        <field name="user_id" type="integer" required="true" unsigned="true" uuid="67639e10-53b8-4012-94b7-9f8b5c7ab324">
-          <orm-attributes>
-            <attribute name="column">ref_lastuser</attribute>
-          </orm-attributes>
-        </field>
-        <field name="name" type="string" size="85" required="true" uuid="8eec2680-6352-4a10-a2df-672b87bd91d4"/>
-        <field name="fanUrl" type="string" size="100" uuid="035c6ddf-a7bd-47da-bfc3-e6d378a24ab3">
-          <orm-attributes>
-            <attribute name="column">fan_url</attribute>
-          </orm-attributes>
-        </field>
-        <field name="officialUrl" type="string" size="100" uuid="a5da4660-4903-444d-ab2b-4bc0eca64024">
-          <orm-attributes>
-            <attribute name="column">official_url</attribute>
-          </orm-attributes>
-        </field>
-        <field name="icon" type="string" size="100" required="true" uuid="9bce289e-d9c0-449c-98c3-f82743e43054"/>
-        <field name="artistuserid" type="string" size="32" required="true" uuid="8e3b3bae-1867-4b8f-9769-c611847267ab"/>
-        <field name="createdAt" type="datetime" uuid="a9dbc221-8459-492f-84bd-ea4042b2607c">
-          <orm-attributes>
-            <attribute name="column">dateadded</attribute>
-          </orm-attributes>
-        </field>
-        <field name="abbrev" type="string" size="10" required="true" uuid="2d46810f-ea94-44da-affc-1b67107b670d"/>
-        <field name="isTradable" type="boolean" required="true" unsigned="true" uuid="44403cd5-7a8b-49bd-9942-429fac19c1c0">
-          <orm-attributes>
-            <attribute name="column">tradable</attribute>
-          </orm-attributes>
-        </field>
-        <field name="ref_shnartist" type="integer" required="true" unsigned="true" uuid="78b2f473-ecbe-4002-aadb-e3acc3d2290d"/>
-        <field name="nameFirstLetter" type="integer" required="true" unsigned="true" uuid="064bfe58-42ac-4d6b-9e16-5aecf67670e8">
-          <orm-attributes>
-            <attribute name="column">name_firstletter</attribute>
-          </orm-attributes>
-        </field>
-        <field name="archive_key" type="integer" required="true" unsigned="true" uuid="8c588b69-4ab6-4be0-82a0-f92e54573a0b"/>
-        <field name="top100" type="boolean" uuid="741a30d4-a483-4c76-814b-454fc60d0931"/>
-        <field name="nameNormalized" type="string" size="60" uuid="9996652e-839d-4eb7-b7e0-82b0067b7e5f">
-          <orm-attributes>
-            <attribute name="column">name_normalized</attribute>
-          </orm-attributes>
-        </field>
-        <field name="notes" type="text" uuid="84fab969-d818-4255-992e-bdadabea6d7e"/>
-        <field name="nameUnprefix" type="string" uuid="493c7e41-d167-477c-b0c5-38fb7e1023de">
-          <orm-attributes>
-            <attribute name="column">name_unprefix</attribute>
-          </orm-attributes>
-        </field>
-        <orm-attributes>
-          <attribute name="table">artists_unprefix</attribute>
-          <attribute name="read-only">true</attribute>
-        </orm-attributes>
+      <entity name="\App\ORM\Entity\ArtistUnprefix" local-name="ArtistUnprefix" namespace="\App\ORM\Entity" uuid="9fe1d803-1ed1-4ff5-8344-0eebec1121f3">
+        <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="c3f3e6a1-bc93-44b7-ac4d-ccdc471412eb"/>
+        <field name="name" type="string" required="true" uuid="4ced40ca-9009-4444-9600-580249c0ea85"/>
+        <field name="nameUnprefix" type="string" uuid="5c5fe26d-4ad5-4ba7-ab1b-7809b93a9ffe"/>
+        <field name="top100" type="boolean" uuid="f69b0e1a-1940-4e52-872d-c9fa889ef9b1"/>
       </entity>
     </region>
     <association from="\App\ORM\Entity\Artist" to="\App\ORM\Entity\User" caption="user artists" owner-alias="artists" inverse-alias="user" many-owner="true" many-inverse="false" parent-required="true" uuid="352c5d8f-3d3a-4935-b2ef-db5130fbe724">
@@ -346,17 +290,11 @@
     <association from="\App\ORM\Entity\ArtistToArtistGroup" to="\App\ORM\Entity\User" caption="user artistToArtistGroups" owner-alias="artistToArtistGroups" inverse-alias="user" many-owner="true" many-inverse="false" parent-required="true" uuid="a79dda9c-84f1-4832-ba3d-ee9ec8241a8f">
       <association-field from="user_id" to="id" uuid="0c2f18e7-ea0f-4d78-9ba9-a0a3f33e5be5"/>
     </association>
-    <association from="\App\ORM\Entity\ArtistToArtistGroup" to="\App\ORM\Entity\ArtistUnprefix" caption="ArtistUnprefix ArtistToArtistGroups" owner-alias="artistToArtistGroups" inverse-alias="artistUnprefix" many-owner="true" many-inverse="false" parent-required="true" uuid="95f6d178-7b6d-414b-b1c2-9e2a9a406da0">
-      <association-field from="artist_id" to="id" uuid="b94d1eb5-7407-45f8-a1be-4f3d7b3f0cdd"/>
-    </association>
     <association from="\App\ORM\Entity\UserToArtistGroup" to="\App\ORM\Entity\User" caption="artist userToArtistGroups" owner-alias="userToArtistGroups" inverse-alias="user" many-owner="true" many-inverse="false" parent-required="true" uuid="b2a07378-c017-421e-86ed-68e269766fb7">
       <association-field from="user_id" to="id" uuid="a07d74c8-33f4-416c-94f4-cb1fe6f8d793"/>
     </association>
     <association from="\App\ORM\Entity\UserToArtistGroup" to="\App\ORM\Entity\ArtistGroup" caption="artistGroup userToArtistGroups" owner-alias="userToArtistGroups" inverse-alias="artistGroup" many-owner="true" many-inverse="false" parent-required="true" uuid="6db23085-4fe3-4a29-b1ec-58e7b5b4147e">
       <association-field from="artist_group_id" to="id" uuid="7c190415-3d1b-4c67-bfc4-3b3d1278e4b9"/>
-    </association>
-    <association from="\App\ORM\Entity\ArtistUnprefix" to="\App\ORM\Entity\User" caption="user artists" owner-alias="artistsUnprefix" inverse-alias="user" many-owner="true" many-inverse="false" parent-required="true" uuid="84301a9e-03fe-4547-bdf5-9a0cd8e3261a">
-      <association-field from="user_id" to="id" uuid="1f190e20-bff7-47d7-b33f-4b5e42b53673"/>
     </association>
     <region namespace="\App\ORM\Entity" caption="Source" uuid="2967124d-29d7-4a03-a16d-f053f6354a95">
       <entity name="\App\ORM\Entity\Source" local-name="Source" namespace="\App\ORM\Entity" uuid="a19828bf-c45c-4b8b-9dfb-499de8f36256">
@@ -680,9 +618,6 @@
     <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\Artist" caption="artist creators" owner-alias="creators" inverse-alias="artist" many-owner="true" many-inverse="false" uuid="90011e81-a66d-436f-9ba5-6e0ee9590607">
       <association-field from="artist_id" to="id" uuid="3ffd71dc-6525-4020-9a7e-eed0d40a7d9c"/>
     </association>
-    <association from="\App\ORM\Entity\InternetArchive\Creator" to="\App\ORM\Entity\ArtistUnprefix" caption="artistUnprefix creators" owner-alias="creators" inverse-alias="artistUnprefix" many-owner="true" many-inverse="false" uuid="4ad97b98-c064-435c-9b7b-575acb342034">
-      <association-field from="artist_id" to="id" uuid="191b5b19-35eb-4b14-9373-f478ead3b44f"/>
-    </association>
     <many-to-many mn-entity="\App\ORM\Entity\InternetArchive\Collection2Identifier" caption="collections identifiers" uuid="a4139038-c5e3-4964-8192-1a0786a6266b">
       <many-to-many-entity name="\App\ORM\Entity\InternetArchive\Identifier" owning-side="true" alias="identifiers" uuid="b1f8c002-5732-4715-995c-374b5fa7df28">
         <many-to-many-field from="identifier_id" to="id" uuid="ab887ef8-c2bd-4063-aa4f-ceb29eeacc25"/>
@@ -698,17 +633,13 @@
   <visual-data>
     <association uuid="0dbe071d-4e8f-4a97-8ac6-bf2a92089226" caption1-position-x="0" caption1-position-y="0" center-position-x="5" center-position-y="0" color="#969696"/>
     <association uuid="16b500ea-53e0-45eb-96f0-9cd0b6684344" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
-    <association uuid="1ba686e7-01ea-408d-b231-067a6963559b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="2ab7b8c4-084c-4fa8-b8ae-3bde9af49e2e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="352c5d8f-3d3a-4935-b2ef-db5130fbe724" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
-    <association uuid="4ad97b98-c064-435c-9b7b-575acb342034" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="516e957e-bab5-4898-8936-a61738f9f7ec" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="6db23085-4fe3-4a29-b1ec-58e7b5b4147e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="82bcb6ac-4476-4772-b80e-01c29a395577" caption1-position-x="-4" caption1-position-y="2" center-position-x="0" center-position-y="0" color="#969696"/>
-    <association uuid="84301a9e-03fe-4547-bdf5-9a0cd8e3261a" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
     <association uuid="8cf064e1-d036-4bf1-b2f0-873bb0c0f6ff" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="90011e81-a66d-436f-9ba5-6e0ee9590607" caption1-position-x="0" caption1-position-y="-2" caption2-position-x="-1" caption2-position-y="12" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
-    <association uuid="95f6d178-7b6d-414b-b1c2-9e2a9a406da0" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="9ecb8e2b-14e4-4263-a89a-0305b113bf09" caption1-position-x="-43" caption1-position-y="5" center-position-x="0" center-position-y="-21" color="#969696"/>
     <association uuid="9ff1cfd7-7156-4d55-954d-a8cbcf633150" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
     <association uuid="a79dda9c-84f1-4832-ba3d-ee9ec8241a8f" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
@@ -731,10 +662,10 @@
     <entity uuid="6ddcef17-f5aa-4855-8e71-36d20afc0731" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="277" position-y="148" size-x="0" size-x2="138" size-y="0" size-y2="241"/>
     <entity uuid="763f8ddd-b9a3-4d09-a6db-9e4b79c10a8d" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="266" position-y="447" size-x="0" size-x2="120" size-y="0" size-y2="60"/>
     <entity uuid="76cf8f87-5081-458d-ad36-338487086320" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="283" position-y="28" size-x="0" size-x2="119" size-y="0" size-y2="73"/>
-    <entity uuid="820c6bf7-6411-4fce-bfdc-fda1370126b5" bg-color="#FFFFFF" hdr-color="#FF00FF" position-x="507" position-y="20" size-x="0" size-x2="138" size-y="0" size-y2="241"/>
     <entity uuid="8b52b83c-d48c-42f4-81c0-b6122717acb0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="384" position-y="48" size-x="0" size-x2="98" size-y="0" size-y2="59"/>
     <entity uuid="91d68648-c90a-40ab-97f0-9158d5f08378" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="43" position-y="60" size-x="0" size-x2="124" size-y="0" size-y2="269"/>
     <entity uuid="946ae204-be62-43be-97f0-aec2786f30a4" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="474" position-y="400" size-x="0" size-x2="98" size-y="0" size-y2="45"/>
+    <entity uuid="9fe1d803-1ed1-4ff5-8344-0eebec1121f3" bg-color="#FFFFFF" hdr-color="#FF00FF" position-x="452" position-y="40" size-x="0" size-x2="110" size-y="0" size-y2="59"/>
     <entity uuid="a19828bf-c45c-4b8b-9dfb-499de8f36256" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="44" position-y="36" size-x="0" size-x2="156" size-y="0" size-y2="213"/>
     <entity uuid="abc81034-65f7-4f53-a4a4-6749dd9cb1ed" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="1491" position-y="281" size-x="0" size-x2="144" size-y="0" size-y2="339"/>
     <entity uuid="e0b66329-df7b-491b-a811-49aab1b7926e" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="74" position-y="460" size-x="0" size-x2="106" size-y="0" size-y2="73"/>

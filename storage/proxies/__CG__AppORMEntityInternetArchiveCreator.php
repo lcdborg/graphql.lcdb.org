@@ -67,10 +67,10 @@ class Creator extends \App\ORM\Entity\InternetArchive\Creator implements \Doctri
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'identifiers', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'artist', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'artistUnprefix'];
+            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'identifiers', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'artist'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'identifiers', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'artist', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'artistUnprefix'];
+        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'identifiers', '' . "\0" . 'App\\ORM\\Entity\\InternetArchive\\Creator' . "\0" . 'artist'];
     }
 
     /**
@@ -267,28 +267,6 @@ class Creator extends \App\ORM\Entity\InternetArchive\Creator implements \Doctri
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArtist', []);
 
         return parent::getArtist();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setArtistUnprefix(\App\ORM\Entity\ArtistUnprefix $artistUnprefix = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setArtistUnprefix', [$artistUnprefix]);
-
-        return parent::setArtistUnprefix($artistUnprefix);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getArtistUnprefix()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArtistUnprefix', []);
-
-        return parent::getArtistUnprefix();
     }
 
 }

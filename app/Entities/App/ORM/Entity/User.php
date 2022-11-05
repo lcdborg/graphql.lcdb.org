@@ -155,11 +155,6 @@ class User
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $artistsUnprefix;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
     private $userPerformances;
 
     /**
@@ -186,7 +181,6 @@ class User
         $this->artistGroups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->artistToArtistGroups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->userToArtistGroups = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->artistsUnprefix = new \Doctrine\Common\Collections\ArrayCollection();
         $this->userPerformances = new \Doctrine\Common\Collections\ArrayCollection();
         $this->userLists = new \Doctrine\Common\Collections\ArrayCollection();
         $this->wantedPerformances = new \Doctrine\Common\Collections\ArrayCollection();
@@ -920,42 +914,6 @@ class User
     public function getUserToArtistGroups()
     {
         return $this->userToArtistGroups;
-    }
-
-    /**
-     * Add artistsUnprefix.
-     *
-     * @param \App\ORM\Entity\ArtistUnprefix $artistsUnprefix
-     *
-     * @return User
-     */
-    public function addArtistsUnprefix(\App\ORM\Entity\ArtistUnprefix $artistsUnprefix)
-    {
-        $this->artistsUnprefix[] = $artistsUnprefix;
-
-        return $this;
-    }
-
-    /**
-     * Remove artistsUnprefix.
-     *
-     * @param \App\ORM\Entity\ArtistUnprefix $artistsUnprefix
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeArtistsUnprefix(\App\ORM\Entity\ArtistUnprefix $artistsUnprefix)
-    {
-        return $this->artistsUnprefix->removeElement($artistsUnprefix);
-    }
-
-    /**
-     * Get artistsUnprefix.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getArtistsUnprefix()
-    {
-        return $this->artistsUnprefix;
     }
 
     /**

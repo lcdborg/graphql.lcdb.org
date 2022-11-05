@@ -67,10 +67,10 @@ class ArtistUnprefix extends \App\ORM\Entity\ArtistUnprefix implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'fanUrl', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'officialUrl', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'icon', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'artistuserid', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'abbrev', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'isTradable', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'ref_shnartist', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'nameFirstLetter', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'archive_key', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'top100', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'nameNormalized', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'notes', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'nameUnprefix', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'performances', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'artistToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'creators', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'user'];
+            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'nameUnprefix', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'top100', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'id'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'fanUrl', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'officialUrl', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'icon', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'artistuserid', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'abbrev', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'isTradable', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'ref_shnartist', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'nameFirstLetter', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'archive_key', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'top100', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'nameNormalized', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'notes', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'nameUnprefix', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'performances', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'artistToArtistGroups', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'creators', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'user'];
+        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'name', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'nameUnprefix', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'top100', '' . "\0" . 'App\\ORM\\Entity\\ArtistUnprefix' . "\0" . 'id'];
     }
 
     /**
@@ -202,221 +202,23 @@ class ArtistUnprefix extends \App\ORM\Entity\ArtistUnprefix implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setFanUrl($fanUrl = NULL)
+    public function setNameUnprefix($nameUnprefix = NULL)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFanUrl', [$fanUrl]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNameUnprefix', [$nameUnprefix]);
 
-        return parent::setFanUrl($fanUrl);
+        return parent::setNameUnprefix($nameUnprefix);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getFanUrl()
+    public function getNameUnprefix()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFanUrl', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNameUnprefix', []);
 
-        return parent::getFanUrl();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setOfficialUrl($officialUrl = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOfficialUrl', [$officialUrl]);
-
-        return parent::setOfficialUrl($officialUrl);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getOfficialUrl()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOfficialUrl', []);
-
-        return parent::getOfficialUrl();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setIcon($icon)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIcon', [$icon]);
-
-        return parent::setIcon($icon);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIcon()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIcon', []);
-
-        return parent::getIcon();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setArtistuserid($artistuserid)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setArtistuserid', [$artistuserid]);
-
-        return parent::setArtistuserid($artistuserid);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getArtistuserid()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArtistuserid', []);
-
-        return parent::getArtistuserid();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setCreatedAt($createdAt = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreatedAt', [$createdAt]);
-
-        return parent::setCreatedAt($createdAt);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCreatedAt()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatedAt', []);
-
-        return parent::getCreatedAt();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setAbbrev($abbrev)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAbbrev', [$abbrev]);
-
-        return parent::setAbbrev($abbrev);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getAbbrev()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAbbrev', []);
-
-        return parent::getAbbrev();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setIsTradable($isTradable)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsTradable', [$isTradable]);
-
-        return parent::setIsTradable($isTradable);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIsTradable()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsTradable', []);
-
-        return parent::getIsTradable();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setRefShnartist($refShnartist)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRefShnartist', [$refShnartist]);
-
-        return parent::setRefShnartist($refShnartist);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getRefShnartist()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRefShnartist', []);
-
-        return parent::getRefShnartist();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNameFirstLetter($nameFirstLetter)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNameFirstLetter', [$nameFirstLetter]);
-
-        return parent::setNameFirstLetter($nameFirstLetter);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNameFirstLetter()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNameFirstLetter', []);
-
-        return parent::getNameFirstLetter();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setArchiveKey($archiveKey)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setArchiveKey', [$archiveKey]);
-
-        return parent::setArchiveKey($archiveKey);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getArchiveKey()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArchiveKey', []);
-
-        return parent::getArchiveKey();
+        return parent::getNameUnprefix();
     }
 
     /**
@@ -444,72 +246,6 @@ class ArtistUnprefix extends \App\ORM\Entity\ArtistUnprefix implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setNameNormalized($nameNormalized = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNameNormalized', [$nameNormalized]);
-
-        return parent::setNameNormalized($nameNormalized);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNameNormalized()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNameNormalized', []);
-
-        return parent::getNameNormalized();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNotes($notes = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNotes', [$notes]);
-
-        return parent::setNotes($notes);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNotes()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNotes', []);
-
-        return parent::getNotes();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNameUnprefix($nameUnprefix = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNameUnprefix', [$nameUnprefix]);
-
-        return parent::setNameUnprefix($nameUnprefix);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNameUnprefix()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNameUnprefix', []);
-
-        return parent::getNameUnprefix();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -520,127 +256,6 @@ class ArtistUnprefix extends \App\ORM\Entity\ArtistUnprefix implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', []);
 
         return parent::getId();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function addPerformance(\App\ORM\Entity\Performance $performance)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addPerformance', [$performance]);
-
-        return parent::addPerformance($performance);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function removePerformance(\App\ORM\Entity\Performance $performance)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removePerformance', [$performance]);
-
-        return parent::removePerformance($performance);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getPerformances()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPerformances', []);
-
-        return parent::getPerformances();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function addArtistToArtistGroup(\App\ORM\Entity\ArtistToArtistGroup $artistToArtistGroup)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addArtistToArtistGroup', [$artistToArtistGroup]);
-
-        return parent::addArtistToArtistGroup($artistToArtistGroup);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function removeArtistToArtistGroup(\App\ORM\Entity\ArtistToArtistGroup $artistToArtistGroup)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeArtistToArtistGroup', [$artistToArtistGroup]);
-
-        return parent::removeArtistToArtistGroup($artistToArtistGroup);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getArtistToArtistGroups()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArtistToArtistGroups', []);
-
-        return parent::getArtistToArtistGroups();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function addCreator(\App\ORM\Entity\InternetArchive\Creator $creator)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCreator', [$creator]);
-
-        return parent::addCreator($creator);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function removeCreator(\App\ORM\Entity\InternetArchive\Creator $creator)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeCreator', [$creator]);
-
-        return parent::removeCreator($creator);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCreators()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreators', []);
-
-        return parent::getCreators();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setUser(\App\ORM\Entity\User $user)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', [$user]);
-
-        return parent::setUser($user);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUser()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', []);
-
-        return parent::getUser();
     }
 
 }

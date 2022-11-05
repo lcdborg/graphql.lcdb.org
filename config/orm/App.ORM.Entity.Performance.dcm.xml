@@ -49,11 +49,6 @@
         <join-column name="ref_artist" referenced-column-name="artist_key" nullable="false"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="artistUnprefix" target-entity="App\ORM\Entity\ArtistUnprefix" inversed-by="performances">
-      <join-columns>
-        <join-column name="ref_artist" referenced-column-name="artist_key" nullable="false"/>
-      </join-columns>
-    </many-to-one>
     <one-to-many field="sources" target-entity="App\ORM\Entity\Source" mapped-by="performance"/>
     <one-to-many field="userPerformances" target-entity="App\ORM\Entity\UserPerformance" mapped-by="performance"/>
     <many-to-many field="wantedUsers" target-entity="App\ORM\Entity\User" inversed-by="wantedPerformances">

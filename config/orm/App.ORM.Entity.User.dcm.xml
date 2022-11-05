@@ -40,7 +40,6 @@
     <one-to-many field="artistGroups" target-entity="App\ORM\Entity\ArtistGroup" mapped-by="user"/>
     <one-to-many field="artistToArtistGroups" target-entity="App\ORM\Entity\ArtistToArtistGroup" mapped-by="user"/>
     <one-to-many field="userToArtistGroups" target-entity="App\ORM\Entity\UserToArtistGroup" mapped-by="user"/>
-    <one-to-many field="artistsUnprefix" target-entity="App\ORM\Entity\ArtistUnprefix" mapped-by="user"/>
     <one-to-many field="userPerformances" target-entity="App\ORM\Entity\UserPerformance" mapped-by="user"/>
     <one-to-many field="userLists" target-entity="App\ORM\Entity\UserList" mapped-by="user"/>
     <many-to-many field="wantedPerformances" target-entity="App\ORM\Entity\Performance" mapped-by="wantedUsers"/>

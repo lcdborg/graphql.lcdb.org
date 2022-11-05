@@ -67,10 +67,10 @@ class Performance extends \App\ORM\Entity\Performance implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'venue', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'city', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'state', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set1', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set2', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set3', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'comment', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'year', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'showsuserid', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'ref_festival', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'festival_lock', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'spotlight_date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'staffpick_date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'merge_lock', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'ref_venue', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'changeComment', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'isCompilation', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'title', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'sources', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'artist', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'artistUnprefix', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'wantedUsers'];
+            return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'venue', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'city', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'state', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set1', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set2', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set3', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'comment', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'year', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'showsuserid', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'ref_festival', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'festival_lock', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'spotlight_date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'staffpick_date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'merge_lock', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'ref_venue', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'changeComment', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'isCompilation', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'title', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'sources', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'artist', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'wantedUsers'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'venue', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'city', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'state', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set1', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set2', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set3', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'comment', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'year', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'showsuserid', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'ref_festival', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'festival_lock', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'spotlight_date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'staffpick_date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'merge_lock', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'ref_venue', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'changeComment', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'isCompilation', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'title', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'sources', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'artist', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'artistUnprefix', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'wantedUsers'];
+        return ['__isInitialized__', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'venue', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'city', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'state', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set1', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set2', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'set3', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'comment', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'updatedAt', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'createdAt', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'year', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'showsuserid', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'ref_festival', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'festival_lock', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'spotlight_date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'staffpick_date', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'merge_lock', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'ref_venue', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'changeComment', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'isCompilation', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'title', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'id', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'sources', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'userPerformances', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'artist', '' . "\0" . 'App\\ORM\\Entity\\Performance' . "\0" . 'wantedUsers'];
     }
 
     /**
@@ -740,28 +740,6 @@ class Performance extends \App\ORM\Entity\Performance implements \Doctrine\ORM\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArtist', []);
 
         return parent::getArtist();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setArtistUnprefix(\App\ORM\Entity\ArtistUnprefix $artistUnprefix)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setArtistUnprefix', [$artistUnprefix]);
-
-        return parent::setArtistUnprefix($artistUnprefix);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getArtistUnprefix()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArtistUnprefix', []);
-
-        return parent::getArtistUnprefix();
     }
 
     /**

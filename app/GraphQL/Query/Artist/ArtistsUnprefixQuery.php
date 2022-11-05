@@ -5,47 +5,27 @@ namespace App\GraphQL\Query\Artist;
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
 use App\GraphQL\Query\GraphQLQuery;
-use App\ORM\Entity\Artist;
 use App\ORM\Entity\ArtistUnprefix;
 use League\Event\EventDispatcher;
 
-class ArtistsQuery implements GraphQLQuery
+class ArtistsUnprefixQuery implements GraphQLQuery
 {
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
-        if ($operationName === 'SourceArtists') {
+        if ($operationName === 'ArtistUnprefixListOther') {
             $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
                 function (FilterQueryBuilder $event) use ($variables) {
                     $queryBuilder = $event->getQueryBuilder();
                     $queryBuilder
-                        ->distinct()
-                        ->join('entity.performances', 'performances')
-                        ->join('performances.sources', 'sources')
-                    ;
-
-#                    print_r($queryBuilder->getQuery()->getSQL());die();
-                }
-            );
-        }
-
-        if ($operationName === 'SourceArtistsOther') {
-            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
-                function (FilterQueryBuilder $event) use ($variables) {
-                    $queryBuilder = $event->getQueryBuilder();
-                    $queryBuilder
-                        ->distinct()
-                        ->join('entity.performances', 'performances')
-                        ->join('performances.sources', 'sources')
                         ->andWhere(
                             $queryBuilder->expr()->orX(
-                                $queryBuilder->expr()->lt('entity.nameFirstLetter', ':min'),
-                                $queryBuilder->expr()->gt('entity.nameFirstLetter', ':max')
+                                $queryBuilder->expr()->lt('ASCII(entity.nameUnprefix)', ':min'),
+                                $queryBuilder->expr()->gt('ASCII(entity.nameUnprefix)', ':max')
 
                             )
                         )
                         ->setParameter('min', 65)
                         ->setParameter('max', 122);
-                    ;
 
 #                    print_r($queryBuilder->getQuery()->getSQL());die();
                 }
@@ -59,16 +39,15 @@ class ArtistsQuery implements GraphQLQuery
             ],
             'resolve' => $driver->resolve(ArtistUnprefix::class),
             'description' => <<<EOF
-Fetch a collection of artists.
+Fetch a collection of artists using a view for unprefixing the artist name.
+This endpoint does not have relationships.  Use `artists` for related data.
 
 Special Operations:
 
-* SourceArtists
+* ArtistUnprefixListOther
 
-    Fetch artists with sources
-* SourceArtistsOther
+    Fetch artists with non-a to z-names
 
-    Fetch artists with sources with non-a to z-names
 EOF,
         ];
     }

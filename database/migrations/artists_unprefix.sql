@@ -1,3 +1,3 @@
-CREATE VIEW artists_unprefix AS
-SELECT artists.*, unprefix(artists.name) AS name_unprefix
+CREATE VIEW ArtistUnprefix AS
+SELECT artist_key as id, name, unprefix(artists.name) AS nameUnprefix, top100
 FROM artists;
