@@ -5,17 +5,14 @@ namespace App\GraphQL\Query\Artist;
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
 use App\GraphQL\Query\GraphQLQuery;
-use App\ORM\Entity\ArtistUnprefix;
-use App\ORM\Entity\Performance;
-use App\ORM\Entity\Source;
+use App\ORM\Entity\ArtistUnprefixSource;
 use League\Event\EventDispatcher;
-use function Doctrine\ORM\QueryBuilder;
 
-class ArtistsUnprefixQuery implements GraphQLQuery
+class ArtistsUnprefixSourceQuery implements GraphQLQuery
 {
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
-        if ($operationName === 'ArtistUnprefixListOther') {
+        if ($operationName === 'ArtistsUnprefixSourceOther') {
             $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
                 function (FilterQueryBuilder $event) use ($variables) {
                     $queryBuilder = $event->getQueryBuilder();
@@ -29,6 +26,7 @@ class ArtistsUnprefixQuery implements GraphQLQuery
                         )
                         ->setParameter('min', 65)
                         ->setParameter('max', 122);
+                    ;
 
 #                    print_r($queryBuilder->getQuery()->getSQL());die();
                 }
@@ -36,20 +34,21 @@ class ArtistsUnprefixQuery implements GraphQLQuery
         }
 
         return [
-            'type' => $driver->connection($driver->type(ArtistUnprefix::class)),
+            'type' => $driver->connection($driver->type(ArtistUnprefixSource::class)),
             'args' => [
-                'filter' => $driver->filter(ArtistUnprefix::class),
+                'filter' => $driver->filter(ArtistUnprefixSource::class),
             ],
-            'resolve' => $driver->resolve(ArtistUnprefix::class),
+            'resolve' => $driver->resolve(ArtistUnprefixSource::class),
             'description' => <<<EOF
-Fetch a collection of artists using a view for unprefixing the artist name.
+Fetch a collection of artists that have sources
+using a view for unprefixing the artist name.
 This endpoint does not have relationships.  Use `artists` for related data.
 
 Special Operations:
 
-* ArtistUnprefixListOther
+* ArtistsUnprefixSourceOther
 
-    Fetch artists with non-a to z-names
+    Fetch artists with sources with non-a to z-names
 EOF,
         ];
     }
