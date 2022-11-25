@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: 
+  - build
+  - '--tag=us.gcr.io/$PROJECT_ID/graphql.lcdb.org/$TRIGGER_NAME'
+  - '--file=./$_DOCKERFILE'
+  - .
+images:
+- 'us.gcr.io/$PROJECT_ID/graphql.lcdb.org/$TRIGGER_NAME'
