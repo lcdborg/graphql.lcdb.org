@@ -46,14 +46,20 @@ RUN docker-php-ext-install \
     snmp \
     zip
 
+# Install Supervisor Laravel Queue processor
+COPY .docker/config/laravel-worker.conf /etc/supervisor/conf.d/
+
 # Get latest Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
 RUN mv composer.phar /bin/composer
 RUN php -r "unlink('composer-setup.php');"
 
-# Install Supervisor Laravel Queue processor
-COPY .docker/config/laravel-worker.conf /etc/supervisor/conf.d/
+# Copy app files
+WORKDIR /var/www
+ADD . /var/www
+RUN rm -rf vendor
+RUN composer install --no-dev
 
 CMD php /var/www/artisan doctrine:generate:proxies \
     && service supervisor start \

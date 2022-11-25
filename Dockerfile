@@ -46,12 +46,16 @@ RUN docker-php-ext-install \
 # Apache
 RUN a2enmod rewrite
 
-WORKDIR /var/www
-
 # Get latest Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
 RUN mv composer.phar /bin/composer
 RUN php -r "unlink('composer-setup.php');"
+
+# Copy app files
+WORKDIR /var/www
+ADD . /var/www
+RUN rm -rf vendor
+RUN composer install --no-dev
 
 EXPOSE 80
