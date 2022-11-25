@@ -1,4 +1,6 @@
-FROM php:8.1-apache
+FROM php:8.1-cli
+
+WORKDIR /var/www
 
 # Install system dependencies
 RUN apt-get update && apt-get install --yes \
@@ -25,7 +27,8 @@ RUN apt-get update && apt-get install --yes \
     snmp \
     libsnmp-dev \
     libcurl4-openssl-dev \
-    libzip-dev
+    libzip-dev \
+    supervisor
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -43,15 +46,15 @@ RUN docker-php-ext-install \
     snmp \
     zip
 
-# Apache
-RUN a2enmod rewrite
-
-WORKDIR /var/www
-
 # Get latest Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
 RUN mv composer.phar /bin/composer
 RUN php -r "unlink('composer-setup.php');"
 
-EXPOSE 80
+# Install Supervisor Laravel Queue processor
+COPY .docker/config/laravel-worker.conf /etc/supervisor/conf.d/
+
+CMD php /var/www/artisan doctrine:generate:proxies \
+    && service supervisor start \
+    && tail -F /var/www/worker.log
