@@ -13,7 +13,7 @@ class ArtistGroupsQuery implements GraphQLQuery
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         if ($operationName === 'ArtistGroupsOther') {
-            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+            $driver->get(EventDispatcher::class)->subscribeTo('artistGroups',
                 function (FilterQueryBuilder $event) use ($variables) {
                     $queryBuilder = $event->getQueryBuilder();
                     $queryBuilder
@@ -33,7 +33,7 @@ class ArtistGroupsQuery implements GraphQLQuery
         }
 
         if ($operationName === 'SourceArtistGroups') {
-            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+            $driver->get(EventDispatcher::class)->subscribeTo('artistGroups',
                 function (FilterQueryBuilder $event) use ($variables) {
                     $queryBuilder = $event->getQueryBuilder();
                     $queryBuilder
@@ -49,7 +49,7 @@ class ArtistGroupsQuery implements GraphQLQuery
         }
 
         if ($operationName === 'SourceArtistGroupsOther') {
-            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+            $driver->get(EventDispatcher::class)->subscribeTo('artistGroups',
                 function (FilterQueryBuilder $event) use ($variables) {
                     $queryBuilder = $event->getQueryBuilder();
                     $queryBuilder
@@ -78,7 +78,7 @@ class ArtistGroupsQuery implements GraphQLQuery
             'args' => [
                 'filter' => $driver->filter(ArtistGroup::class),
             ],
-            'resolve' => $driver->resolve(ArtistGroup::class),
+            'resolve' => $driver->resolve(ArtistGroup::class, 'artistGroups'),
             'description' => <<<EOF
 Fetch a collection of artist groups.
 

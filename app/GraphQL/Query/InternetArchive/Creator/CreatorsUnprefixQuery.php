@@ -13,7 +13,7 @@ class CreatorsUnprefixQuery implements GraphQLQuery
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         if ($operationName === 'CreatorUnprefixListOther') {
-            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+            $driver->get(EventDispatcher::class)->subscribeTo('creators.unprefix',
                 function (FilterQueryBuilder $event) use ($variables) {
                     $queryBuilder = $event->getQueryBuilder();
                     $queryBuilder
@@ -37,7 +37,7 @@ class CreatorsUnprefixQuery implements GraphQLQuery
             'args' => [
                 'filter' => $driver->filter(CreatorUnprefix::class),
             ],
-            'resolve' => $driver->resolve(CreatorUnprefix::class),
+            'resolve' => $driver->resolve(CreatorUnprefix::class, 'creators.unprefix'),
             'description' => <<<EOF
 Fetch a collection of creators using a view for unprefixing the creator name.
 This endpoint does not have relationships.  Use `creators` for related data.

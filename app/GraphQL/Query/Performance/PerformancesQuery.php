@@ -13,7 +13,7 @@ class PerformancesQuery implements GraphQLQuery
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         if ($operationName === 'ArtistGroupPerformances') {
-            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+            $driver->get(EventDispatcher::class)->subscribeTo('performances',
                 function (FilterQueryBuilder $event) use ($variables) {
                     $queryBuilder = $event->getQueryBuilder();
                     $queryBuilder
@@ -33,7 +33,7 @@ class PerformancesQuery implements GraphQLQuery
             'args' => [
                 'filter' => $driver->filter(Performance::class),
             ],
-            'resolve' => $driver->resolve(Performance::class),
+            'resolve' => $driver->resolve(Performance::class, 'performances'),
             'description' => <<<EOF
 Fetch a collection of performances.
 

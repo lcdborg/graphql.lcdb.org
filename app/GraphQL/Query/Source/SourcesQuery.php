@@ -13,7 +13,7 @@ class SourcesQuery implements GraphQLQuery
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         if ($operationName === 'ArtistSources') {
-            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+            $driver->get(EventDispatcher::class)->subscribeTo('sources',
                 function (FilterQueryBuilder $event) use ($variables) {
                     if (isset($variables['id']) && $variables['id']) {
                         $queryBuilder = $event->getQueryBuilder();
@@ -36,7 +36,7 @@ class SourcesQuery implements GraphQLQuery
         }
 
         if ($operationName === 'ArtistGroupSources') {
-            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+            $driver->get(EventDispatcher::class)->subscribeTo('sources',
                 function (FilterQueryBuilder $event) use ($variables) {
                     if (isset($variables['id']) && $variables['id']) {
                         $queryBuilder = $event->getQueryBuilder();
@@ -65,7 +65,7 @@ class SourcesQuery implements GraphQLQuery
             'args' => [
                 'filter' => $driver->filter(Source::class),
             ],
-            'resolve' => $driver->resolve(Source::class),
+            'resolve' => $driver->resolve(Source::class, 'sources'),
             'description' => <<<EOF
 Fetch a collection of sources.
 

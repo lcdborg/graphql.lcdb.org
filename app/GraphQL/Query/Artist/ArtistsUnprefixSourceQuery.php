@@ -13,7 +13,7 @@ class ArtistsUnprefixSourceQuery implements GraphQLQuery
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         if ($operationName === 'ArtistsUnprefixSourceOther') {
-            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+            $driver->get(EventDispatcher::class)->subscribeTo('aritsts.unprefix.source',
                 function (FilterQueryBuilder $event) use ($variables) {
                     $queryBuilder = $event->getQueryBuilder();
                     $queryBuilder
@@ -38,7 +38,10 @@ class ArtistsUnprefixSourceQuery implements GraphQLQuery
             'args' => [
                 'filter' => $driver->filter(ArtistUnprefixSource::class),
             ],
-            'resolve' => $driver->resolve(ArtistUnprefixSource::class),
+            'resolve' => $driver->resolve(
+                ArtistUnprefixSource::class,
+                'aritsts.unprefix.source'
+            ),
             'description' => <<<EOF
 Fetch a collection of artists that have sources
 using a view for unprefixing the artist name.

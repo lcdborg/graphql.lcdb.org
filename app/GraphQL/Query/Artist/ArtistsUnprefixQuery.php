@@ -16,7 +16,7 @@ class ArtistsUnprefixQuery implements GraphQLQuery
     public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
     {
         if ($operationName === 'ArtistUnprefixListOther') {
-            $driver->get(EventDispatcher::class)->subscribeTo('filter.querybuilder',
+            $driver->get(EventDispatcher::class)->subscribeTo('artists.unprefix',
                 function (FilterQueryBuilder $event) use ($variables) {
                     $queryBuilder = $event->getQueryBuilder();
                     $queryBuilder
@@ -40,7 +40,7 @@ class ArtistsUnprefixQuery implements GraphQLQuery
             'args' => [
                 'filter' => $driver->filter(ArtistUnprefix::class),
             ],
-            'resolve' => $driver->resolve(ArtistUnprefix::class),
+            'resolve' => $driver->resolve(ArtistUnprefix::class, 'artists.unprefix'),
             'description' => <<<EOF
 Fetch a collection of artists using a view for unprefixing the artist name.
 This endpoint does not have relationships.  Use `artists` for related data.
