@@ -2,7 +2,6 @@
 
 namespace App\GraphQL\Type;
 
-use ApiSkeletons\Doctrine\GraphQL\Resolve\FieldResolver;
 use ApiSkeletons\Doctrine\GraphQL\Type\Buildable;
 use ApiSkeletons\Doctrine\GraphQL\Type\TypeManager;
 use App\ORM\Entity\Artist;

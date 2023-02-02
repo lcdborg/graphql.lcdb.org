@@ -14,6 +14,7 @@ class UsersQuery implements GraphQLQuery
             'type' => $driver->connection($driver->type(User::class)),
             'args' => [
                 'filter' => $driver->filter(User::class),
+                'pagination' => $driver->pagination(),
             ],
             'resolve' => $driver->resolve(User::class),
             'description' => <<<EOF

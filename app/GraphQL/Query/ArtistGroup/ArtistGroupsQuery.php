@@ -77,6 +77,7 @@ class ArtistGroupsQuery implements GraphQLQuery
             'type' => $driver->connection($driver->type(ArtistGroup::class)),
             'args' => [
                 'filter' => $driver->filter(ArtistGroup::class),
+                'pagination' => $driver->pagination(),
             ],
             'resolve' => $driver->resolve(ArtistGroup::class, 'artistGroups'),
             'description' => <<<EOF
