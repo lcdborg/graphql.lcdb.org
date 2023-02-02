@@ -64,6 +64,7 @@ class SourcesQuery implements GraphQLQuery
             'type' => $driver->connection($driver->type(Source::class)),
             'args' => [
                 'filter' => $driver->filter(Source::class),
+                'pagination' => $driver->pagination(),
             ],
             'resolve' => $driver->resolve(Source::class, 'sources'),
             'description' => <<<EOF

@@ -16,6 +16,7 @@ class CreatorsQuery implements GraphQLQuery
             'type' => $driver->connection($driver->type(Creator::class)),
             'args' => [
                 'filter' => $driver->filter(Creator::class),
+                'pagination' => $driver->pagination(),
             ],
             'resolve' => $driver->resolve(Creator::class),
             'description' => <<<EOF

@@ -17,6 +17,7 @@ class ArtistsQuery implements GraphQLQuery
             'type' => $driver->connection($driver->type(ArtistUnprefix::class)),
             'args' => [
                 'filter' => $driver->filter(ArtistUnprefix::class),
+                'pagination' => $driver->pagination(),
             ],
             'resolve' => $driver->resolve(ArtistUnprefix::class),
             'description' => <<<EOF

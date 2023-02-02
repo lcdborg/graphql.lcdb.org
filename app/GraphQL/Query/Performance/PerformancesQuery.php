@@ -32,6 +32,7 @@ class PerformancesQuery implements GraphQLQuery
             'type' => $driver->connection($driver->type(Performance::class)),
             'args' => [
                 'filter' => $driver->filter(Performance::class),
+                'pagination' => $driver->pagination(),
             ],
             'resolve' => $driver->resolve(Performance::class, 'performances'),
             'description' => <<<EOF
