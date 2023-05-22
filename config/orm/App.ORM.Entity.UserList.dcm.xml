@@ -17,7 +17,7 @@
         <option name="unsigned">true</option>
       </options>
     </field>
-    <field name="lastviewed" type="dateTime" nullable="false"/>
+    <field name="lastviewed" type="datetime" nullable="false"/>
     <field name="defaultlist" type="boolean" nullable="false"/>
     <field name="private" type="boolean" nullable="true"/>
     <many-to-one field="user" target-entity="App\ORM\Entity\User" inversed-by="userLists">
