@@ -18,10 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/graphql', 'GraphQLController@graphql')
-    ->name('graphql.get');
-
-Route::post('/graphql', 'GraphQLController@graphql')
+Route::post('/', 'GraphQLController@graphql')
     ->name('graphql.post');
 
 Route::get('/api/source/{id}/download', 'Api\SourceDownloadAllController@download')

@@ -64,10 +64,6 @@ class GraphQLController extends Controller
                     'sourceYears'      => GraphQLQuery\Source\SourceYearsQuery::getDefinition($driver, $variables, $operationName),
                     'sourceLatestYear' => GraphQLQuery\Source\SourceLatestYearQuery::getDefinition($driver, $variables, $operationName),
 
-                    ## Users
-                    'users'            => GraphQLQuery\User\UsersQuery::getDefinition($driver, $variables, $operationName),
-                    'user'             => GraphQLQuery\User\UserQuery::getDefinition($driver, $variables, $operationName),
-
                     ## Internet Archive
                     'creator'              => GraphQLQuery\InternetArchive\Creator\CreatorQuery::getDefinition($driver, $variables, $operationName),
                     'creatorLatestYear'    => GraphQLQuery\InternetArchive\Creator\CreatorLatestYearQuery::getDefinition($driver, $variables, $operationName),
@@ -76,6 +72,16 @@ class GraphQLController extends Controller
                     'creatorsUnprefix'     => GraphQLQuery\InternetArchive\Creator\CreatorsUnprefixQuery::getDefinition($driver, $variables, $operationName),
                     'identifier'           => GraphQLQuery\InternetArchive\Identifier\IdentifierQuery::getDefinition($driver, $variables, $operationName),
                     'identifiers'          => GraphQLQuery\InternetArchive\Identifier\IdentifiersQuery::getDefinition($driver, $variables, $operationName),
+
+                    ## Users
+                    'users'                => GraphQLQuery\User\UsersQuery::getDefinition($driver, $variables, $operationName),
+                    'user'                 => GraphQLQuery\User\UserQuery::getDefinition($driver, $variables, $operationName),
+                    'userByUsername'       => GraphQLQuery\User\UserByUsernameQuery::getDefinition($driver, $variables, $operationName),
+
+                    # User List
+                    'userList'             => GraphQLQuery\User\UserListQuery::getDefinition($driver, $variables, $operationName),
+                    'userListByUsername'   => GraphQLQuery\User\UserListByUsernameQuery::getDefinition($driver, $variables, $operationName),
+                    'userListPerformances' => GraphQLQuery\User\UserListPerformancesQuery::getDefinition($driver, $variables, $operationName),
                 ],
             ]),
         ]);
