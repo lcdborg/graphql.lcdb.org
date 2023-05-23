@@ -23,7 +23,7 @@ class GraphQLController extends Controller
             'globalEnable' => true,
             'limit' => 300,
             'useHydratorCache' => true,
-            'globalIgnore' => ['password', 'realemail', 'email'],
+            'globalIgnore' => ['password', 'realemail'],
             'groupSuffix' => '',
             'entityPrefix' => 'App\\ORM\\Entity\\',
         ]));
