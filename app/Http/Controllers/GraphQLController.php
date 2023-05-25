@@ -36,7 +36,7 @@ class GraphQLController extends Controller
                 'name' => 'query',
                 'fields' => [
                     ## Artists
-                    'artists'          => GraphQLQuery\Artist\ArtistsQuery::getDefinition($driver, $variables, $operationName),
+                    'artists'                   => GraphQLQuery\Artist\ArtistsQuery::getDefinition($driver, $variables, $operationName),
                     'artist'                 => GraphQLQuery\Artist\AritstQuery::getDefinition($driver, $variables, $operationName),
                     'artistYears'            => GraphQLQuery\Artist\ArtistYearsQuery::getDefinition($driver, $variables, $operationName),
                     'artistLatestYear'       => GraphQLQuery\Artist\ArtistLatestYearQuery::getDefinition($driver, $variables, $operationName),
@@ -44,8 +44,8 @@ class GraphQLController extends Controller
                     'artistsUnprefixSource'  => GraphQLQuery\Artist\ArtistsUnprefixSourceQuery::getDefinition($driver, $variables, $operationName),
 
                     ## Artist Groups
-                    'artistGroup'            => GraphQLQuery\ArtistGroup\ArtistGroupQuery::getDefinition($driver, $variables, $operationName),
-                    'artistGroups'           => GraphQLQuery\ArtistGroup\ArtistGroupsQuery::getDefinition($driver, $variables, $operationName),
+                    'artistGroup'                 => GraphQLQuery\ArtistGroup\ArtistGroupQuery::getDefinition($driver, $variables, $operationName),
+                    'artistGroups'                => GraphQLQuery\ArtistGroup\ArtistGroupsQuery::getDefinition($driver, $variables, $operationName),
                     'artistGroupArtists'          => GraphQLQuery\ArtistGroup\ArtistGroupArtistsQuery::getDefinition($driver, $variables, $operationName),
                     'artistGroupLatestYear'       => GraphQLQuery\ArtistGroup\ArtistGroupLatestYearQuery::getDefinition($driver, $variables, $operationName),
                     'artistGroupSourceCount'      => GraphQLQuery\ArtistGroup\ArtistGroupSourceCountQuery::getDefinition($driver, $variables, $operationName),
@@ -54,7 +54,7 @@ class GraphQLController extends Controller
                     'artistGroupSourceLatestYear' => GraphQLQuery\ArtistGroup\ArtistGroupSourceLatestYearQuery::getDefinition($driver, $variables, $operationName),
 
                     ## Performances
-                    'performances'                => GraphQLQuery\Performance\PerformancesQuery::getDefinition($driver, $variables, $operationName),
+                    'performances'     => GraphQLQuery\Performance\PerformancesQuery::getDefinition($driver, $variables, $operationName),
                     'performance'      => GraphQLQuery\Performance\PerformanceQuery::getDefinition($driver, $variables, $operationName),
 
                     ## Sources
@@ -81,7 +81,9 @@ class GraphQLController extends Controller
                     # User List
                     'userList'             => GraphQLQuery\User\UserListQuery::getDefinition($driver, $variables, $operationName),
                     'userListByUsername'   => GraphQLQuery\User\UserListByUsernameQuery::getDefinition($driver, $variables, $operationName),
-                    'userListPerformances' => GraphQLQuery\User\UserListPerformancesQuery::getDefinition($driver, $variables, $operationName),
+
+                    # User Performances
+                    'userPerformancesByUsername' => GraphQLQuery\User\UserPerformancesByUsernameQuery::getDefinition($driver, $variables, $operationName),
                 ],
             ]),
         ]);
