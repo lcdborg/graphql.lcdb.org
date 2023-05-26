@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Query\User;
+namespace App\GraphQL\Query\UserList;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use App\GraphQL\Query\GraphQLQuery;
@@ -17,9 +17,14 @@ class UserListByUsernameQuery implements GraphQLQuery
             'type' => $driver->type(UserList::class),
             'args' => [
                 'username' => Type::nonNull(Type::string()),
-                'listname' => Type::nonNull(Type::string()),
+                'listname' => Type::string(),
             ],
             'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
+
+                if (! $args['listname']) {
+                    return null;
+                }
+
                 $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
                 $queryBuilder->select('userList')
                     ->from(UserList::class, 'userList')

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Query\User;
+namespace App\GraphQL\Query\UserList;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use App\GraphQL\Query\GraphQLQuery;
