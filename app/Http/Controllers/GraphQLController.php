@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use ApiSkeletons\Doctrine\GraphQL\Config;
 use ApiSkeletons\Doctrine\GraphQL\Driver;
+use ApiSkeletons\Doctrine\GraphQL\Event\EntityDefinition;
 use App\GraphQL\Query as GraphQLQuery;
+use App\ORM\Entity\User;
+use App\ORM\Entity\UserList;
+use App\ORM\Entity\UserPerformance;
 use Doctrine\ORM\EntityManager;
 use GraphQL\GraphQL;
 use GraphQL\Type\Definition\ObjectType;
+use GraphQL\Type\Definition\ResolveInfo;
+use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Schema;
 use Illuminate\Http\Request;
+use League\Event\EventDispatcher;
 
 class GraphQLController extends Controller
 {
@@ -27,6 +34,67 @@ class GraphQLController extends Controller
             'groupSuffix' => '',
             'entityPrefix' => 'App\\ORM\\Entity\\',
         ]));
+
+        /**
+         * Add a userPerformanceCount field to each userList
+         */
+        $driver->get(EventDispatcher::class)->subscribeTo(
+            UserList::class . '.definition',
+            static function (EntityDefinition $event) use ($driver): void {
+                $definition = $event->getDefinition();
+                $fields = $definition['fields']();
+
+                $fields['userPerformanceCount'] = [
+                    'type' => Type::int(),
+                    'description' => 'The count of user performances assigned to a user list',
+                    'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver) : mixed {
+                        $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
+
+                        $queryBuilder->select('COUNT(userPerformance)')
+                            ->from(UserPerformance::class, 'userPerformance')
+                            ->innerJoin('userPerformance.userLists', 'userLists')
+                            ->andWhere($queryBuilder->expr()->eq('userLists.id', ':id'))
+                            ->setParameter('id', $objectValue->getId())
+                            ;
+
+                        return $queryBuilder->getQuery()->getSingleScalarResult();
+                    },
+                ];
+
+                $definition['fields'] = $fields;
+            }
+        );
+
+        /**
+         * Add a userPerformanceCount field to each user
+         */
+        $driver->get(EventDispatcher::class)->subscribeTo(
+            User::class . '.definition',
+            static function (EntityDefinition $event) use ($driver): void {
+                $definition = $event->getDefinition();
+                $fields = $definition['fields']();
+
+                $fields['userPerformanceCount'] = [
+                    'type' => Type::int(),
+                    'description' => 'The count of user performances for a user',
+                    'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver) : mixed {
+                        $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
+
+                        $queryBuilder->select('COUNT(userPerformance)')
+                            ->from(UserPerformance::class, 'userPerformance')
+                            ->innerJoin('userPerformance.user', 'user')
+                            ->andWhere($queryBuilder->expr()->eq('user.id', ':id'))
+                            ->setParameter('id', $objectValue->getId())
+                        ;
+
+                        return $queryBuilder->getQuery()->getSingleScalarResult();
+                    },
+                ];
+
+                $definition['fields'] = $fields;
+            }
+        );
+
 
         /**
          * Operation names with special handling are listed below each field
@@ -78,12 +146,13 @@ class GraphQLController extends Controller
                     'user'                 => GraphQLQuery\User\UserQuery::getDefinition($driver, $variables, $operationName),
                     'userByUsername'       => GraphQLQuery\User\UserByUsernameQuery::getDefinition($driver, $variables, $operationName),
 
-                    # User List
-                    'userList'             => GraphQLQuery\User\UserListQuery::getDefinition($driver, $variables, $operationName),
-                    'userListByUsername'   => GraphQLQuery\User\UserListByUsernameQuery::getDefinition($driver, $variables, $operationName),
+                    # User Lists
+                    'userList'             => GraphQLQuery\UserList\UserListQuery::getDefinition($driver, $variables, $operationName),
+                    'userListByUsername'   => GraphQLQuery\UserList\UserListByUsernameQuery::getDefinition($driver, $variables, $operationName),
 
                     # User Performances
-                    'userPerformancesByUsername' => GraphQLQuery\User\UserPerformancesByUsernameQuery::getDefinition($driver, $variables, $operationName),
+                    'userPerformancesByUsername' => GraphQLQuery\UserPerformance\UserPerformancesByUsernameQuery::getDefinition($driver, $variables, $operationName),
+                    'userPerformance'            => GraphQLQuery\UserPerformance\UserPerformanceQuery::getDefinition($driver, $variables, $operationName),
                 ],
             ]),
         ]);

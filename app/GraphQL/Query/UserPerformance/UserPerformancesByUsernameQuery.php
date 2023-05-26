@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Query\User;
+namespace App\GraphQL\Query\UserPerformance;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
