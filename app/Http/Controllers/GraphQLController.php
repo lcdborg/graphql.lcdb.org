@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use ApiSkeletons\Doctrine\GraphQL\Config;
 use ApiSkeletons\Doctrine\GraphQL\Driver;
+use ApiSkeletons\Doctrine\GraphQL\Event\BuildMetadata;
 use ApiSkeletons\Doctrine\GraphQL\Event\EntityDefinition;
 use App\GraphQL\Query as GraphQLQuery;
 use App\ORM\Entity\User;
@@ -34,6 +35,15 @@ class GraphQLController extends Controller
             'groupSuffix' => '',
             'entityPrefix' => 'App\\ORM\\Entity\\',
         ]));
+
+        $driver->get(EventDispatcher::class)->subscribeTo(
+            'metadata.build',
+            static function (BuildMetadata $event): void {
+                $metadata = $event->getMetadata();
+
+                $metadata[UserPerformance::class]['limit'] = 1000;
+            },
+        );
 
         /**
          * Add a userPerformanceCount field to each userList
