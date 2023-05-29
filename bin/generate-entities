@@ -1,0 +1,1 @@
+php artisan doctrine:generate:entities --generate-methods --regenerate-entities --no-backup .
