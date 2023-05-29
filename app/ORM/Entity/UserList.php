@@ -38,7 +38,7 @@ class UserList
     private $views;
 
     /**
-     * @var dateTime
+     * @var \DateTime
      */
     private $lastviewed;
 
@@ -227,11 +227,11 @@ class UserList
     /**
      * Set lastviewed.
      *
-     * @param \dateTime $lastviewed
+     * @param \DateTime $lastviewed
      *
      * @return UserList
      */
-    public function setLastviewed(\dateTime $lastviewed)
+    public function setLastviewed($lastviewed)
     {
         $this->lastviewed = $lastviewed;
 
@@ -241,7 +241,7 @@ class UserList
     /**
      * Get lastviewed.
      *
-     * @return \dateTime
+     * @return \DateTime
      */
     public function getLastviewed()
     {
