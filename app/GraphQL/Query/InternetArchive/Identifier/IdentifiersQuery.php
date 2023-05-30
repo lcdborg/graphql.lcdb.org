@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\GraphQL\Query\InternetArchive\Identifier;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
@@ -8,7 +10,8 @@ use App\ORM\Entity\InternetArchive\Creator;
 
 class IdentifiersQuery implements GraphQLQuery
 {
-    public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
+    /** @inheritDoc */
+    public static function getDefinition(Driver $driver, array $variables = [], string|null $operationName = null): array
     {
         return [
             'type' => $driver->connection($driver->type(Creator::class)),
@@ -17,7 +20,7 @@ class IdentifiersQuery implements GraphQLQuery
                 'pagination' => $driver->pagination(),
             ],
             'resolve' => $driver->resolve(Creator::class),
-            'description' => <<<EOF
+            'description' => <<<'EOF'
 Fetch a collection of identifiers.
 EOF,
         ];

@@ -11,6 +11,9 @@ services:
             - ./.docker/config/my.cnf:/etc/mysql/conf.d/custom.cnf
             - ./db/now_usec/now_usec.so:/usr/lib/mysql/plugin/now_usec.so
 
+    redis:
+       image: redis:latest
+
     web:
         build:
             context: .

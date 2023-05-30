@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\GraphQL\Query\Performance;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
@@ -10,11 +12,13 @@ use League\Event\EventDispatcher;
 
 class PerformancesQuery implements GraphQLQuery
 {
-    public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
+    /** @inheritDoc */
+    public static function getDefinition(Driver $driver, array $variables = [], string|null $operationName = null): array
     {
         if ($operationName === 'ArtistGroupPerformances') {
-            $driver->get(EventDispatcher::class)->subscribeTo('performances',
-                function (FilterQueryBuilder $event) use ($variables) {
+            $driver->get(EventDispatcher::class)->subscribeTo(
+                'performances',
+                static function (FilterQueryBuilder $event) use ($variables): void {
                     $queryBuilder = $event->getQueryBuilder();
                     $queryBuilder
                         ->innerJoin('entity.artist', 'artist')
@@ -22,9 +26,7 @@ class PerformancesQuery implements GraphQLQuery
                         ->innerJoin('artistToArtistGroups.artistGroup', 'artistGroup')
                         ->andWhere($queryBuilder->expr()->eq('artistGroup.id', ':artistGroupId'))
                         ->setParameter('artistGroupId', $variables['id']);
-
-#                    print_r($queryBuilder->getQuery()->getSQL());die();
-                }
+                },
             );
         }
 
@@ -35,14 +37,14 @@ class PerformancesQuery implements GraphQLQuery
                 'pagination' => $driver->pagination(),
             ],
             'resolve' => $driver->resolve(Performance::class, 'performances'),
-            'description' => <<<EOF
+            'description' => <<<'EOF'
 Fetch a collection of performances.
 
 Special Operations
 
 * ArtistGroupPerformances
 
-    Fetch performances for the given artist group \$id and \$year
+    Fetch performances for the given artist group $id and $year
 EOF,
         ];
     }
