@@ -28,12 +28,6 @@ final class Schema
                     // Artist Groups
                     'artistGroup'                 => Query\ArtistGroup\ArtistGroupQuery::getDefinition($driver, $variables, $operationName),
                     'artistGroups'                => Query\ArtistGroup\ArtistGroupsQuery::getDefinition($driver, $variables, $operationName),
-                    'artistGroupArtists'          => Query\ArtistGroup\ArtistGroupArtistsQuery::getDefinition($driver, $variables, $operationName),
-                    'artistGroupLatestYear'       => Query\ArtistGroup\ArtistGroupLatestYearQuery::getDefinition($driver, $variables, $operationName),
-                    'artistGroupSourceCount'      => Query\ArtistGroup\ArtistGroupSourceCountQuery::getDefinition($driver, $variables, $operationName),
-                    'artistGroupYears'            => Query\ArtistGroup\ArtistGroupYearsQuery::getDefinition($driver, $variables, $operationName),
-                    'artistGroupSourceYears'      => Query\ArtistGroup\ArtistGroupSourceYearsQuery::getDefinition($driver, $variables, $operationName),
-                    'artistGroupSourceLatestYear' => Query\ArtistGroup\ArtistGroupSourceLatestYearQuery::getDefinition($driver, $variables, $operationName),
 
                     // Performances
                     'performances'     => Query\Performance\PerformancesQuery::getDefinition($driver, $variables, $operationName),

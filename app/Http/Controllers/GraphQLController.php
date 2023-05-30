@@ -48,6 +48,7 @@ class GraphQLController extends Controller
 
         // Subscribe to events
         Event\BuildMetadata::subscribe($driver);
+        Event\ArtistGroupDefinition::subscribe($driver);
         Event\UserDefinition::subscribe($driver);
         Event\UserListDefinition::subscribe($driver);
 
