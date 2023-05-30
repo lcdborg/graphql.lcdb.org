@@ -66,6 +66,59 @@ final class ArtistDefinition implements Event
                     },
                 ];
 
+                $fields['sourceYears'] = [
+                    'type' => Type::listOf(Type::int()),
+                    'description' => 'The performance for artist sources',
+                    'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
+                        $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
+                        $queryBuilder->select('performance.year')
+                            ->distinct()
+                            ->from(Source::class, 'source')
+                            ->innerJoin('source.performance', 'performance')
+                            ->andWhere($queryBuilder->expr()->eq('performance.artist', ':artist'))
+                            ->setParameter('artist', $objectValue->getId())
+                            ->orderBy('performance.year', 'ASC');
+
+                        $years = [];
+                        foreach ($queryBuilder->getQuery()->getArrayResult() as $result) {
+                            $years[] = $result['year'];
+                        }
+
+                        return $years;
+                    },
+                ];
+
+                $fields['sourceLatestYear'] = [
+                    'type' => Type::int(),
+                    'description' => 'The most recent performance year for an artist\'s sources',
+                    'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
+                        $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
+                        $queryBuilder->select('MAX(performance.year)')
+                            ->from(Source::class, 'source')
+                            ->innerJoin('source.performance', 'performance')
+                            ->andWhere($queryBuilder->expr()->eq('performance.artist', ':artist'))
+                            ->setParameter('artist', $objectValue->getId())
+                            ->orderBy('performance.year', 'ASC');
+
+                        return $queryBuilder->getQuery()->getSingleScalarResult();
+                    },
+                ];
+
+                $fields['sourceCount'] = [
+                    'type' => Type::int(),
+                    'description' => 'The number of sources for an artist',
+                    'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
+                        $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
+                        $queryBuilder->select('COUNT(source.id)')
+                            ->from(Source::class, 'source')
+                            ->innerJoin('source.performance', 'performance')
+                            ->andWhere($queryBuilder->expr()->eq('performance.artist', ':artist'))
+                            ->setParameter('artist', $objectValue->getId());
+
+                        return $queryBuilder->getQuery()->getSingleScalarResult();
+                    },
+                ];
+
                 $definition['fields'] = $fields;
             },
         );
