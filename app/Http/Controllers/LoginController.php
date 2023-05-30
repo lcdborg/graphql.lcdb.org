@@ -1,17 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use Doctrine\ORM\EntityManager;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+
+use function view;
 
 class LoginController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): View
     {
         $authError = $request->get('auth_error');
 
-        switch($authError) {
+        switch ($authError) {
             case 1:
                 $error = 'Username not found';
                 break;

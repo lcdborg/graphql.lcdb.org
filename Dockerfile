@@ -25,7 +25,8 @@ RUN apt-get update && apt-get install --yes \
     snmp \
     libsnmp-dev \
     libcurl4-openssl-dev \
-    libzip-dev
+    libzip-dev \
+    redis
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -42,6 +43,9 @@ RUN docker-php-ext-install \
     bcmath \
     snmp \
     zip
+RUN pecl install redis
+RUN docker-php-ext-enable redis
+
 
 # Apache
 RUN a2enmod rewrite

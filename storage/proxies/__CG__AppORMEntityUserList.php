@@ -312,7 +312,7 @@ class UserList extends \App\ORM\Entity\UserList implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
-    public function setLastviewed(\dateTime $lastviewed)
+    public function setLastviewed($lastviewed)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLastviewed', [$lastviewed]);

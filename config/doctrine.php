@@ -24,9 +24,9 @@ return [
     | --> Warning: Proxy auto generation should only be enabled in dev!
     |
     */
-    'managers'                   => [
+    'managers' => [
         'default' => [
-	    'meta'          => env('DOCTRINE_METADATA', 'xml'),
+	        'meta'          => env('DOCTRINE_METADATA', 'xml'),
             'paths'         => [__DIR__ . '/orm'],
             'naming_strategy' => Doctrine\ORM\Mapping\DefaultNamingStrategy::class,
             'dev'           => env('APP_DEBUG', false),

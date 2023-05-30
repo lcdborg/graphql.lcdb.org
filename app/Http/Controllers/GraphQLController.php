@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use ApiSkeletons\Doctrine\GraphQL\Config;
@@ -9,13 +11,26 @@ use App\GraphQL\Schema;
 use Doctrine\ORM\EntityManager;
 use GraphQL\GraphQL;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+
+use function mb_convert_encoding;
+use function serialize;
+use function unserialize;
 
 class GraphQLController extends Controller
 {
-    public function graphql(EntityManager $entityManager, Request $request)
+    /** @return array<mixed, mixed> */
+    public function graphql(EntityManager $entityManager, Request $request): array
     {
-        $variables = $request->get('variables') ?? [];
+        $variables     = $request->get('variables') ?? [];
         $operationName = $request->get('operationName');
+
+        if (Redis::exists('GraphQL.metadata')) {
+            $metadata = Redis::get('GraphQL.metadata');
+            $metadata = unserialize($metadata);
+        } else {
+            $metadata = [];
+        }
 
         // Build Driver
         $driver = new Driver($entityManager, new Config([
@@ -25,7 +40,11 @@ class GraphQLController extends Controller
             'globalIgnore' => ['password', 'realemail'],
             'groupSuffix' => '',
             'entityPrefix' => 'App\\ORM\\Entity\\',
-        ]));
+        ]), $metadata);
+
+        if (! $metadata) {
+            Redis::set('GraphQL.metadata', serialize($driver->get('metadata')->getArrayCopy()));
+        }
 
         // Subscribe to events
         Event\BuildMetadata::subscribe($driver);
@@ -39,9 +58,9 @@ class GraphQLController extends Controller
             null,
             null,
             $variables,
-            $operationName
+            $operationName,
         );
 
-        return mb_convert_encoding($result->toArray(), "UTF-8", "auto");
+        return mb_convert_encoding($result->toArray(), 'UTF-8', 'auto');
     }
 }

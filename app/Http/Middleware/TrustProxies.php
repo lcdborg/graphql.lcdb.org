@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Middleware\TrustProxies as Middleware;
@@ -11,6 +13,7 @@ class TrustProxies extends Middleware
      * The trusted proxies for this application.
      *
      * @var array<int, string>|string|null
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $proxies;
 
@@ -18,6 +21,7 @@ class TrustProxies extends Middleware
      * The headers that should be used to detect proxies.
      *
      * @var int
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $headers =
         Request::HEADER_X_FORWARDED_FOR |
