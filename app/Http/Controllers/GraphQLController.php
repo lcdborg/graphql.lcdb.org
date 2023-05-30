@@ -6,8 +6,10 @@ namespace App\Http\Controllers;
 
 use ApiSkeletons\Doctrine\GraphQL\Config;
 use ApiSkeletons\Doctrine\GraphQL\Driver;
+use ApiSkeletons\Doctrine\GraphQL\Type\TypeManager;
 use App\GraphQL\Event;
 use App\GraphQL\Schema;
+use App\GraphQL\Type\TopArtist;
 use Doctrine\ORM\EntityManager;
 use GraphQL\GraphQL;
 use Illuminate\Http\Request;
