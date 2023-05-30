@@ -15,6 +15,7 @@
 
     <exclude-pattern>app/ORM/Entity/*</exclude-pattern>
     <exclude-pattern>app/Functions/*</exclude-pattern>
+    <exclude-pattern>config/*</exclude-pattern>
 
     <!-- Include full Doctrine Coding Standard -->
     <rule ref="Doctrine"/>
