@@ -14,7 +14,6 @@ class GraphQLController extends Controller
 {
     public function graphql(EntityManager $entityManager, Request $request)
     {
-        $query = $request->get('query');
         $variables = $request->get('variables') ?? [];
         $operationName = $request->get('operationName');
 
@@ -36,7 +35,7 @@ class GraphQLController extends Controller
         // Run GraphQL
         $result = GraphQL::executeQuery(
             Schema::build($driver, $variables, $operationName),
-            $query,
+            $request->get('query'),
             null,
             null,
             $variables,
