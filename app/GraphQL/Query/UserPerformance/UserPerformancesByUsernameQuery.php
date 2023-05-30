@@ -31,12 +31,14 @@ class UserPerformancesByUsernameQuery implements GraphQLQuery
                     ->addOrderBy('performance.date', 'asc')
                     ->addOrderBy('entity.id', 'asc');
 
-                if (isset($event->getArgs()['listname']) && $event->getArgs()['listname']) {
-                    $queryBuilder
-                        ->innerJoin('entity.userLists', 'userLists')
-                        ->andWhere($queryBuilder->expr()->eq('userLists.shortname', ':listname'))
-                        ->setParameter('listname', $event->getArgs()['listname']);
+                if (! isset($event->getArgs()['listname']) || ! $event->getArgs()['listname']) {
+                    return;
                 }
+
+                $queryBuilder
+                    ->innerJoin('entity.userLists', 'userLists')
+                    ->andWhere($queryBuilder->expr()->eq('userLists.shortname', ':listname'))
+                    ->setParameter('listname', $event->getArgs()['listname']);
             },
         );
 

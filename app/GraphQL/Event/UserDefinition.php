@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\GraphQL\Event;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\EntityDefinition;
 use App\GraphQL\Type\TopArtist;
-use App\ORM\Entity\Artist;
 use App\ORM\Entity\User;
 use App\ORM\Entity\UserPerformance;
 use Doctrine\ORM\EntityManager;
@@ -13,7 +14,7 @@ use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use League\Event\EventDispatcher;
 
-final class UserDefinition implements EventInterface
+final class UserDefinition implements Event
 {
     public static function subscribe(Driver $driver): void
     {
@@ -42,7 +43,6 @@ final class UserDefinition implements EventInterface
                     },
                 ];
 
-
                 $fields['topArtists'] = [
                     'type' => Type::listOf(new TopArtist()),
                     'args' => [
@@ -50,7 +50,7 @@ final class UserDefinition implements EventInterface
                     ],
                     'description' => 'User top artists',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver) {
-                        $limit = ($args['limit'] <= 20) ? $args['limit']: 20;
+                        $limit = $args['limit'] <= 20 ? $args['limit'] : 20;
 
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
 
@@ -68,7 +68,6 @@ final class UserDefinition implements EventInterface
                         return $queryBuilder->getQuery()->getResult();
                     },
                 ];
-
 
                 $definition['fields'] = $fields;
             },
