@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\GraphQL\Query\ArtistGroup;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
@@ -13,15 +15,17 @@ class ArtistGroupArtistsQuery implements GraphQLQuery
 {
     /**
      * This function exists because you can't sort artists by name when querying through `artistGroup`
+     *
+     * @inheritDoc
      */
-    public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
+    public static function getDefinition(Driver $driver, array $variables = [], string|null $operationName = null): array
     {
         return [
             'type' => Type::listOf($driver->type(Artist::class)),
             'args' => [
                 'id' => Type::nonNull(Type::int()),
             ],
-            'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
+            'resolve' => static function ($obj, $args, $context, ResolveInfo $info) use ($driver): array {
                 $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
                 $queryBuilder->select('artist')
                     ->from(Artist::class, 'artist')
@@ -33,8 +37,8 @@ class ArtistGroupArtistsQuery implements GraphQLQuery
 
                 return $queryBuilder->getQuery()->getResult();
             },
-            'description' => <<<EOF
-Return a list of artists in an artist group.
+            'description' => <<<'EOF'
+Return a list of artists in an artist group sorted by name.
 EOF,
         ];
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\GraphQL\Query\Source;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
@@ -11,17 +13,18 @@ use GraphQL\Type\Definition\Type;
 
 class SourceQuery implements GraphQLQuery
 {
-    public static function getDefinition(Driver $driver, array $variables = [], ?string $operationName = null): array
+    /** @inheritDoc */
+    public static function getDefinition(Driver $driver, array $variables = [], string|null $operationName = null): array
     {
         return [
             'type' => $driver->type(Source::class),
             'args' => [
                 'id' => Type::nonNull(Type::int()),
             ],
-            'resolve' => function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
+            'resolve' => static function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)->getRepository(Source::class)->find($args['id']);
             },
-            'description' => <<<EOF
+            'description' => <<<'EOF'
 Fetch a single source.
 EOF,
         ];
