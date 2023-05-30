@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 
 use ApiSkeletons\Doctrine\GraphQL\Config;
 use ApiSkeletons\Doctrine\GraphQL\Driver;
-use App\GraphQL\Event;
 use App\GraphQL\Schema;
 use Doctrine\ORM\EntityManager;
 use GraphQL\GraphQL;
@@ -45,12 +44,6 @@ class GraphQLController extends Controller
         if (! $metadata) {
             Redis::set('GraphQL.metadata', serialize($driver->get('metadata')->getArrayCopy()));
         }
-
-        // Subscribe to events
-        Event\BuildMetadata::subscribe($driver);
-        Event\ArtistGroupDefinition::subscribe($driver);
-        Event\UserDefinition::subscribe($driver);
-        Event\UserListDefinition::subscribe($driver);
 
         // Run GraphQL
         $result = GraphQL::executeQuery(

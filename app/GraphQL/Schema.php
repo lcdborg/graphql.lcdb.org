@@ -13,6 +13,13 @@ final class Schema
     /** @param array<string, mixed> $variables */
     public static function build(Driver $driver, array $variables, string|null $operationName): GraphQLSchema
     {
+        // Subscribe to events
+        Event\BuildMetadata::subscribe($driver);
+        Event\ArtistDefinition::subscribe($driver);
+        Event\ArtistGroupDefinition::subscribe($driver);
+        Event\UserDefinition::subscribe($driver);
+        Event\UserListDefinition::subscribe($driver);
+
         return new GraphQLSchema([
             'query' => new ObjectType([
                 'name' => 'query',
@@ -20,8 +27,6 @@ final class Schema
                     // Artists
                     'artists'                => Query\Artist\ArtistsQuery::getDefinition($driver, $variables, $operationName),
                     'artist'                 => Query\Artist\AritstQuery::getDefinition($driver, $variables, $operationName),
-                    'artistYears'            => Query\Artist\ArtistYearsQuery::getDefinition($driver, $variables, $operationName),
-                    'artistLatestYear'       => Query\Artist\ArtistLatestYearQuery::getDefinition($driver, $variables, $operationName),
                     'artistsUnprefix'        => Query\Artist\ArtistsUnprefixQuery::getDefinition($driver, $variables, $operationName),
                     'artistsUnprefixSource'  => Query\Artist\ArtistsUnprefixSourceQuery::getDefinition($driver, $variables, $operationName),
 
