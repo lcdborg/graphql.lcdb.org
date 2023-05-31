@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Jobs\InternetArchive;
 
 use App\ORM\Entity\Artist;
@@ -9,6 +11,7 @@ use App\ORM\Entity\InternetArchive\File;
 use App\ORM\Entity\InternetArchive\Identifier;
 use App\ORM\Entity\Source;
 use DateTime;
+use DirectoryIterator;
 use Doctrine\ORM\EntityManager;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -16,13 +19,29 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
+use Throwable;
 
 use function array_unique;
+use function curl_close;
+use function curl_exec;
+use function curl_getinfo;
+use function curl_init;
+use function curl_setopt;
+use function file_get_contents;
 use function implode;
 use function print_r;
 use function rmdir;
+use function shell_exec;
+use function str_replace;
 use function substr;
+use function sys_get_temp_dir;
 use function uniqid;
+
+use const CURLINFO_EFFECTIVE_URL;
+use const CURLOPT_FOLLOWLOCATION;
+use const CURLOPT_HEADER;
+use const CURLOPT_RETURNTRANSFER;
+use const CURLOPT_URL;
 
 class IndexDate implements
     ShouldQueue
@@ -238,40 +257,50 @@ class IndexDate implements
         shell_exec('rm -rf ' . $tempDir);
         @rmdir($tempDir);
 
-        shell_exec('mkdir ' . $tempDir && cd $tempDir && wget -nH -A txt,ffp,md5,st5,cfv -r --cut-dirs=5 $newUrl`;
+        shell_exec(
+            'mkdir '
+            . $tempDir
+            . ' && cd '
+            . $tempDir
+            . ' && wget -nH -A txt,ffp,md5,st5,cfv -r --cut-dirs=5 '
+            . $newUrl,
+        );
 
-        $dir = new \DirectoryIterator($tempDir);
+        $dir = new DirectoryIterator($tempDir);
         foreach ($dir as $fileinfo) {
-            if (! $fileinfo->isDot()) {
-                $file = $fileRepository->findOneBy([
-                    'identifier' => $identifier,
-                    'name' => $fileinfo->getFilename(),
-                ]);
+            if ($fileinfo->isDot()) {
+                continue;
+            }
 
-                if (! $file) {
-                    $file = new File();
-                    $file->setIdentifier($identifier);
+            $file = $fileRepository->findOneBy([
+                'identifier' => $identifier,
+                'name' => $fileinfo->getFilename(),
+            ]);
 
-                    $entityManager->persist($file);
-                }
+            if (! $file) {
+                $file = new File();
+                $file->setIdentifier($identifier);
 
-                $file->setName($fileinfo->getFilename());
-                $body = file_get_contents($tempDir . '/' . $fileinfo->getFilename());
-                if ($body) {
-                    $file->setBody($body);
-                }
+                $entityManager->persist($file);
+            }
 
-                try {
-                    $entityManager->flush();
-                } catch (\Exception $e) {
-                    `rm -rf $tempDir`;
-                    @rmdir($tempDir);
-                    throw $e;
-                }
+            $file->setName($fileinfo->getFilename());
+            $body = file_get_contents($tempDir . '/' . $fileinfo->getFilename());
+            if ($body) {
+                $file->setBody($body);
+            }
+
+            try {
+                $entityManager->flush();
+            } catch (Throwable $e) {
+                shell_exec('rm -rf' . $tempDir);
+                @rmdir($tempDir);
+
+                throw $e;
             }
         }
 
-        `rm -rf $tempDir`;
+        shell_exec('rm -rf ' . $tempDir);
         @rmdir($tempDir);
     }
 }
