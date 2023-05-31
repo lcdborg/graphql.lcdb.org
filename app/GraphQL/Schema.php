@@ -19,6 +19,7 @@ final class Schema
         Event\ArtistGroupDefinition::subscribe($driver);
         Event\UserDefinition::subscribe($driver);
         Event\UserListDefinition::subscribe($driver);
+        Event\InternetArchive\CreatorDefinition::subscribe($driver);
 
         return new GraphQLSchema([
             'query' => new ObjectType([
@@ -44,8 +45,6 @@ final class Schema
 
                     // Internet Archive
                     'creator'              => Query\InternetArchive\Creator\CreatorQuery::getDefinition($driver, $variables, $operationName),
-                    'creatorLatestYear'    => Query\InternetArchive\Creator\CreatorLatestYearQuery::getDefinition($driver, $variables, $operationName),
-                    'creatorYears'         => Query\InternetArchive\Creator\CreatorYearsQuery::getDefinition($driver, $variables, $operationName),
                     'creators'             => Query\InternetArchive\Creator\CreatorsQuery::getDefinition($driver, $variables, $operationName),
                     'creatorsUnprefix'     => Query\InternetArchive\Creator\CreatorsUnprefixQuery::getDefinition($driver, $variables, $operationName),
                     'identifier'           => Query\InternetArchive\Identifier\IdentifierQuery::getDefinition($driver, $variables, $operationName),
