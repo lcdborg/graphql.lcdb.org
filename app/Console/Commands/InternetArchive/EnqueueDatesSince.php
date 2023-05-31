@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands\InternetArchive;
 
 use App\Jobs\InternetArchive\IndexDate;
@@ -13,6 +15,7 @@ class EnqueueDatesSince extends Command
      * The name and signature of the console command.
      *
      * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $signature = 'internet-archive:enqueue:since {date}';
 
@@ -20,23 +23,22 @@ class EnqueueDatesSince extends Command
      * The console command description.
      *
      * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
     protected $description = 'Enqueue all dates since a given date to be indexed.';
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $startAt = new DateTime($this->argument('date'));
-        $now = new DateTime();
+        $now     = new DateTime();
 
         while ($startAt < $now) {
             IndexDate::dispatch($startAt->format('Y-m-d'))->onQueue('default');
 
-            echo "enqueued " . $startAt->format('Y-m-d') . "\n";
+            echo 'enqueued ' . $startAt->format('Y-m-d') . "\n";
             $startAt->add(new DateInterval('P1D'));
         }
 

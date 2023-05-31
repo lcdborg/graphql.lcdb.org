@@ -10,8 +10,6 @@ use App\ORM\Entity\Artist;
 use App\ORM\Entity\ArtistGroup;
 use App\ORM\Entity\Performance;
 use App\ORM\Entity\Source;
-use App\ORM\Entity\UserList;
-use App\ORM\Entity\UserPerformance;
 use Doctrine\ORM\EntityManager;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
