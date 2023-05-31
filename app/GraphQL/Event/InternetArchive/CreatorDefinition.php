@@ -9,7 +9,6 @@ use ApiSkeletons\Doctrine\GraphQL\Event\EntityDefinition;
 use App\GraphQL\Event\Event;
 use App\ORM\Entity\InternetArchive\Creator;
 use App\ORM\Entity\InternetArchive\Identifier;
-use App\ORM\Entity\Performance;
 use Doctrine\ORM\EntityManager;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
