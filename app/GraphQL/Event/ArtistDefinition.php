@@ -6,9 +6,11 @@ namespace App\GraphQL\Event;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\EntityDefinition;
+use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
 use App\ORM\Entity\Artist;
 use App\ORM\Entity\Performance;
 use App\ORM\Entity\Source;
+use App\ORM\Entity\User;
 use Doctrine\ORM\EntityManager;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -18,6 +20,26 @@ final class ArtistDefinition implements Event
 {
     public static function subscribe(Driver $driver): void
     {
+        $driver->get(EventDispatcher::class)->subscribeTo(
+            'artist.users.definition',
+            static function (FilterQueryBuilder $event): void {
+                /**
+                 * Limit the query to just users that own the
+                 * artist, trade actively > 2, order by the last userPerformance created.
+                 */
+                $queryBuilder = $event->getQueryBuilder();
+                $queryBuilder
+                    ->innerJoin('entity.userPerformances', 'userPerformances')
+                    ->innerJoin('userPerformances.performance', 'performance')
+                    ->innerJoin('performance.artist', 'artist')
+                    ->andWhere($queryBuilder->expr()->gt('entity.activetrading', 2))
+                    ->andWhere($queryBuilder->expr()->eq('artist.id', ':id'))
+                    ->setParameter('id', $event->getObjectValue()->getId())
+                    ->groupBy('entity')
+                    ->orderBy('COUNT(userPerformances)', 'DESC');
+            },
+        );
+
         /**
          * Add a userPerformanceCount field to UserList
          */
@@ -114,6 +136,16 @@ final class ArtistDefinition implements Event
 
                         return $queryBuilder->getQuery()->getSingleScalarResult();
                     },
+                ];
+
+                $fields['users'] = [
+                    'type' => $driver->connection($driver->type(User::class)),
+                    'args' => [
+                        'filter' => $driver->filter(User::class),
+                        'pagination' => $driver->pagination(),
+                    ],
+                    'description' => 'The count of user performances for a user',
+                    'resolve' => $driver->resolve(User::class, 'artist.users.definition'),
                 ];
 
                 $definition['fields'] = $fields;
