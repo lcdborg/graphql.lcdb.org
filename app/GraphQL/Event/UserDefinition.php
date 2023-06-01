@@ -46,11 +46,11 @@ final class UserDefinition implements Event
                 $fields['topArtists'] = [
                     'type' => Type::listOf(new TopArtist()),
                     'args' => [
-                        'limit' => Type::nonNull(Type::int()),
+                        'first' => Type::nonNull(Type::int()),
                     ],
                     'description' => 'User top artists',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver) {
-                        $limit = $args['limit'] <= 20 ? $args['limit'] : 20;
+                        $limit = $args['first'] <= 20 ? $args['first'] : 20;
 
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
 
