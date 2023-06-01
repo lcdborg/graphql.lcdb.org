@@ -7,7 +7,6 @@ namespace App\GraphQL\Event;
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\EntityDefinition;
 use ApiSkeletons\Doctrine\GraphQL\Event\FilterQueryBuilder;
-use App\ORM\Entity\Performance;
 use App\ORM\Entity\Source;
 use App\ORM\Entity\User;
 use League\Event\EventDispatcher;
