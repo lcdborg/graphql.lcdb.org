@@ -15,7 +15,7 @@
     <field name="validemail" type="boolean" nullable="false"/>
     <field name="name" type="string" length="100" nullable="false"/>
     <field name="css" type="text" nullable="true"/>
-    <field name="activetrading" type="boolean" nullable="true"/>
+    <field name="activetrading" type="integer" nullable="true"/>
     <field name="rules" type="text" nullable="true"/>
     <field name="config_showrules" type="boolean" nullable="true"/>
     <field name="config_colors" type="text" nullable="true"/>

@@ -20,14 +20,16 @@ final class PerformanceDefinition implements Event
             static function (FilterQueryBuilder $event): void {
                 /**
                  * Limit the query to just users that own the
-                 * show.
+                 * show, trade actively > 2, order by the last userPerformance created.
                  */
                 $queryBuilder = $event->getQueryBuilder();
                 $queryBuilder
                     ->innerJoin('entity.userPerformances', 'userPerformances')
                     ->innerJoin('userPerformances.performance', 'performance')
+                    ->andWhere($queryBuilder->expr()->gt('entity.activetrading', 2))
                     ->andWhere($queryBuilder->expr()->eq('performance.id', ':id'))
-                    ->setParameter('id', $event->getObjectValue()->getId());
+                    ->setParameter('id', $event->getObjectValue()->getId())
+                    ->orderBy('userPerformances.createdAt', 'DESC');
             },
         );
 
