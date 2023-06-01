@@ -6,9 +6,11 @@ namespace App\GraphQL\Event;
 
 use ApiSkeletons\Doctrine\GraphQL\Driver;
 use ApiSkeletons\Doctrine\GraphQL\Event\EntityDefinition;
+use ApiSkeletons\Doctrine\GraphQL\Type\TypeManager;
 use App\GraphQL\Type\TopArtist;
 use App\ORM\Entity\User;
 use App\ORM\Entity\UserPerformance;
+use DateTime;
 use Doctrine\ORM\EntityManager;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -26,6 +28,22 @@ final class UserDefinition implements Event
             static function (EntityDefinition $event) use ($driver): void {
                 $definition = $event->getDefinition();
                 $fields     = $definition['fields']();
+
+                $fields['lastUpdate'] = [
+                    'type' => $driver->get(TypeManager::class)->get('datetime'),
+                    'description' => 'The most recent update by this user',
+                    'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver) {
+                        $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
+
+                        $queryBuilder->select('MAX(userPerformance.createdAt)')
+                            ->from(UserPerformance::class, 'userPerformance')
+                            ->innerJoin('userPerformance.user', 'user')
+                            ->andWhere($queryBuilder->expr()->eq('user', ':user'))
+                            ->setParameter('user', $objectValue);
+
+                        return new DateTime($queryBuilder->getQuery()->getSingleScalarResult());
+                    },
+                ];
 
                 $fields['userPerformanceCount'] = [
                     'type' => Type::int(),
@@ -46,11 +64,11 @@ final class UserDefinition implements Event
                 $fields['topArtists'] = [
                     'type' => Type::listOf(new TopArtist()),
                     'args' => [
-                        'limit' => Type::nonNull(Type::int()),
+                        'first' => Type::nonNull(Type::int()),
                     ],
                     'description' => 'User top artists',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver) {
-                        $limit = $args['limit'] <= 20 ? $args['limit'] : 20;
+                        $limit = $args['first'] <= 20 ? $args['first'] : 20;
 
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
 

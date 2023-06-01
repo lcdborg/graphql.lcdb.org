@@ -48,7 +48,7 @@ class User
     private $css;
 
     /**
-     * @var bool|null
+     * @var int|null
      */
     private $activetrading;
 
@@ -381,7 +381,7 @@ class User
     /**
      * Set activetrading.
      *
-     * @param bool|null $activetrading
+     * @param int|null $activetrading
      *
      * @return User
      */
@@ -395,7 +395,7 @@ class User
     /**
      * Get activetrading.
      *
-     * @return bool|null
+     * @return int|null
      */
     public function getActivetrading()
     {

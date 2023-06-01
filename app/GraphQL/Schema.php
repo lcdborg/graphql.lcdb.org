@@ -17,6 +17,7 @@ final class Schema
         Event\BuildMetadata::subscribe($driver);
         Event\ArtistDefinition::subscribe($driver);
         Event\ArtistGroupDefinition::subscribe($driver);
+        Event\PerformanceDefinition::subscribe($driver);
         Event\UserDefinition::subscribe($driver);
         Event\UserListDefinition::subscribe($driver);
         Event\InternetArchive\CreatorDefinition::subscribe($driver);

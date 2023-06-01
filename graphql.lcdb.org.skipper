@@ -107,7 +107,7 @@
         <field name="validemail" type="boolean" required="true" uuid="502bf53e-bf30-40f8-a58d-5b42ef18d2b4"/>
         <field name="name" type="string" size="100" required="true" uuid="e0bd7d17-7811-4364-b223-c64e17661571"/>
         <field name="css" type="text" uuid="3e17b10f-99c7-4873-bd47-1eedd2163520"/>
-        <field name="activetrading" type="boolean" uuid="c9c45299-687a-43c2-86e5-4d8a33fb8b21"/>
+        <field name="activetrading" type="integer" uuid="c9c45299-687a-43c2-86e5-4d8a33fb8b21"/>
         <field name="rules" type="text" uuid="b3bfaa7e-f8aa-446b-b047-6500d2117de8"/>
         <field name="config_showrules" type="boolean" uuid="d85b240b-3e09-45ba-a15d-779905b204bf"/>
         <field name="config_colors" type="text" uuid="6cb7cdba-1299-4e52-9826-3eaeaef7f994"/>
