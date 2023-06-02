@@ -38,6 +38,7 @@ class GraphQLController extends Controller
             'useHydratorCache' => true,
             'globalIgnore' => ['password', 'realemail'],
             'groupSuffix' => '',
+            'sortFields' => true,
             'entityPrefix' => 'App\\ORM\\Entity\\',
         ]), $metadata);
 
