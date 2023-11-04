@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Query;
 
-use ApiSkeletons\Doctrine\GraphQL\Driver;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Driver;
 
 interface GraphQLQuery
 {

@@ -50,9 +50,7 @@ class GraphQLController extends Controller
 
         $myValidationRules = array_merge(
             GraphQL::getStandardValidationRules(),
-            [
-                new QueryComplexity(100),
-            ],
+            [new QueryComplexity(250)],
         );
 
         // Run GraphQL

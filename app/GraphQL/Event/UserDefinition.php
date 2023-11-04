@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Event;
 
-use ApiSkeletons\Doctrine\GraphQL\Driver;
-use ApiSkeletons\Doctrine\GraphQL\Event\EntityDefinition;
-use ApiSkeletons\Doctrine\GraphQL\Type\TypeManager;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Driver;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Event\EntityDefinition;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Type\TypeManager;
 use App\GraphQL\Type\TopArtist;
 use App\ORM\Entity\User;
 use App\ORM\Entity\UserPerformance;

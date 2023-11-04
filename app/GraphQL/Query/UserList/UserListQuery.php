@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Query\UserList;
 
-use ApiSkeletons\Doctrine\GraphQL\Driver;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Driver;
 use App\GraphQL\Query\GraphQLQuery;
 use App\ORM\Entity\UserList;
 use Doctrine\ORM\EntityManager;

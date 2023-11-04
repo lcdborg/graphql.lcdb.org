@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Query\User;
 
-use ApiSkeletons\Doctrine\GraphQL\Driver;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Driver;
 use App\GraphQL\Query\GraphQLQuery;
 use App\ORM\Entity\User;
 use Doctrine\ORM\EntityManager;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Event\InternetArchive;
 
-use ApiSkeletons\Doctrine\GraphQL\Driver;
-use ApiSkeletons\Doctrine\GraphQL\Event\EntityDefinition;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Driver;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Event\EntityDefinition;
 use App\GraphQL\Event\Event;
 use App\ORM\Entity\InternetArchive\Creator;
 use App\ORM\Entity\InternetArchive\Identifier;

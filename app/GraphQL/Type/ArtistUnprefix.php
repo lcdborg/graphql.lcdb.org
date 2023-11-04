@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Type;
 
-use ApiSkeletons\Doctrine\GraphQL\AbstractContainer;
-use ApiSkeletons\Doctrine\GraphQL\Buildable;
+use ApiSkeletons\Doctrine\ORM\GraphQL\AbstractContainer;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Buildable;
 use App\ORM\Entity\Artist;
 use GraphQL\Type\Definition\ObjectType;
 
