@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 services:
     mysql:
         image: mariadb
@@ -7,14 +7,13 @@ services:
         ports:
             - "3306:3306"
         volumes:
-            - db-graphql-mysql:/var/lib/mysql
+            - mysql:/var/lib/mysql
             - ./.docker/config/my.cnf:/etc/mysql/conf.d/custom.cnf
-            - ./db/now_usec/now_usec.so:/usr/lib/mysql/plugin/now_usec.so
 
     redis:
        image: redis:latest
 
-    web:
+    www:
         build:
             context: .
             dockerfile: Dockerfile
@@ -22,12 +21,9 @@ services:
             - mysql
         volumes:
             - .:/var/www/
-            - ./.docker/config/php.ini:/usr/local/etc/php/php.ini
-            - ./.docker/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
-        container_name: lcdb-graphql-www
         ports:
-            - "80:80"
+            - "80:8080"
 
 volumes:
-    db-graphql-mysql:
+    mysql:
         driver: local

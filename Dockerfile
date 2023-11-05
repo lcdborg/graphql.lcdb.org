@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.2-apache
 
 # Install system dependencies
 RUN apt-get update && apt-get install --yes \
@@ -17,12 +17,9 @@ RUN apt-get update && apt-get install --yes \
     zip \
     unzip \
     vim \
-    git \
     wget \
     procps \
-    sudo \
     default-mysql-client \
-    snmp \
     libsnmp-dev \
     libcurl4-openssl-dev \
     libzip-dev \
@@ -46,9 +43,15 @@ RUN docker-php-ext-install \
 RUN pecl install redis
 RUN docker-php-ext-enable redis
 
-
 # Apache
 RUN a2enmod rewrite
+COPY .docker/config/ports.conf /etc/apache2/ports.conf
+COPY .docker/config/000-default.conf /etc/apache2/sites-available/000-default.conf
+RUN rm /etc/apache2/sites-enabled/000-default.conf
+RUN ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
+# PHP
+COPY .docker/config/php.ini /usr/local/etc/php/php.ini
 
 # Get latest Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -62,4 +65,4 @@ ADD . /var/www
 RUN rm -rf vendor
 RUN composer install --no-dev
 
-EXPOSE 80
+EXPOSE 8080
