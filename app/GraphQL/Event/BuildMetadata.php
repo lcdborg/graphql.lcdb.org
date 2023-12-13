@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Event;
 
 use ApiSkeletons\Doctrine\ORM\GraphQL\Driver;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Event\Metadata;
 use App\ORM\Entity\UserPerformance;
 use League\Event\EventDispatcher;
 
@@ -14,7 +15,7 @@ final class BuildMetadata implements Event
     {
         $driver->get(EventDispatcher::class)->subscribeTo(
             'metadata.build',
-            static function (\ApiSkeletons\Doctrine\GraphQL\Event\BuildMetadata $event): void {
+            static function (Metadata $event): void {
                     $metadata = $event->getMetadata();
 
                     $metadata[UserPerformance::class]['limit'] = 1000;

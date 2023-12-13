@@ -38,7 +38,7 @@ class GraphQLController extends Controller
             'globalEnable' => true,
             'limit' => 300,
             'useHydratorCache' => true,
-            'globalIgnore' => ['password', 'realemail'],
+            'ignoreFields' => ['password', 'realemail'],
             'groupSuffix' => '',
             'sortFields' => true,
             'entityPrefix' => 'App\\ORM\\Entity\\',

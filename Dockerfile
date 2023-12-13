@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.3-apache
 
 # Install system dependencies
 RUN apt-get update && apt-get install --yes \
@@ -63,6 +63,6 @@ RUN php -r "unlink('composer-setup.php');"
 WORKDIR /var/www
 ADD . /var/www
 RUN rm -rf vendor
-RUN composer install --no-dev
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev
 
 EXPOSE 8080

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Query\UserPerformance;
 
 use ApiSkeletons\Doctrine\ORM\GraphQL\Driver;
-use ApiSkeletons\Doctrine\ORM\GraphQL\Event\FilterQueryBuilder;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Event\QueryBuilder as FilterQueryBuilder;
 use App\GraphQL\Query\GraphQLQuery;
 use App\ORM\Entity\UserPerformance;
 use GraphQL\Type\Definition\Type;

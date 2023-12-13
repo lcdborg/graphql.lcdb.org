@@ -6,7 +6,7 @@ namespace App\GraphQL\Event;
 
 use ApiSkeletons\Doctrine\ORM\GraphQL\Driver;
 use ApiSkeletons\Doctrine\ORM\GraphQL\Event\EntityDefinition;
-use ApiSkeletons\Doctrine\ORM\GraphQL\Event\FilterQueryBuilder;
+use ApiSkeletons\Doctrine\ORM\GraphQL\Event\QueryBuilder as FilterQueryBuilder;
 use App\ORM\Entity\Source;
 use App\ORM\Entity\User;
 use League\Event\EventDispatcher;
