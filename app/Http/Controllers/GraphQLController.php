@@ -62,6 +62,6 @@ class GraphQLController extends Controller
             validationRules: $myValidationRules,
         );
 
-        return mb_convert_encoding($result->toArray(), 'UTF-8', 'auto');
+        return mb_convert_encoding($result->toArray(), 'UTF-8', 'UTF-8');
     }
 }
