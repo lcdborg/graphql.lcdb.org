@@ -19,7 +19,7 @@ class IdentifierQuery implements GraphQLQuery
         return [
             'type' => $driver->type(Identifier::class),
             'args' => [
-                'id' => Type::nonNull(Type::string()),
+                'id' => Type::nonNull($driver->type('string')),
             ],
             'resolve' => static function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)->getRepository(Identifier::class)

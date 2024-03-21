@@ -10,7 +10,6 @@ use App\ORM\Entity\UserList;
 use App\ORM\Entity\UserPerformance;
 use Doctrine\ORM\EntityManager;
 use GraphQL\Type\Definition\ResolveInfo;
-use GraphQL\Type\Definition\Type;
 use League\Event\EventDispatcher;
 
 final class UserListDefinition implements Event
@@ -27,7 +26,7 @@ final class UserListDefinition implements Event
                 $fields     = $definition['fields']();
 
                 $fields['userPerformanceCount'] = [
-                    'type' => Type::int(),
+                    'type' => $driver->type('int'),
                     'description' => 'The count of user performances assigned to a user list',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();

@@ -28,7 +28,7 @@ final class CreatorDefinition implements Event
                 $fields     = $definition['fields']();
 
                 $fields['years'] = [
-                    'type' => Type::listOf(Type::int()),
+                    'type' => Type::listOf($driver->type('int')),
                     'description' => 'The performance years for a creator',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -50,7 +50,7 @@ final class CreatorDefinition implements Event
                 ];
 
                 $fields['latestYear'] = [
-                    'type' => Type::int(),
+                    'type' => $driver->type('int'),
                     'description' => 'The most recent identifier year for a creator',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();

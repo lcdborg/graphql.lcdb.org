@@ -34,7 +34,7 @@ class CreatorsUnprefixQuery implements GraphQLQuery
         }
 
         return [
-            'type' => $driver->connection($driver->type(CreatorUnprefix::class)),
+            'type' => $driver->connection(CreatorUnprefix::class),
             'args' => [
                 'filter' => $driver->filter(CreatorUnprefix::class),
                 'pagination' => $driver->pagination(),

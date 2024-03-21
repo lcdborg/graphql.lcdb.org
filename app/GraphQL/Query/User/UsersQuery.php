@@ -14,7 +14,7 @@ class UsersQuery implements GraphQLQuery
     public static function getDefinition(Driver $driver, array $variables = [], string|null $operationName = null): array
     {
         return [
-            'type' => $driver->connection($driver->type(User::class)),
+            'type' => $driver->connection(User::class),
             'args' => [
                 'filter' => $driver->filter(User::class),
                 'pagination' => $driver->pagination(),

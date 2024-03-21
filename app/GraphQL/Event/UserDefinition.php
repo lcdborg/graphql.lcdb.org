@@ -6,7 +6,6 @@ namespace App\GraphQL\Event;
 
 use ApiSkeletons\Doctrine\ORM\GraphQL\Driver;
 use ApiSkeletons\Doctrine\ORM\GraphQL\Event\EntityDefinition;
-use ApiSkeletons\Doctrine\ORM\GraphQL\Type\TypeManager;
 use App\GraphQL\Type\TopArtist;
 use App\ORM\Entity\User;
 use App\ORM\Entity\UserPerformance;
@@ -30,7 +29,7 @@ final class UserDefinition implements Event
                 $fields     = $definition['fields']();
 
                 $fields['lastUpdate'] = [
-                    'type' => $driver->get(TypeManager::class)->get('datetime'),
+                    'type' => $driver->type('datetime'),
                     'description' => 'The most recent update by this user',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver) {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -46,7 +45,7 @@ final class UserDefinition implements Event
                 ];
 
                 $fields['userPerformanceCount'] = [
-                    'type' => Type::int(),
+                    'type' => $driver->type('int'),
                     'description' => 'The count of user performances for a user',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver) {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -64,7 +63,7 @@ final class UserDefinition implements Event
                 $fields['topArtists'] = [
                     'type' => Type::listOf(new TopArtist()),
                     'args' => [
-                        'first' => Type::nonNull(Type::int()),
+                        'first' => Type::nonNull($driver->type('int')),
                     ],
                     'description' => 'User top artists',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver) {

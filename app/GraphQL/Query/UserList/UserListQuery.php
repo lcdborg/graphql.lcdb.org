@@ -19,8 +19,8 @@ class UserListQuery implements GraphQLQuery
         return [
             'type' => $driver->type(UserList::class),
             'args' => [
-                'id' => Type::nonNull(Type::int()),
-                'shortname' => Type::nonNull(Type::string()),
+                'id' => Type::nonNull($driver->type('int')),
+                'shortname' => Type::nonNull($driver->type('string')),
             ],
             'resolve' => static function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)

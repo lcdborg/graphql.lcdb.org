@@ -50,7 +50,7 @@ final class ArtistDefinition implements Event
                 $fields     = $definition['fields']();
 
                 $fields['years'] = [
-                    'type' => Type::listOf(Type::int()),
+                    'type' => Type::listOf($driver->type('int')),
                     'description' => 'The performance years for an artist',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -71,7 +71,7 @@ final class ArtistDefinition implements Event
                 ];
 
                 $fields['latestYear'] = [
-                    'type' => Type::int(),
+                    'type' => $driver->type('int'),
                     'description' => 'The most recent performance year for an artist',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -86,7 +86,7 @@ final class ArtistDefinition implements Event
                 ];
 
                 $fields['sourceYears'] = [
-                    'type' => Type::listOf(Type::int()),
+                    'type' => Type::listOf($driver->type('int')),
                     'description' => 'The performance for artist sources',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -108,7 +108,7 @@ final class ArtistDefinition implements Event
                 ];
 
                 $fields['sourceLatestYear'] = [
-                    'type' => Type::int(),
+                    'type' => $driver->type('int'),
                     'description' => 'The most recent performance year for an artist\'s sources',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -124,7 +124,7 @@ final class ArtistDefinition implements Event
                 ];
 
                 $fields['sourceCount'] = [
-                    'type' => Type::int(),
+                    'type' => $driver->type('int'),
                     'description' => 'The number of sources for an artist',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -139,7 +139,7 @@ final class ArtistDefinition implements Event
                 ];
 
                 $fields['users'] = [
-                    'type' => $driver->connection($driver->type(User::class)),
+                    'type' => $driver->connection(User::class),
                     'args' => [
                         'filter' => $driver->filter(User::class),
                         'pagination' => $driver->pagination(),

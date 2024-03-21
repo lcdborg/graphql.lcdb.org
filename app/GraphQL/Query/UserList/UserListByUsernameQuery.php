@@ -19,8 +19,8 @@ class UserListByUsernameQuery implements GraphQLQuery
         return [
             'type' => $driver->type(UserList::class),
             'args' => [
-                'username' => Type::nonNull(Type::string()),
-                'listname' => Type::string(),
+                'username' => Type::nonNull($driver->type('string')),
+                'listname' => $driver->type('string'),
             ],
             'resolve' => static function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 if (! $args['listname']) {

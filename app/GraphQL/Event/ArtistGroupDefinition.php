@@ -29,7 +29,7 @@ final class ArtistGroupDefinition implements Event
                 $fields     = $definition['fields']();
 
                 $fields['latestYear'] = [
-                    'type' => Type::int(),
+                    'type' => $driver->type('int'),
                     'description' => 'The most recent performance year for an artist group',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -48,7 +48,7 @@ final class ArtistGroupDefinition implements Event
                 ];
 
                 $fields['sourceLatestYear'] = [
-                    'type' => Type::int(),
+                    'type' => $driver->type('int'),
                     'description' => 'The most recent source year for an artist group',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -67,7 +67,7 @@ final class ArtistGroupDefinition implements Event
                 ];
 
                 $fields['sourceCount'] = [
-                    'type' => Type::int(),
+                    'type' => $driver->type('int'),
                     'description' => 'Count the number of sources for an artist group',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -85,7 +85,7 @@ final class ArtistGroupDefinition implements Event
                 ];
 
                 $fields['performanceYears'] = [
-                    'type' => Type::listOf(Type::int()),
+                    'type' => Type::listOf($driver->type('int')),
                     'description' => 'Fetch all years for artist group performances',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
@@ -109,7 +109,7 @@ final class ArtistGroupDefinition implements Event
                 ];
 
                 $fields['sourceYears'] = [
-                    'type' => Type::listOf(Type::int()),
+                    'type' => Type::listOf($driver->type('int')),
                     'description' => 'Fetch all years for artist group sources',
                     'resolve' => static function ($objectValue, array $args, $context, ResolveInfo $info) use ($driver): mixed {
                         $queryBuilder = $driver->get(EntityManager::class)->createQueryBuilder();
