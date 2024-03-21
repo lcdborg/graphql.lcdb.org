@@ -34,7 +34,7 @@ class ArtistsUnprefixQuery implements GraphQLQuery
         }
 
         return [
-            'type' => $driver->connection($driver->type(ArtistUnprefix::class)),
+            'type' => $driver->connection(ArtistUnprefix::class),
             'args' => [
                 'filter' => $driver->filter(ArtistUnprefix::class),
                 'pagination' => $driver->pagination(),

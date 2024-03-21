@@ -40,7 +40,7 @@ final class SourceDefinition implements Event
                 $fields     = $definition['fields']();
 
                 $fields['users'] = [
-                    'type' => $driver->connection($driver->type(User::class)),
+                    'type' => $driver->connection(User::class),
                     'args' => [
                         'filter' => $driver->filter(User::class),
                         'pagination' => $driver->pagination(),

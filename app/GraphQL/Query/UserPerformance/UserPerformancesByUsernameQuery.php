@@ -43,10 +43,10 @@ class UserPerformancesByUsernameQuery implements GraphQLQuery
         );
 
         return [
-            'type' => $driver->connection($driver->type(UserPerformance::class)),
+            'type' => $driver->connection(UserPerformance::class),
             'args' => [
-                'username' => Type::nonNull(Type::string()),
-                'listname' => Type::string(),
+                'username' => Type::nonNull($driver->type('string')),
+                'listname' => $driver->type('string'),
                 'pagination' => $driver->pagination(),
             ],
             'resolve' => $driver->resolve(UserPerformance::class, 'userPerformancesByUsername'),

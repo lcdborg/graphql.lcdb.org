@@ -14,7 +14,7 @@ class CreatorsQuery implements GraphQLQuery
     public static function getDefinition(Driver $driver, array $variables = [], string|null $operationName = null): array
     {
         return [
-            'type' => $driver->connection($driver->type(Creator::class)),
+            'type' => $driver->connection(Creator::class),
             'args' => [
                 'filter' => $driver->filter(Creator::class),
                 'pagination' => $driver->pagination(),

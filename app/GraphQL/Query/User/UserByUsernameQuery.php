@@ -19,7 +19,7 @@ class UserByUsernameQuery implements GraphQLQuery
         return [
             'type' => $driver->type(User::class),
             'args' => [
-                'username' => Type::nonNull(Type::string()),
+                'username' => Type::nonNull($driver->type('string')),
             ],
             'resolve' => static function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)->getRepository(User::class)

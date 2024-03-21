@@ -14,7 +14,7 @@ class ArtistsQuery implements GraphQLQuery
     public static function getDefinition(Driver $driver, array $variables = [], string|null $operationName = null): array
     {
         return [
-            'type' => $driver->connection($driver->type(ArtistUnprefix::class)),
+            'type' => $driver->connection(ArtistUnprefix::class),
             'args' => [
                 'filter' => $driver->filter(ArtistUnprefix::class),
                 'pagination' => $driver->pagination(),

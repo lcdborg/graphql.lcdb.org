@@ -19,7 +19,7 @@ class UserPerformanceQuery implements GraphQLQuery
         return [
             'type' => $driver->type(UserPerformance::class),
             'args' => [
-                'id' => Type::nonNull(Type::int()),
+                'id' => Type::nonNull($driver->type('int')),
             ],
             'resolve' => static function ($obj, $args, $context, ResolveInfo $info) use ($driver) {
                 return $driver->get(EntityManager::class)
