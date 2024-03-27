@@ -18,13 +18,11 @@ export default {
 LCDB GraphQL Database
 =====================
 
-This is the database for \`https://lcdb.org\`.
+This is the graph database for \`https://lcdb.org\`.
 
 You are free to use this GraphQL database for your own purposes.
 
 The endpoint is a POST to \`https://graphql.lcdb.org\`
-
-[Read the Documentation](https://graphql.lcdb.org/docs)
           `,
         }
       ],
