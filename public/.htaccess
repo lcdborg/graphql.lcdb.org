@@ -9,6 +9,10 @@ RewriteBase /
 RewriteCond %{HTTP:Authorization} .
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+# Docs html files
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule !docs/.*\.html$ %{REQUEST_FILENAME}.html [L]
+
 # Redirect Trailing Slashes If Not A Folder...
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
