@@ -6,7 +6,7 @@
 
         <title>Live Concert Database</title>
 
-        <meta http-equiv="Refresh" content="0; url='https://graphql.lcdb.org/docs'" />
+        <meta http-equiv="Refresh" content="0; url='/docs'" />
 
     </head>
     <body class="antialiased">
