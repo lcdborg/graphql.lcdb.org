@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ded97e53aa04886c4f5b397f52d5081",
+    "content-hash": "58611e5d297b101752d26798572ec9ac",
     "packages": [
         {
             "name": "api-skeletons/doctrine-orm-graphql",
-            "version": "10.0.5",
+            "version": "10.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/API-Skeletons/doctrine-orm-graphql.git",
-                "reference": "1ba2c249ac7d440375eb787f3ca8d98c0a90ef93"
+                "reference": "d3ed532b8fa3763726df6c47b008cfa0d0d1bc39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/API-Skeletons/doctrine-orm-graphql/zipball/1ba2c249ac7d440375eb787f3ca8d98c0a90ef93",
-                "reference": "1ba2c249ac7d440375eb787f3ca8d98c0a90ef93",
+                "url": "https://api.github.com/repos/API-Skeletons/doctrine-orm-graphql/zipball/d3ed532b8fa3763726df6c47b008cfa0d0d1bc39",
+                "reference": "d3ed532b8fa3763726df6c47b008cfa0d0d1bc39",
                 "shasum": ""
             },
             "require": {
@@ -57,9 +57,9 @@
             "description": "GraphQL Type Driver for Doctrine ORM",
             "support": {
                 "issues": "https://github.com/API-Skeletons/doctrine-orm-graphql/issues",
-                "source": "https://github.com/API-Skeletons/doctrine-orm-graphql/tree/10.0.5"
+                "source": "https://github.com/API-Skeletons/doctrine-orm-graphql/tree/10.1.0"
             },
-            "time": "2024-03-29T08:33:20+00:00"
+            "time": "2024-03-29T22:24:37+00:00"
         },
         {
             "name": "beberlei/doctrineextensions",
@@ -9846,16 +9846,16 @@
         },
         {
             "name": "spatie/ignition",
-            "version": "1.13.0",
+            "version": "1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ignition.git",
-                "reference": "e385d778f770580c00ef200be5ab749c3c907147"
+                "reference": "889bf1dfa59e161590f677728b47bf4a6893983b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ignition/zipball/e385d778f770580c00ef200be5ab749c3c907147",
-                "reference": "e385d778f770580c00ef200be5ab749c3c907147",
+                "url": "https://api.github.com/repos/spatie/ignition/zipball/889bf1dfa59e161590f677728b47bf4a6893983b",
+                "reference": "889bf1dfa59e161590f677728b47bf4a6893983b",
                 "shasum": ""
             },
             "require": {
@@ -9925,7 +9925,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-28T14:23:58+00:00"
+            "time": "2024-03-29T14:03:47+00:00"
         },
         {
             "name": "spatie/laravel-ignition",
