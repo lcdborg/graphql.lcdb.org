@@ -16,7 +16,8 @@
         "laravel-doctrine/orm": "^1.8",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "mll-lab/laravel-graphiql": "^3.2"
     },
     "require-dev": {
         "doctrine/coding-standard": "^12.0",

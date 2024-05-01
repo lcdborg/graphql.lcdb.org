@@ -25,6 +25,9 @@ RUN apt-get update && apt-get install --yes \
     libzip-dev \
     redis
 
+RUN apt-get install --yes nodejs
+RUN apt-get install --yes npm
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -49,6 +52,11 @@ COPY .docker/config/ports.conf /etc/apache2/ports.conf
 COPY .docker/config/000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN rm /etc/apache2/sites-enabled/000-default.conf
 RUN ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
+# Node and Magidoc
+RUN npm install -g pnpm
+RUN SHELL=/bin/bash pnpm setup
+RUN SHELL=/bin/bash PNPM_HOME=/usr/bin pnpm add --global @magidoc/cli@latest
 
 # PHP
 COPY .docker/config/php.ini /usr/local/etc/php/php.ini
