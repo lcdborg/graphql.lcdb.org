@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Doctrine\ORM\Entity\InternetArchive\Identifier" table="Identifier_InternetArchive">
+    <id name="id" type="integer">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="archiveIdentifier" type="string" length="250" nullable="false"/>
+    <field name="server" type="string" nullable="true"/>
+    <field name="performanceDate" type="string" nullable="true"/>
+    <field name="addedAt" type="datetime" nullable="false"/>
+    <field name="title" type="string" nullable="true"/>
+    <field name="description" type="text" nullable="true"/>
+    <field name="uploader" type="string" nullable="true"/>
+    <field name="venue" type="string" nullable="true"/>
+    <field name="coverage" type="string" nullable="true"/>
+    <field name="year" type="string" nullable="true"/>
+    <field name="notes" type="text" nullable="true"/>
+    <field name="taper" type="text" nullable="true"/>
+    <field name="lineage" type="text" nullable="true"/>
+    <field name="archiveSource" type="text" nullable="true"/>
+    <field name="md5s" type="text" nullable="true"/>
+    <indexes>
+      <index name="idx_identifier" columns="archiveIdentifier"/>
+    </indexes>
+    <many-to-one field="creator" target-entity="App\Doctrine\ORM\Entity\InternetArchive\Creator" inversed-by="identifiers">
+      <join-columns>
+        <join-column name="creator_id" referenced-column-name="id" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="source" target-entity="App\Doctrine\ORM\Entity\Source" inversed-by="identifier">
+      <join-columns>
+        <join-column name="source_id" referenced-column-name="shninfo_key"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="files" target-entity="App\Doctrine\ORM\Entity\InternetArchive\File" mapped-by="identifier"/>
+    <many-to-many field="collections" target-entity="App\Doctrine\ORM\Entity\InternetArchive\Collection" inversed-by="identifiers">
+      <join-table name="CollectionToIdentifier_InternetArchive">
+        <join-columns>
+          <join-column name="identifier_id" referenced-column-name="id" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="collection_id" referenced-column-name="id" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <options>
+      <option name="charset">utf8mb4</option>
+      <option name="engine">MyISAM</option>
+    </options>
+  </entity>
+</doctrine-mapping>

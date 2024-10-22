@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Doctrine\ORM\Entity\Source" table="shninfo">
+    <id name="id" type="integer" column="shninfo_key">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </id>
+    <field name="createdAt" type="datetime" nullable="true" column="dateentered"/>
+    <field name="enterUsername" type="string" length="30" nullable="false" column="enter_userid"/>
+    <field name="circdate" type="string" length="20" nullable="false"/>
+    <field name="shndiskcount" type="integer" nullable="false"/>
+    <field name="wavdiskcount" type="integer" nullable="false"/>
+    <field name="textdoc" type="text" nullable="true"/>
+    <field name="comments" type="text" nullable="false"/>
+    <field name="archiveIdentifier" type="string" nullable="false" column="archive_identifier"/>
+    <field name="updatedAt" type="datetime" nullable="true" column="lastupdate"/>
+    <field name="mediaSize" type="bigint" nullable="true" column="media_size">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="mediaSizeUncompressed" type="bigint" nullable="true" column="media_size_uncompressed">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="dummyColumn" type="integer" nullable="true" column="dummy_column"/>
+    <many-to-one field="performance" target-entity="App\Doctrine\ORM\Entity\Performance" inversed-by="sources">
+      <join-columns>
+        <join-column name="ref_shows" referenced-column-name="shows_key" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="checksums" target-entity="App\Doctrine\ORM\Entity\Checksum" mapped-by="source"/>
+    <one-to-many field="userPerformances" target-entity="App\Doctrine\ORM\Entity\UserPerformance" mapped-by="source"/>
+    <one-to-many field="identifier" target-entity="App\Doctrine\ORM\Entity\InternetArchive\Identifier" mapped-by="source"/>
+  </entity>
+</doctrine-mapping>

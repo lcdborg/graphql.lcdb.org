@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Doctrine\ORM\Entity\ArtistGroup" table="artist_groups">
+    <id name="id" type="integer" column="artist_group_key">
+      <generator strategy="AUTO"/>
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </id>
+    <field name="title" type="string" nullable="true"/>
+    <field name="header" type="text" nullable="true"/>
+    <field name="footer" type="text" nullable="true"/>
+    <many-to-one field="user" target-entity="App\Doctrine\ORM\Entity\User" inversed-by="artistGroups">
+      <join-columns>
+        <join-column name="ref_user" referenced-column-name="user_key" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="artistToArtistGroups" target-entity="App\Doctrine\ORM\Entity\ArtistToArtistGroup" mapped-by="artistGroup"/>
+    <one-to-many field="userToArtistGroups" target-entity="App\Doctrine\ORM\Entity\UserToArtistGroup" mapped-by="artistGroup"/>
+  </entity>
+</doctrine-mapping>
