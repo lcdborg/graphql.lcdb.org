@@ -19,7 +19,7 @@ services:
        image: redis:latest
 
     mysql:
-        image: 'mysql:8'
+        image: 'mariadb:10.3.39'
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
