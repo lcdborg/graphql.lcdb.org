@@ -50,7 +50,7 @@ class GraphQLController extends Controller
             'ignoreFields' => ['password', 'realemail'],
             'groupSuffix' => '',
             'sortFields' => true,
-            'entityPrefix' => 'App\\ORM\\Entity\\',
+            'entityPrefix' => 'App\\Doctrine\\ORM\\Entity\\',
         ]), $metadata);
 
         if (! $metadata) {
