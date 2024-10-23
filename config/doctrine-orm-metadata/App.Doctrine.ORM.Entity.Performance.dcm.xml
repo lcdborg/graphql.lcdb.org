@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Doctrine\ORM\Entity\Performance" table="shows">
+    <id name="id" type="integer" column="shows_key">
+      <generator strategy="AUTO"/>
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </id>
+    <field name="date" type="string" length="10" nullable="false" column="showdate"/>
+    <field name="venue" type="string" length="50" nullable="false"/>
+    <field name="city" type="string" length="25" nullable="false"/>
+    <field name="state" type="string" length="20" nullable="false"/>
+    <field name="set1" type="text" nullable="true"/>
+    <field name="set2" type="text" nullable="true"/>
+    <field name="set3" type="text" nullable="true"/>
+    <field name="comment" type="text" nullable="true"/>
+    <field name="updatedAt" type="datetime" nullable="true" column="dateentered"/>
+    <field name="createdAt" type="datetime" nullable="true" column="lastupdate"/>
+    <field name="year" type="integer" nullable="true" column="showyear"/>
+    <field name="showsuserid" type="string" length="32" nullable="false"/>
+    <field name="ref_festival" type="integer" nullable="false">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="festival_lock" type="boolean" nullable="false">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="spotlight_date" type="datetime" nullable="true"/>
+    <field name="staffpick_date" type="datetime" nullable="true"/>
+    <field name="merge_lock" type="integer" nullable="false">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="ref_venue" type="integer" nullable="false">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="changeComment" type="string" length="255" nullable="true" column="change_comment"/>
+    <field name="isCompilation" type="boolean" nullable="false" column="compilation"/>
+    <field name="title" type="string" length="255" nullable="false"/>
+    <many-to-one field="artist" target-entity="App\Doctrine\ORM\Entity\Artist" inversed-by="performances">
+      <join-columns>
+        <join-column name="ref_artist" referenced-column-name="artist_key" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <one-to-many field="sources" target-entity="App\Doctrine\ORM\Entity\Source" mapped-by="performance"/>
+    <one-to-many field="userPerformances" target-entity="App\Doctrine\ORM\Entity\UserPerformance" mapped-by="performance"/>
+    <many-to-many field="wantedUsers" target-entity="App\Doctrine\ORM\Entity\User" inversed-by="wantedPerformances">
+      <join-table name="wantlist">
+        <join-columns>
+          <join-column name="ref_shows" referenced-column-name="shows_key" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="ref_user" referenced-column-name="user_key" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

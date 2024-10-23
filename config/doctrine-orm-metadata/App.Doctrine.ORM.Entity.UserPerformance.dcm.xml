@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Doctrine\ORM\Entity\UserPerformance" table="myshows">
+    <id name="id" type="integer" column="myshows_key">
+      <generator strategy="AUTO"/>
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </id>
+    <field name="sourceInfo" type="text" nullable="true" column="source"/>
+    <field name="checksums" type="text" nullable="true"/>
+    <field name="createdAt" type="datetime" nullable="false" column="date_added"/>
+    <field name="media_count" type="integer" nullable="true"/>
+    <field name="media_type" type="string" length="15" nullable="true"/>
+    <field name="noise_reduction" type="integer" nullable="true">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="scms_status" type="string" length="30" nullable="true"/>
+    <field name="show_rating" type="string" length="3" nullable="true"/>
+    <field name="sound_rating" type="string" length="3" nullable="true"/>
+    <field name="microphones" type="string" length="80" nullable="true"/>
+    <field name="generation" type="integer" nullable="true"/>
+    <field name="note" type="text" nullable="true"/>
+    <field name="j_card_comment" type="text" nullable="true"/>
+    <field name="tech_note" type="text" nullable="true"/>
+    <field name="reference_number" type="string" length="20" nullable="true"/>
+    <field name="traded_from" type="string" length="50" nullable="true"/>
+    <field name="traded_from_email" type="string" length="100" nullable="true"/>
+    <field name="tradesAllowed" type="boolean" nullable="true" column="trades_allowed">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="status" type="string" length="20" nullable="true"/>
+    <field name="attendance" type="string" length="20" nullable="true"/>
+    <field name="userid" type="string" length="32" nullable="false"/>
+    <field name="tapername" type="string" length="50" nullable="true"/>
+    <field name="miclocation" type="string" length="80" nullable="true"/>
+    <many-to-one field="performance" target-entity="App\Doctrine\ORM\Entity\Performance" inversed-by="userPerformances">
+      <join-columns>
+        <join-column name="ref_shows" referenced-column-name="shows_key" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="source" target-entity="App\Doctrine\ORM\Entity\Source" inversed-by="userPerformances">
+      <join-columns>
+        <join-column name="ref_shninfo" referenced-column-name="shninfo_key"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="user" target-entity="App\Doctrine\ORM\Entity\User" inversed-by="userPerformances">
+      <join-columns>
+        <join-column name="ref_user" referenced-column-name="user_key" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="userLists" target-entity="App\Doctrine\ORM\Entity\UserList" inversed-by="userPerformances">
+      <join-table name="mylists_shows">
+        <join-columns>
+          <join-column name="ref_myshows" referenced-column-name="myshows_key" nullable="false"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="ref_mylists" referenced-column-name="mylist_key" nullable="false"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

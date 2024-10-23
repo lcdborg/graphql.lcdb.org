@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Doctrine\ORM\Entity\UserList" table="mylists">
+    <id name="id" type="integer" column="mylist_key">
+      <generator strategy="AUTO"/>
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </id>
+    <field name="ref_username" type="string" length="32" nullable="false"/>
+    <field name="name" type="string" length="50" nullable="false"/>
+    <field name="shortname" type="string" length="50" nullable="false"/>
+    <field name="notes" type="text" nullable="true"/>
+    <field name="createdAt" type="datetime" nullable="false" column="created"/>
+    <field name="views" type="integer" nullable="false">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+    <field name="lastviewed" type="datetime" nullable="false"/>
+    <field name="defaultlist" type="boolean" nullable="false"/>
+    <field name="private" type="boolean" nullable="true"/>
+    <many-to-one field="user" target-entity="App\Doctrine\ORM\Entity\User" inversed-by="userLists">
+      <join-columns>
+        <join-column name="ref_user" referenced-column-name="user_key" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="template" target-entity="App\Doctrine\ORM\Entity\Template" inversed-by="userLists">
+      <join-columns>
+        <join-column name="ref_templates" referenced-column-name="template_key"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="userPerformances" target-entity="App\Doctrine\ORM\Entity\UserPerformance" mapped-by="userLists"/>
+  </entity>
+</doctrine-mapping>

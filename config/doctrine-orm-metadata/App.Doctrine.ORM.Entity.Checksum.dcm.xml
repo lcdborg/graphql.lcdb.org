@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Doctrine\ORM\Entity\Checksum" table="md5s">
+    <id name="id" type="integer" column="md5_key">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="description" type="string" nullable="true" column="md5desc"/>
+    <field name="body" type="text" nullable="true" column="md5text"/>
+    <field name="createdAt" type="datetime" nullable="false" column="dateentered"/>
+    <many-to-one field="source" target-entity="App\Doctrine\ORM\Entity\Source" inversed-by="checksums">
+      <join-columns>
+        <join-column name="ref_shninfo" referenced-column-name="shninfo_key" nullable="false"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
